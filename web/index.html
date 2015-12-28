@@ -6,11 +6,11 @@
     <link href="//cdn.bootcss.com/tachyons/3.0.2/tachyons.min.css" rel="stylesheet">
 </head>
 <body class="sans-serif">
-    <div class="container w-34 center">
+    <div class="container mw6 phm center">
         <header>
             <h1 class="tc ttu tracked-tight mega mbn">Disbot</h1>
             <h1 class="tc f3">A bot for Discord</h1>
-            <h1 class="tc f5">Version 0.5.5</h1>
+            <h1 class="tc f5">Version 0.6.0</h1>
             <hr class="w-10" />
         </header>
         <div id="install">
@@ -31,6 +31,10 @@
             <div class="command">
                 <h3 class="code">!lolsetsummoner=(summonername)</h3>
                 <p>Will link your league username (summonername) with your discord user for ease of use. <b>Only EUW at the moment!</b></p>
+            </div>
+            <div class="command">
+                <h3 class="code">!lolsummoner[=summonername, =@discorduser]</h3>
+                <p>Provided you have linked your discord to a league account this command just tells chat what account you are linked to. If you add <span class="code">=@(discorduser)</span> then it'll get their league user (provided they have linked too) and while a little silly it is possible to add <span class="code">=(summonername)</span> which'll tell you the summoner name of the summoner you just searched...</p>
             </div>
             <div class="command">
                 <h3 class="code">!lolrankedstats[=summonername, =@discorduser]</h3>

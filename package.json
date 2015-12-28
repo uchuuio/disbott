@@ -1,6 +1,6 @@
 {
   "name": "disbot",
-  "version": "0.5.5",
+  "version": "0.6.0",
   "description": "Bot for Baddow Discord Server",
   "scripts": {
     "start:bot": "node bot.js",
