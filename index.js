@@ -13,6 +13,10 @@ var bot = new DiscordClient({
     autorun: true
 });
 
+bot.setPresence({
+    game: "Hacking Simulator 2k16"
+});
+
 bot.on('ready', function() {
     console.log(bot.username + " - (" + bot.id + ")");
 });
