@@ -10,6 +10,7 @@
   "author": "tomo@pagu",
   "dependencies": {
     "discord.io": "^1.6.0",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3",
     "lolapi": "^0.3.1",
     "nedb": "^1.5.1",

@@ -1,4 +1,4 @@
 tenc
 node_modules
-config.js
+.env
 npm-debug.log
