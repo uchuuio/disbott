@@ -6,6 +6,7 @@ var DiscordClient = require('discord.io');
 var ping = require('./modules/ping');
 var lolSetSummoner = require('./modules/lol/set-summoner');
 var lolCurrentGameInfo = require('./modules/lol/current-game');
+var lolRankedStats = require('./modules/lol/ranked-stats');
 
 var bot = new DiscordClient({
     email: Config.discord.email,
@@ -26,5 +27,6 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         ping(bot, channelID, message);
         lolSetSummoner(bot, user, userID, channelID, message);
         lolCurrentGameInfo(bot, user, userID, channelID, message);
+        lolRankedStats(bot, user, userID, channelID, message);
     }
 });
