@@ -6,7 +6,7 @@
     <link href="//cdn.bootcss.com/tachyons/3.0.2/tachyons.min.css" rel="stylesheet">
 </head>
 <body class="sans-serif">
-    <div class="container mw6 phm center">
+    <div class="container mw7 phm center">
         <header>
             <h1 class="tc ttu tracked-tight mega mbn">Disbot</h1>
             <h1 class="tc f3">A bot for Discord</h1>
@@ -20,29 +20,51 @@
         <div id="commands">
             <h2>Commands</h2>
             <p>All commands are prefixed by <span class="code">`!`</span> to not conflict with anyother bots.</p>
+            <hr class="w-10" />
+            <h3>General Commands</h3>
             <div class="command">
-                <h3 class="code">!help</h3>
+                <h4 class="code">!help</h4>
                 <p>Brings up this command list!</p>
             </div>
             <div class="command">
-                <h3 class="code">!ping</h3>
+                <h4 class="code">!ping</h4>
                 <p>The bot will reply to the ping with a pong.</p>
             </div>
+            <hr class="w-10" />
+            <h3>League of Legends Commands</h3>
             <div class="command">
-                <h3 class="code">!lolsetsummoner=(summonername)</h3>
+                <h4 class="code">!lolsetsummoner=(summonername)</h4>
                 <p>Will link your league username (summonername) with your discord user for ease of use. <b>Only EUW at the moment!</b></p>
             </div>
             <div class="command">
-                <h3 class="code">!lolsummoner[=summonername, =@discorduser]</h3>
+                <h4 class="code">!lolsummoner[=summonername, =@discorduser]</h4>
                 <p>Provided you have linked your discord to a league account this command just tells chat what account you are linked to. If you add <span class="code">=@(discorduser)</span> then it'll get their league user (provided they have linked too) and while a little silly it is possible to add <span class="code">=(summonername)</span> which'll tell you the summoner name of the summoner you just searched...</p>
             </div>
             <div class="command">
-                <h3 class="code">!lolrankedstats[=summonername, =@discorduser]</h3>
+                <h4 class="code">!lolrankedstats[=summonername, =@discorduser]</h4>
                 <p>This command will post the specified users ranked status for this season. If you have linked your league account to disbot then you can just do `!lolrankedstats` and that will give you your ranked stats. <b>Only EUW at the moment!</b></p>
             </div>
             <div class="command">
-                <h3 class="code">!lolcurrentgame[=summonername, =@discorduser]</h3>
+                <h4 class="code">!lolcurrentgame[=summonername, =@discorduser]</h4>
                 <p>This command will post the specified users current game with information on who they are playing, what game mode and for approximately how long. If you have linked your league account to disbot then you can omit the = part and it will give you your current game. <b>Only EUW at the moment!</b></p>
+            </div>
+            <hr class="w-10" />
+            <h3>Sound Commands</h3>
+            <div class="command">
+                <h4 class="code">!sound</h4>
+                <p>Run this command to make the bot join your voice channel, this must be run first before any of the other sound commands.</p>
+            </div>
+            <div class="command">
+                <h4 class="code">!stopaudio</h4>
+                <p>This command stops any playing audio that the bot is playing, but keeps the bot in the voice channel.</p>
+            </div>
+            <div class="command">
+                <h4 class="code">!sounddisconnect</h4>
+                <p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span class="code">!sound</span> before playing audio again.</p>
+            </div>
+            <div class="command">
+                <h4 class="code">!elvis</h4>
+                <p>Plays elvis.mp3 in the <span class="code">/modules/sound/sounds/elvis.mp3</span> <span class="small">(not in version control)<span></p>
             </div>
         </div>
         <footer class="tc">
