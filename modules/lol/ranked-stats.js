@@ -27,26 +27,39 @@ var rankedStats = function(bot, user, userID, channelID, message) {
 
             getSummonerId.on('completed', function(summonerID) {
                 lolapi.Stats.getRanked(summonerID, null, function(err, stats) {
-                    var combinedStatsIndex = _.findIndex(stats.champions, {id: 0});
-                    var combinedStats = stats.champions[combinedStatsIndex];
-                    var player = _.isString(summonerName) ? summonerName : user;
-                    var winloss = combinedStats.stats.totalSessionsWon+'w'+combinedStats.stats.totalSessionsLost+'l';
-                    
-                    var K = combinedStats.stats.totalChampionKills;
-                    var A = combinedStats.stats.totalAssists;
-                    var D = combinedStats.stats.totalDeathsPerSession;
-                    var kda = (K+A)/D + 'kda';
-                    
-                    lolapi.League.getEntriesBySummonerId(summonerID, function(err, leagues) {
-                        var leaguesIndex = _.findIndex(leagues[summonerID], {queue: "RANKED_SOLO_5x5"});
-                        var league = leagues[summonerID][leaguesIndex];
-                        var rank = league.tier + ' ' + league.entries[0].division;
+                    if (err || stats === null) {
                         bot.sendMessage({
                             to: channelID,
-                            message: player + ': ' + rank + ' / ' + winloss + ' / ' + kda + ' this season'
+                            message: player + ' is not ranked this season'
                         }); 
-                    })
-
+                    } else {
+                        var combinedStatsIndex = _.findIndex(stats.champions, {id: 0});
+                        var combinedStats = stats.champions[combinedStatsIndex];
+                        var player = _.isString(summonerName) ? summonerName : user;
+                        var winloss = combinedStats.stats.totalSessionsWon+'w'+combinedStats.stats.totalSessionsLost+'l';
+                        
+                        var K = combinedStats.stats.totalChampionKills;
+                        var A = combinedStats.stats.totalAssists;
+                        var D = combinedStats.stats.totalDeathsPerSession;
+                        var kda = S((K+A)/D).toFloat(3) + 'kda';
+                        
+                        lolapi.League.getEntriesBySummonerId(summonerID, function(err, leagues) {
+                            if (err || leagues === null) {
+                                bot.sendMessage({
+                                    to: channelID,
+                                    message: player + ' is not ranked this season'
+                                }); 
+                            } else {
+                                var leaguesIndex = _.findIndex(leagues[summonerID], {queue: "RANKED_SOLO_5x5"});
+                                var league = leagues[summonerID][leaguesIndex];
+                                var rank = league.tier + ' ' + league.entries[0].division;
+                                bot.sendMessage({
+                                    to: channelID,
+                                    message: player + ': ' + rank + ' / ' + winloss + ' / ' + kda + ' this season'
+                                }); 
+                            }
+                        });
+                    }
                 });
             });
         });
