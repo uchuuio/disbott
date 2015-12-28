@@ -7,6 +7,7 @@ var ping = require('./modules/ping');
 var help = require('./modules/help');
 var kill = require('./modules/kill');
 var lolSetSummoner = require('./modules/lol/set-summoner');
+var lolGetSetSummoner = require('./modules/lol/get-set-summoner');
 var lolCurrentGameInfo = require('./modules/lol/current-game');
 var lolRankedStats = require('./modules/lol/ranked-stats');
 
@@ -30,6 +31,7 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         help(bot, channelID, message);
         kill(bot, channelID, message);
         lolSetSummoner(bot, user, userID, channelID, message);
+        lolGetSetSummoner(bot, user, userID, channelID, message);
         lolCurrentGameInfo(bot, user, userID, channelID, message);
         lolRankedStats(bot, user, userID, channelID, message);
     }
