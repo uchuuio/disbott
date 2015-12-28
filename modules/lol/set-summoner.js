@@ -19,12 +19,30 @@ var lolSetSummoner = function(bot, user, userID, channelID, message) {
                     leagueSummonerId: summonerId
                 };
                 
-                leagueDb.insert(data, function(err, newData) {
-                    bot.sendMessage({
-                        to: channelID,
-                        message: user + ' linked ' + summonerName + ' to disbot.'
-                    });
-                });
+                if (leagueDb.find({
+                    discordUserId: userID
+                }, function(err, summoner) {
+                    if (S(summoner).isEmpty()) {
+                        leagueDb.insert(data, function(err, newData) {
+                            bot.sendMessage({
+                                to: channelID,
+                                message: user + ' set ' + summonerName + ' as their league account for disbot.'
+                            });
+                        });
+                    } else {
+                        leagueDb.update(
+                            {discordUserId: userID},
+                            {$set: {leagueSummonerId: summonerId}},
+                            {},
+                            function (err, numReplaced) {
+                                bot.sendMessage({
+                                    to: channelID,
+                                    message: user + ' set ' + summonerName + ' as their league account for disbot.'
+                                });
+                            }
+                        )
+                    }
+                }));
             });
         });
     }
