@@ -16,7 +16,7 @@ var rankedStats = function(bot, user, userID, channelID, message) {
             var summonerName = splitMessage[1];
             
             var getSummonerId = new EventEmitter();
-            getSummonerIdFunction(_, lolapi, leagueDb, userID, getSummonerId, summonerName);
+            getSummonerIdFunction(S, lolapi, leagueDb, userID, getSummonerId, summonerName);
             
             getSummonerId.on('fail', function(message) {
                 bot.sendMessage({
