@@ -1,16 +1,16 @@
 {
   "name": "disbot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.5.0",
+  "description": "Bot for Baddow Discord Server",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:bot": "node bot.js",
+    "start:web": "node server.js",
+    "start": "npm run start:web & npm run start:bot"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "tomo@pagu",
   "dependencies": {
     "discord.io": "^1.6.0",
+    "express": "^4.13.3",
     "lolapi": "^0.3.1",
     "nedb": "^1.5.1",
     "string": "^3.3.1",
