@@ -41,13 +41,13 @@ var lolCurrentGameInfo = function(bot, user, userID, channelID, message) {
                         
                         _.each(game.participants, function(participant) {
                             if (participant.summonerId === summonerID) {
-                                    lolapi.Static.getChampion(participant.championId, function(error, champion) {
-                                        var player = _.isString(summonerName) ? summonerName : user;
-                                        bot.sendMessage({
-                                            to: channelID,
-                                            message: player + " has been playing " + champion.name + ' in a ' + gameType + ' Game for ~' + currentLength + '.'
-                                        });
+                                lolapi.Static.getChampion(participant.championId, function(error, champion) {
+                                    var player = _.isString(summonerName) ? summonerName : user;
+                                    bot.sendMessage({
+                                        to: channelID,
+                                        message: player + " has been playing " + champion.name + ' in a ' + gameType + ' Game for ~' + currentLength + '.'
                                     });
+                                });
                             }
                         });
                     }
