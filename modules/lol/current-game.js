@@ -3,6 +3,7 @@ var Config = require('./../../config');
 var _ = require('underscore');
 var EventEmitter = require('events');
 var S = require('string');
+var moment = require('moment');
 
 var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
 var leagueDb = require('./util/league-db');
@@ -36,13 +37,15 @@ var lolCurrentGameInfo = function(bot, user, userID, channelID, message) {
                     } else {
                         var gameType = gameMode(game);
                         
+                        var currentLength = moment(game.gameStartTime).toNow(true);
+                        
                         _.each(game.participants, function(participant) {
                             if (participant.summonerId === summonerID) {
                                     lolapi.Static.getChampion(participant.championId, function(error, champion) {
                                         var player = _.isString(summonerName) ? summonerName : user;
                                         bot.sendMessage({
                                             to: channelID,
-                                            message: player + " is currently playing " + champion.name + ' in a ' + gameType + ' Game.'
+                                            message: player + " has been playing " + champion.name + ' in a ' + gameType + ' Game for ~' + currentLength + '.'
                                         });
                                     });
                             }
