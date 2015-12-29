@@ -16,6 +16,8 @@ var lolGetSetSummoner = function(bot, user, userID, channelID, message) {
             var splitMessage = message.split('=');
             var summonerName = splitMessage[1];
             
+            var player = _.isString(summonerName) ? summonerName : user;
+            
             var getSummonerId = new EventEmitter();
             getSummonerIdFunction(S, lolapi, leagueDb, userID, getSummonerId, summonerName);
             
@@ -36,7 +38,7 @@ var lolGetSetSummoner = function(bot, user, userID, channelID, message) {
                     } else {
                         bot.sendMessage({
                             to: channelID,
-                            message: user + '\'s league account is ' + summoner[summonerID].name
+                            message: player + '\'s league account is ' + summoner[summonerID].name
                         });
                     }
                 });
