@@ -38,22 +38,13 @@ var sound = function(bot, channelID, message, rawEvent) {
         soundDb.find({ enabled: true }, function (err, data) {
             var voiceChannelID = data[0].voiceChannelID;
             stopAudio(bot, channelID, message, voiceChannelID);
-            disconnect(bot, channelID, message, voiceChannelID);
+            disconnect(soundDb, bot, channelID, message, voiceChannelID);
             playSound(S, bot, channelID, message, voiceChannelID);
         });
     }
     
     soundFileupload(bot, channelID, rawEvent);
     listSounds(bot, channelID, message);
-    
-    bot.on('disconnect', function() {
-        soundDb.remove({ enabled: true }, { multi: true }, function (err, numRemoved) {
-           console.log(numRemoved); 
-        });
-        soundDb.remove({ enabled: false }, { multi: true }, function (err, numRemoved) {
-           console.log(numRemoved); 
-        });
-    });
 }
 
 module.exports = sound;
