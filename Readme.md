@@ -32,3 +32,9 @@ Each command the bot uses is it's own file in `/modules` if you're adding new mo
 ### Contributing
 
 I know my code isn't good looking by any standards so please let me know if there are better ways for me to do things.
+
+#### Why the disbott rather than disbot
+
+Funny story, I broke the first disbot user. For some reason it remains connected to discord but remains unresponsive to any message whatsoever. I can't send anything as that user when logged into the discord client myself. No idea on the reason why for it still.
+
+If you do happen to know why, please let me know!
