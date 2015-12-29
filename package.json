@@ -4,8 +4,7 @@
   "description": "Bot for Baddow Discord Server",
   "scripts": {
     "start:bot": "node bot.js",
-    "start:web": "node server.js",
-    "start": "npm run start:web & npm run start:bot"
+    "start:web": "node server.js"
   },
   "author": "tomo@pagu",
   "dependencies": {
