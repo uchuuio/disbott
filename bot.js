@@ -16,10 +16,10 @@ var sound = require('./modules/sound/index');
 
 var bot = new DiscordClient({
     email: Config.discord.email,
-    password: Config.discord.password,
-    autorun: true
+    password: Config.discord.password
 });
 
+bot.connect();
 
 bot.on('ready', function() {
     console.log(bot.username + " - (" + bot.id + ")");
