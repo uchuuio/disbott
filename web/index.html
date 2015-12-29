@@ -52,7 +52,7 @@
             <h3>Sound Commands</h3>
             <div class="command">
                 <h4 class="code">!sound=(instantinvitecode</h4>
-                <p>Run this command with an instantinvitecode to make the bot join your voice channel. You only need the code itself not the whole url (ie. not: https://discord.gg/0c6BfGzgRDBryFdT but: 0c6BfGzgRDBryFdT) this must be run first before any of the other sound commands.</p>
+                <p>Run this command with an instantinvitecode to make the bot join your voice channel. You only need the code itself not the whole url (ie. not: https://discord.gg/{CODE} but: {CODE}) this must be run first before any of the other sound commands.</p>
             </div>
             <div class="command">
                 <h4 class="code">!stopaudio</h4>
@@ -63,8 +63,12 @@
                 <p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span class="code">!sound</span> before playing audio again.</p>
             </div>
             <div class="command">
-                <h4 class="code">!elvis</h4>
-                <p>Plays elvis.mp3 in the <span class="code">/modules/sound/sounds/elvis.mp3</span> <span class="small">(not in version control)<span></p>
+                <h4 class="code">!listsounds</h4>
+                <p>Will take you to a website to see all the uploaded sounds to disbot. Also showcases commands for the below command.</p>
+            </div>
+            <div class="command">
+                <h4 class="code">!playsound=(file)</h4>
+                <p>Plays whatever file specified to the voice channel, where file is the filename in the <span class="code">/modules/sound/sounds/</span>.</p>
             </div>
         </div>
         <footer class="tc">
