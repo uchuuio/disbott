@@ -1,7 +1,7 @@
 {
-  "name": "disbot",
+  "name": "disbott",
   "version": "0.10.0",
-  "description": "Bot for Baddow Discord Server",
+  "description": "A bot for Discord",
   "scripts": {
     "start:bot": "node bot.js",
     "start:web": "node server.js"
