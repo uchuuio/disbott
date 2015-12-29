@@ -44,7 +44,7 @@ var sound = function(Config, bot, channelID, message, rawEvent) {
             }
         });
     }
-    
+
     soundFileupload(bot, channelID, rawEvent);
     listSounds(Config, bot, channelID, message);
 }
