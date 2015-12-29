@@ -1,4 +1,4 @@
-var listSounds = function(bot, channelID, message, voiceChannelID) {
+var listSounds = function(Config, bot, channelID, message, voiceChannelID) {
     if (message === "!listsounds") {
         bot.sendMessage({
             to: channelID,
