@@ -12,7 +12,7 @@ var soundFileupload = require('./modules/fileupload');
 var listSounds = require('./modules/list-sounds');
 var playSound = require('./modules/play-sound');
 
-var sound = function(bot, channelID, message, rawEvent, soundInitialised) {
+var sound = function(bot, channelID, message, rawEvent) {
     if (S(message).contains("!sound=")) {
         bot.sendMessage({
             to: channelID,
