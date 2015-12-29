@@ -12,7 +12,7 @@ var soundFileupload = require('./modules/fileupload');
 var listSounds = require('./modules/list-sounds');
 var playSound = require('./modules/play-sound');
 
-var sound = function(bot, channelID, message, rawEvent) {
+var sound = function(Config, bot, channelID, message, rawEvent) {
     if (S(message).contains("!sound=")) {
         bot.sendMessage({
             to: channelID,
@@ -36,15 +36,17 @@ var sound = function(bot, channelID, message, rawEvent) {
     } else {
         // Modules
         soundDb.find({ enabled: true }, function (err, data) {
-            var voiceChannelID = data[0].voiceChannelID;
-            stopAudio(bot, channelID, message, voiceChannelID);
-            disconnect(soundDb, bot, channelID, message, voiceChannelID);
-            playSound(S, bot, channelID, message, voiceChannelID);
+            if (data.length > 0) {
+                var voiceChannelID = data[0].voiceChannelID;
+                stopAudio(bot, channelID, message, voiceChannelID);
+                disconnect(soundDb, bot, channelID, message, voiceChannelID);
+                playSound(S, bot, channelID, message, voiceChannelID);
+            }
         });
     }
     
     soundFileupload(bot, channelID, rawEvent);
-    listSounds(bot, channelID, message);
+    listSounds(Config, bot, channelID, message);
 }
 
 module.exports = sound;

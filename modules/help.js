@@ -1,4 +1,4 @@
-var help = function(bot, channelID, message) {
+var help = function(Config, bot, channelID, message) {
     if (message === "!help") {
         bot.sendMessage({
             to: channelID,

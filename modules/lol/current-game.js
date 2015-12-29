@@ -45,7 +45,7 @@ var lolCurrentGameInfo = function(bot, user, userID, channelID, message) {
                                     var player = _.isString(summonerName) ? summonerName : user;
                                     bot.sendMessage({
                                         to: channelID,
-                                        message: player + " has been playing " + champion.name + ' in a ' + gameType + ' Game for ~' + currentLength + '. http://disbot.pagu.co/currentgame.html?summonerID='+summonerID
+                                        message: player + " has been playing " + champion.name + ' in a ' + gameType + ' Game for ~' + currentLength + '. ' + Config.domain + '/currentgame.html?summonerID='+summonerID
                                     });
                                 });
                             }

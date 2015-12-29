@@ -8,8 +8,8 @@ var Config = {
     league: {
         apikey: process.env.LEAGUE_APIKEY,
         location: process.env.LEAGUE_LOCATION
-    }
-     
+    },
+    domain: 'http://disbot.pagu.co'
 };
 
 module.exports = Config;

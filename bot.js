@@ -31,7 +31,7 @@ bot.on('ready', function() {
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
     if (userID !== bot.id) {    
         ping(bot, channelID, message);
-        help(bot, channelID, message);
+        help(Config, bot, channelID, message);
         kill(bot, channelID, message);
         
         lolSetSummoner(bot, user, userID, channelID, message);
@@ -39,6 +39,6 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         lolCurrentGameInfo(bot, user, userID, channelID, message);
         lolRankedStats(bot, user, userID, channelID, message);
         
-        sound(bot, channelID, message, rawEvent);
+        sound(Config, bot, channelID, message, rawEvent);
     }
 });
