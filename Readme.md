@@ -4,7 +4,7 @@
 
 ### Command List
 
-You can find the latest command list here: http://disbot.pagu.co/#commands
+You can find the latest command list here: http://disbott.pagu.co/#commands
 
 ### Install
 
