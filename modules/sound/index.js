@@ -9,6 +9,7 @@ var S = require('string');
 var disconnect = require('./modules/disconnect');
 var stopAudio = require('./modules/stopaudio');
 var soundFileupload = require('./modules/fileupload');
+var listSounds = require('./modules/list-sounds');
 var playSound = require('./modules/play-sound');
 
 var sound = function(bot, channelID, message, rawEvent, soundInitialised) {
@@ -43,6 +44,8 @@ var sound = function(bot, channelID, message, rawEvent, soundInitialised) {
     }
     
     soundFileupload(bot, channelID, rawEvent);
+    listSounds(bot, channelID, message);
+    
     bot.on('disconnect', function() {
         soundDb.remove({ enabled: true }, { multi: true }, function (err, numRemoved) {
            console.log(numRemoved); 

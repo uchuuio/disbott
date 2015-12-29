@@ -1,5 +1,7 @@
 var Config = require('./config');
 
+var fs = require('fs');
+
 var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
 var _ = require('underscore');
 var EventEmitter = require('events');
@@ -11,9 +13,9 @@ var app = express();
 
 app.use(express.static('web'));
 
-app.get('/api/lol/current-game', function(req, res) {
+app.get('/api/lol/current-game', function (req, res) {
     var summonerID = req.query.summonerID;
-    lolapi.CurrentGame.getBySummonerId(summonerID, function(error, game) {
+    lolapi.CurrentGame.getBySummonerId(summonerID, function (error, game) {
         if (error) {
             res.status(404).json({error: 'No Game Found'});
             console.log(error);
@@ -23,8 +25,8 @@ app.get('/api/lol/current-game', function(req, res) {
             
             var getChampions = new EventEmitter();
             var count = (game.participants.length - 1);
-            _.each(game.participants, function(participant, i) {
-                lolapi.Static.getChampion(participant.championId, function(error, champion) {
+            _.each(game.participants, function (participant, i) {
+                lolapi.Static.getChampion(participant.championId, function (error, champion) {
                     game.participants[i].champion = champion.name;
                     // Only send the json when we've set all the champions
                     if (count === i) {
@@ -33,11 +35,18 @@ app.get('/api/lol/current-game', function(req, res) {
                 });
             });
             
-            getChampions.on('completed', function(game) {
+            getChampions.on('completed', function (game) {
                 _.groupBy(game.participants, 'teamId');
                 res.json(game);
             });
         }
+    });
+});
+
+app.get('/api/sounds', function (req, res) {
+    fs.readdir('./modules/sound/sounds/', function (err, files) {
+        var sounds = _.without(files, '.DS_Store', '.gitignore');
+        res.json(sounds); 
     });
 });
 
