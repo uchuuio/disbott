@@ -1,10 +1,10 @@
-var elvis = function(bot, channelID, message, stream) {
+var elvis = function(bot, channelID, message, voiceChannelID) {
     if (message === "!elvis") {
         bot.sendMessage({
             to: channelID,
             message: "Playing THE KING"
         }, function() {
-            bot.getAudioContext('130758048200392705', function(stream) {
+            bot.getAudioContext({ channel: voiceChannelID, stereo: true}, function(stream) {
                 stream.playAudioFile('./modules/sound/sounds/elvis.mp3');
                 stream.once('fileEnd', function() {
                     bot.sendMessage({

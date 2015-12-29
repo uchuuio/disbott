@@ -1,10 +1,10 @@
-var stopAudio = function(bot, channelID, message, stream) {
+var stopAudio = function(bot, channelID, message, voiceChannelID) {
     if (message === "!stopaudio") {
         bot.sendMessage({
             to: channelID,
             message: "Stopping Audio..."
         }, function() {
-            bot.getAudioContext('130758048200392705', function(stream) {
+            bot.getAudioContext(voiceChannelID, function(stream) {
                 stream.stopAudioFile();
                 stream.once('fileEnd', function() {
                     bot.sendMessage({

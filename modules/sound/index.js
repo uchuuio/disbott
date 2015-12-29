@@ -4,32 +4,40 @@ var soundDb = new Datastore({
    autoload: true 
 });
 
+var S = require('string');
+
 var disconnect = require('./modules/disconnect');
 var stopAudio = require('./modules/stopaudio');
 var elvis = require('./modules/elvis');
 
-var sound = function(bot, channelID, message, soundInitialised) {
-    if (message === "!sound") {
+var sound = function(bot, channelID, message, rawEvent, soundInitialised) {
+    if (S(message).contains("!sound=")) {
         bot.sendMessage({
             to: channelID,
             message: "Getting ready to play..."
         }, function() {
-            bot.joinVoiceChannel('130758048200392705', function() {
-                var data = {
-                    enabled: true
-                };
-                soundDb.insert(data, function (err, newDoc) {
-                    // 
+            var splitMessage = message.split('=');
+            var inviteCode = splitMessage[1];
+            bot.acceptInvite(inviteCode, function(response) {
+                var voiceChannelID = response.channel.id;
+                bot.joinVoiceChannel(voiceChannelID, function() {
+                    var data = {
+                        enabled: true,
+                        voiceChannelID: voiceChannelID
+                    };
+                    soundDb.insert(data, function (err, newDoc) {
+                        // 
+                    });
                 });
-            })
+            });
         });
     } else {
         // Modules
         soundDb.find({ enabled: true }, function (err, data) {
-            var stream = data[0].stream;
-            elvis(bot, channelID, message, stream);
-            stopAudio(bot, channelID, message, stream);
-            disconnect(bot, channelID, message);
+            var voiceChannelID = data[0].voiceChannelID;
+            elvis(bot, channelID, message, voiceChannelID);
+            stopAudio(bot, channelID, message, voiceChannelID);
+            disconnect(bot, channelID, message, voiceChannelID);
         });
     }
     
