@@ -27,6 +27,7 @@ var rankedStats = function(bot, user, userID, channelID, message) {
 
             getSummonerId.on('completed', function(summonerID) {
                 lolapi.Stats.getRanked(summonerID, null, function(err, stats) {
+                    var player = _.isString(summonerName) ? summonerName : user;
                     if (err || stats === null) {
                         bot.sendMessage({
                             to: channelID,
@@ -35,13 +36,12 @@ var rankedStats = function(bot, user, userID, channelID, message) {
                     } else {
                         var combinedStatsIndex = _.findIndex(stats.champions, {id: 0});
                         var combinedStats = stats.champions[combinedStatsIndex];
-                        var player = _.isString(summonerName) ? summonerName : user;
-                        var winloss = combinedStats.stats.totalSessionsWon+'w'+combinedStats.stats.totalSessionsLost+'l';
+                        var winloss = combinedStats.stats.totalSessionsWon + ' wins & ' + combinedStats.stats.totalSessionsLost + ' losses';
                         
                         var K = combinedStats.stats.totalChampionKills;
                         var A = combinedStats.stats.totalAssists;
                         var D = combinedStats.stats.totalDeathsPerSession;
-                        var kda = S((K+A)/D).toFloat(3) + 'kda';
+                        var kda = S((K+(A/4))/D).toFloat(3) + ' kda';
                         
                         lolapi.League.getEntriesBySummonerId(summonerID, function(err, leagues) {
                             if (err || leagues === null) {
@@ -55,7 +55,12 @@ var rankedStats = function(bot, user, userID, channelID, message) {
                                 var rank = league.tier + ' ' + league.entries[0].division;
                                 bot.sendMessage({
                                     to: channelID,
-                                    message: player + ': ' + rank + ' / ' + winloss + ' / ' + kda + ' this season'
+                                    message: player + ' is ranked in ' + rank + ' with ' + winloss + ','
+                                }, function () {
+                                    bot.sendMessage({
+                                        to: channelID,
+                                        message: K + 'kills ' + D + 'deaths ' + A + 'assists with a ' + kda + ' which equates to ' + S(K/D).toFloat(3) + 'KD this season.'
+                                    });
                                 }); 
                             }
                         });
