@@ -97,7 +97,7 @@ var CurrentGameApp = React.createClass({
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan="7">Champions may not appear due to hitting the rate limits of Riots API, once disbot is 1.0.0 I'll go to Riot and get a production key. Also once we have that I can add more information to this such as runes/masteries/rank</td>
+                                <td colSpan="7">Champions may not appear due to hitting the rate limits of Riots API, once disbott is 1.0.0 I'll go to Riot and get a production key. Also once we have that I can add more information to this such as runes/masteries/rank</td>
                             </tr>
                         </tfoot>
                     </table>

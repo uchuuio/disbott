@@ -37,7 +37,7 @@ var SoundlistApp = React.createClass({
             this.getCurrentGameData();
             return (
                 <div className="soundlist-area">
-                    <h1 className="tc">Loading Disbot's Soundlist</h1>
+                    <h1 className="tc">Loading Disbott's Soundlist</h1>
                 </div>
             );
         } else {          
@@ -51,7 +51,7 @@ var SoundlistApp = React.createClass({
             
             return (
                 <div className="soundlist-area">
-                    <h1>Disbot's Soundlist</h1>
+                    <h1>Disbott's Soundlist</h1>
                     <ul>
                         { SoundlistRows }
                     </ul>
