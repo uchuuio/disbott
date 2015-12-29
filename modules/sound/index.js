@@ -8,8 +8,8 @@ var S = require('string');
 
 var disconnect = require('./modules/disconnect');
 var stopAudio = require('./modules/stopaudio');
-var elvis = require('./modules/elvis');
 var soundFileupload = require('./modules/fileupload');
+var playSound = require('./modules/play-sound');
 
 var sound = function(bot, channelID, message, rawEvent, soundInitialised) {
     if (S(message).contains("!sound=")) {
@@ -36,9 +36,9 @@ var sound = function(bot, channelID, message, rawEvent, soundInitialised) {
         // Modules
         soundDb.find({ enabled: true }, function (err, data) {
             var voiceChannelID = data[0].voiceChannelID;
-            elvis(bot, channelID, message, voiceChannelID);
             stopAudio(bot, channelID, message, voiceChannelID);
             disconnect(bot, channelID, message, voiceChannelID);
+            playSound(S, bot, channelID, message, voiceChannelID);
         });
     }
     
