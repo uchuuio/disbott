@@ -1,4 +1,4 @@
-var ping = function(bot, channelID, message) {
+var kill = function(bot, channelID, message) {
     if (message === "killdisbot") {
         bot.sendMessage({
             to: channelID,
@@ -9,4 +9,4 @@ var ping = function(bot, channelID, message) {
     }
 }
 
-module.exports = ping;
+module.exports = kill;
