@@ -1,5 +1,5 @@
-var stopAudio = function(bot, channelID, message, voiceChannelID) {
-    if (message === "!stopaudio") {
+var stopSound = function(bot, channelID, message, voiceChannelID) {
+    if (message === "stopsound") {
         bot.sendMessage({
             to: channelID,
             message: "Stopping Audio..."
@@ -17,4 +17,4 @@ var stopAudio = function(bot, channelID, message, voiceChannelID) {
     }
 }
 
-module.exports = stopAudio;
+module.exports = stopSound;

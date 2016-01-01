@@ -7,7 +7,7 @@ var soundDb = new Datastore({
 var S = require('string');
 
 var disconnect = require('./modules/disconnect');
-var stopAudio = require('./modules/stopaudio');
+var stopSound = require('./modules/stopsound');
 var soundFileupload = require('./modules/fileupload');
 var listSounds = require('./modules/list-sounds');
 var playSound = require('./modules/play-sound');
