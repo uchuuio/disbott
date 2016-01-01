@@ -1,5 +1,5 @@
 var ping = function(bot, channelID, message) {
-    if (message === "!ping") {
+    if (message === "ping") {
         bot.sendMessage({
             to: channelID,
             message: "pong"

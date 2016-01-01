@@ -10,7 +10,7 @@ var leagueDb = require('./util/league-db');
 var getSummonerIdFunction = require('./util/get-summoner-id');
 
 var rankedStats = function(bot, user, userID, channelID, message) {
-    if (S(message).contains("!lolrankedstats")) {
+    if (S(message).contains("lolrankedstats")) {
         bot.simulateTyping(channelID, function() {
             var splitMessage = message.split('=');
             var summonerName = splitMessage[1];

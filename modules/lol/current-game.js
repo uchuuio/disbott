@@ -12,7 +12,7 @@ var gameMode = require('./util/gametype-constant');
 var getSummonerIdFunction = require('./util/get-summoner-id');
 
 var lolCurrentGameInfo = function(bot, user, userID, channelID, message) {
-    if (S(message).contains("!lolcurrentgame")) {
+    if (S(message).contains("lolcurrentgame")) {
         bot.simulateTyping(channelID, function() {
             var splitMessage = message.split('=');
             var summonerName = splitMessage[1];

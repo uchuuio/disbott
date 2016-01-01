@@ -11,7 +11,7 @@ var gameMode = require('./util/gametype-constant');
 var getSummonerIdFunction = require('./util/get-summoner-id');
 
 var lolGetSetSummoner = function(bot, user, userID, channelID, message) {
-    if (S(message).contains("!lolsummoner")) {
+    if (S(message).contains("lolsummoner")) {
         bot.simulateTyping(channelID, function() {
             var splitMessage = message.split('=');
             var summonerName = splitMessage[1];

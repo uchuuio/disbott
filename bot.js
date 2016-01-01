@@ -1,5 +1,7 @@
 var Config = require('./config.js');
 
+var _ = require('underscore');
+var S = require('string');
 var DiscordClient = require('discord.io');
 
 // Modules
@@ -29,7 +31,11 @@ bot.on('ready', function() {
 });
 
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
-    if (userID !== bot.id) {    
+    var wasMentioned = _.findWhere(rawEvent.d.mentions, {id: bot.id});
+
+    if (wasMentioned && userID !== bot.id) {
+        message = S(message).chompLeft('<@' + bot.id + '> ').s;
+
         ping(bot, channelID, message);
         help(Config, bot, channelID, message);
         kill(bot, channelID, message);

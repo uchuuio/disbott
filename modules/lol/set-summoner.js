@@ -5,7 +5,7 @@ var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
 var leagueDb = require('./util/league-db');
 
 var lolSetSummoner = function(bot, user, userID, channelID, message) {
-    if (S(message).contains("!lolsetsummoner")) {
+    if (S(message).contains("lolsetsummoner")) {
         bot.simulateTyping(channelID, function() {
             var splitMessage = message.split('=');
             var summonerName = splitMessage[1];
