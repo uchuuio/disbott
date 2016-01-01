@@ -1,5 +1,5 @@
 var playSound = function(S, bot, channelID, message, voiceChannelID) {
-    if (S(message).contains("!playsound=")) {
+    if (S(message).contains("playsound=")) {
         var splitMessage = message.split('=');
         var song = splitMessage[1];
         bot.sendMessage({
