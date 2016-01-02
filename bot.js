@@ -7,6 +7,8 @@ var DiscordClient = require('discord.io');
 // Modules
 var ping = require('./modules/ping');
 var help = require('./modules/help');
+var about = require('./modules/about');
+var info = require('./modules/info');
 var kill = require('./modules/kill');
 
 var lolSetSummoner = require('./modules/lol/set-summoner');
@@ -38,6 +40,8 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
 
         ping(bot, channelID, message);
         help(Config, bot, channelID, message);
+        about(Config, bot, channelID, message);
+        info(Config, bot, channelID, message);
         kill(bot, channelID, message);
         
         lolSetSummoner(bot, user, userID, channelID, message);
