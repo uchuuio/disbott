@@ -19,6 +19,8 @@ var getSummonerIdFunction = function(S, lolapi, leagueDb, userID, getSummonerId,
                     getSummonerId.emit('fail', 'ERROR: Couldn\'t find a summoner with that name on EUW');
                 } else {
                     summonerName = S(summonerName).strip(' ').s;
+                    summonerName = summonerName.toLowerCase();
+
                     var summonerId = summoner[summonerName].id;
                     getSummonerId.emit('completed', summonerId);
                 }
