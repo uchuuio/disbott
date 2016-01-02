@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Disbott</title>
     <link href="//cdn.bootcss.com/tachyons/3.0.2/tachyons.min.css" rel="stylesheet">
+    <style>
+        .code {
+            background-color: #111;
+            color: #FFF;
+            display: inline-block;
+            padding: 5px;
+        }
+        h4.code { margin: 0; }
+    </style>
 </head>
 <body class="sans-serif">
     <div class="container mw7 phm center">
@@ -19,55 +28,56 @@
         </div>
         <div id="commands">
             <h2>Commands</h2>
-            <p>All commands are prefixed by <span class="code">`!`</span> to not conflict with anyother bots.</p>
+            <p>All commands must start with @disbott (or if you have named it something else that!) to not conflict with anyother bots and conform to the <a href="https://github.com/meew0/discord-bot-best-practices" title="Discord Bot Best Practices">Discord Bot Best Practices</a>.</p>
+            <p>An example command would be <span class="code">@disbott ping</span>.
             <hr class="w-10" />
             <h3>General Commands</h3>
             <div class="command">
-                <h4 class="code">!help</h4>
+                <h4 class="code">help</h4>
                 <p>Brings up this command list!</p>
             </div>
             <div class="command">
-                <h4 class="code">!ping</h4>
+                <h4 class="code">ping</h4>
                 <p>The bot will reply to the ping with a pong.</p>
             </div>
             <hr class="w-10" />
             <h3>League of Legends Commands</h3>
             <div class="command">
-                <h4 class="code">!lolsetsummoner=(summonername)</h4>
+                <h4 class="code">lolsetsummoner=(summonername)</h4>
                 <p>Will link your league username (summonername) with your discord user for ease of use. <b>Only EUW at the moment!</b></p>
             </div>
             <div class="command">
-                <h4 class="code">!lolsummoner[=summonername, =@discorduser]</h4>
+                <h4 class="code">lolsummoner[=summonername, =@discorduser]</h4>
                 <p>Provided you have linked your discord to a league account this command just tells chat what account you are linked to. If you add <span class="code">=@(discorduser)</span> then it'll get their league user (provided they have linked too) and while a little silly it is possible to add <span class="code">=(summonername)</span> which'll tell you the summoner name of the summoner you just searched...</p>
             </div>
             <div class="command">
-                <h4 class="code">!lolrankedstats[=summonername, =@discorduser]</h4>
+                <h4 class="code">lolrankedstats[=summonername, =@discorduser]</h4>
                 <p>This command will post the specified users ranked status for this season. If you have linked your league account to disbott then you can just do `!lolrankedstats` and that will give you your ranked stats. <b>Only EUW at the moment!</b></p>
             </div>
             <div class="command">
-                <h4 class="code">!lolcurrentgame[=summonername, =@discorduser]</h4>
+                <h4 class="code">lolcurrentgame[=summonername, =@discorduser]</h4>
                 <p>This command will post the specified users current game with information on who they are playing, what game mode and for approximately how long. If you have linked your league account to disbott then you can omit the = part and it will give you your current game. <b>Only EUW at the moment!</b></p>
             </div>
             <hr class="w-10" />
             <h3>Sound Commands</h3>
             <div class="command">
-                <h4 class="code">!sound=(instantinvitecode</h4>
+                <h4 class="code">sound=(instantinvitecode</h4>
                 <p>Run this command with an instantinvitecode to make the bot join your voice channel. You only need the code itself not the whole url (ie. not: https://discord.gg/{CODE} but: {CODE}) this must be run first before any of the other sound commands.</p>
             </div>
             <div class="command">
-                <h4 class="code">!stopaudio</h4>
+                <h4 class="code">stopsound</h4>
                 <p>This command stops any playing audio that the bot is playing, but keeps the bot in the voice channel.</p>
             </div>
             <div class="command">
-                <h4 class="code">!sounddisconnect</h4>
-                <p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span class="code">!sound</span> before playing audio again.</p>
+                <h4 class="code">sounddisconnect</h4>
+                <p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span class="code">sound</span> before playing audio again.</p>
             </div>
             <div class="command">
-                <h4 class="code">!listsounds</h4>
+                <h4 class="code">listsounds</h4>
                 <p>Will take you to a website to see all the uploaded sounds to disbott. Also showcases commands for the below command.</p>
             </div>
             <div class="command">
-                <h4 class="code">!playsound=(file)</h4>
+                <h4 class="code">playsound=(file)</h4>
                 <p>Plays whatever file specified to the voice channel, where file is the filename in the <span class="code">/modules/sound/sounds/</span>.</p>
             </div>
         </div>
