@@ -6,7 +6,7 @@ var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
 var _ = require('underscore');
 var EventEmitter = require('events');
 var moment = require('moment');
-var gameMode = require('./modules/lol/util/gametype-constant');
+var gameMode = require('./modules/lol/modules/util/gametype-constant');
 
 var express = require('express');
 var app = express();
