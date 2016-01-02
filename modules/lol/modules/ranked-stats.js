@@ -53,15 +53,10 @@ var rankedStats = function(bot, user, userID, channelID, message) {
                                 var leaguesIndex = _.findIndex(leagues[summonerID], {queue: "RANKED_SOLO_5x5"});
                                 var league = leagues[summonerID][leaguesIndex];
                                 var rank = league.tier + ' ' + league.entries[0].division;
-                                bot.sendMessage({
-                                    to: channelID,
-                                    message: player + ' is ranked in ' + rank + ' with ' + winloss + ','
-                                }, function () {
-                                    bot.sendMessage({
-                                        to: channelID,
-                                        message: K + 'kills ' + D + 'deaths ' + A + 'assists with a ' + kda + ' which equates to ' + S(K/D).toFloat(3) + 'KD this season.'
-                                    });
-                                }); 
+                                bot.sendMessages(channelID, [
+                                    player + ' is ranked in ' + rank + ' with ' + winloss + ',',
+                                    K + 'kills ' + D + 'deaths ' + A + 'assists with a ' + kda + ' which equates to ' + S(K/D).toFloat(3) + 'KD this season.'
+                                ]);
                             }
                         });
                     }
