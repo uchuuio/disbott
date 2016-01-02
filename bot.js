@@ -16,6 +16,8 @@ var league = require('./modules/lol/index');
 var sound = require('./modules/sound/index');
 var soundFileupload = require('./modules/sound/modules/fileupload');
 
+var management = require('./modules/management/index');
+
 var bot = new DiscordClient({
     email: Config.discord.email,
     password: Config.discord.password
@@ -67,6 +69,8 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         league(bot, user, userID, channelID, message);
         
         sound(Config, bot, channelID, message, rawEvent);
+        
+        management(Config, bot, channelID, message, rawEvent);
     }
 
     // soundFileupload is a little different to other commands so it has to be put here
