@@ -9,7 +9,6 @@ var S = require('string');
 var disconnect = require('./modules/disconnect');
 var joinVoiceChannel = require('./modules/join-voice-channel');
 var stopSound = require('./modules/stopsound');
-var soundFileupload = require('./modules/fileupload');
 var listSounds = require('./modules/list-sounds');
 var playSound = require('./modules/play-sound');
 
@@ -25,7 +24,6 @@ var sound = function(Config, bot, channelID, message, rawEvent) {
         }
     });
 
-    soundFileupload(bot, channelID, rawEvent);
     listSounds(Config, bot, channelID, message);
 }
 

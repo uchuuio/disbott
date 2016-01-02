@@ -17,6 +17,7 @@ var lolCurrentGameInfo = require('./modules/lol/current-game');
 var lolRankedStats = require('./modules/lol/ranked-stats');
 
 var sound = require('./modules/sound/index');
+var soundFileupload = require('./modules/sound/modules/fileupload');
 
 var bot = new DiscordClient({
     email: Config.discord.email,
@@ -51,4 +52,8 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         
         sound(Config, bot, channelID, message, rawEvent);
     }
+
+    // soundFileupload is a little different to other commands so it has to be put here
+    // Currently it'll accept any mp3, I'd like it to only be mp3's dm'd to it
+    soundFileupload(bot, channelID, rawEvent);
 });
