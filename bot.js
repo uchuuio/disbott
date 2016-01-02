@@ -21,6 +21,28 @@ var bot = new DiscordClient({
     password: Config.discord.password
 });
 
+bot.sendMessages = function (ID, messageArr, interval) {
+	var callback, resArr = [], len = messageArr.length;
+	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
+	if (typeof(interval) !== 'number') interval = 1000;
+	
+	function _sendMessages() {
+		setTimeout(function() {
+			if (messageArr[0]) {
+				bot.sendMessage({
+					to: ID,
+					message: messageArr.shift()
+				}, function(res) {
+					resArr.push(res);
+					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
+				});
+				_sendMessages();
+			}
+		}, interval);
+	}
+	_sendMessages();
+}
+
 bot.connect();
 
 bot.on('ready', function() {
