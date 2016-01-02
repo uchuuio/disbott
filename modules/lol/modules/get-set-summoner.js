@@ -22,7 +22,7 @@ var lolGetSetSummoner = function(bot, user, userID, channelID, message) {
             getSummonerIdFunction(S, lolapi, leagueDb, userID, getSummonerId, summonerName);
             
             getSummonerId.on('fail', function(message) {
-            bot.sendMessage({
+                bot.sendMessage({
                     to: channelID,
                     message: message
                 }); 
