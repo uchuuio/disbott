@@ -11,10 +11,7 @@ var about = require('./modules/about');
 var info = require('./modules/info');
 var kill = require('./modules/kill');
 
-var lolSetSummoner = require('./modules/lol/set-summoner');
-var lolGetSetSummoner = require('./modules/lol/get-set-summoner');
-var lolCurrentGameInfo = require('./modules/lol/current-game');
-var lolRankedStats = require('./modules/lol/ranked-stats');
+var league = require('./modules/lol/index');
 
 var sound = require('./modules/sound/index');
 var soundFileupload = require('./modules/sound/modules/fileupload');
@@ -45,10 +42,7 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         info(Config, bot, channelID, message);
         kill(bot, channelID, message);
         
-        lolSetSummoner(bot, user, userID, channelID, message);
-        lolGetSetSummoner(bot, user, userID, channelID, message);
-        lolCurrentGameInfo(bot, user, userID, channelID, message);
-        lolRankedStats(bot, user, userID, channelID, message);
+        league(bot, user, userID, channelID, message);
         
         sound(Config, bot, channelID, message, rawEvent);
     }

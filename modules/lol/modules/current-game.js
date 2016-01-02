@@ -1,4 +1,4 @@
-var Config = require('./../../config');
+var Config = require('./../../../config');
 
 var _ = require('underscore');
 var EventEmitter = require('events');

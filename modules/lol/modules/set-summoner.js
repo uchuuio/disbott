@@ -1,4 +1,4 @@
-var Config = require('./../../config');
+var Config = require('./../../../config');
 
 var S = require('string');
 var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
