@@ -18,6 +18,9 @@ var soundFileupload = require('./modules/sound/modules/fileupload');
 
 var management = require('./modules/management/index');
 
+var remindme = require('./modules/remindme/index');
+var remindmeCommand = require('./modules/remindme/command');
+
 var bot = new DiscordClient({
     email: Config.discord.email,
     password: Config.discord.password
@@ -52,6 +55,8 @@ bot.on('ready', function() {
     bot.setPresence({
         game: "Hacking Simulator 2k16"
     });
+    // Start the remindme function
+    remindme(bot);
 });
 
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
@@ -71,6 +76,8 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         sound(Config, bot, channelID, message, rawEvent);
         
         management(Config, bot, channelID, message, rawEvent);
+        
+        remindmeCommand(bot, user, userID, channelID, message);
     }
 
     // soundFileupload is a little different to other commands so it has to be put here
