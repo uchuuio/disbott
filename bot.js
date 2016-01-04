@@ -10,6 +10,7 @@ var help = require('./modules/help');
 var about = require('./modules/about');
 var info = require('./modules/info');
 var kill = require('./modules/kill');
+var join = require('./modules/join');
 
 var league = require('./modules/lol/index');
 
@@ -70,6 +71,7 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         about(Config, bot, channelID, message);
         info(Config, bot, channelID, message);
         kill(bot, channelID, message);
+        join(bot, channelID, message);
         
         league(bot, user, userID, channelID, message);
         
