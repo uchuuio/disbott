@@ -1,6 +1,4 @@
-var S = require('string');
-
-var join = function (bot, channelID, message) {
+var join = function (S, bot, channelID, message) {
     if (S(message).contains("join=")) {
         var splitMessage = message.split('=');
         var code = splitMessage[1];
