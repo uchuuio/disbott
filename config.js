@@ -9,7 +9,7 @@ var Config = {
         apikey: process.env.LEAGUE_APIKEY,
         location: process.env.LEAGUE_LOCATION
     },
-    domain: 'http://disbott.pagu.co'
+    domain: 'https://disbott.pagu.co'
 };
 
 module.exports = Config;
