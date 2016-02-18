@@ -21,6 +21,9 @@ var management = require('./modules/management/index');
 var remindme = require('./modules/remindme/index');
 var remindmeCommand = require('./modules/remindme/command');
 
+var lastseen = require('./modules/lastseen/index');
+var lastseenCommand = require('./modules/lastseen/command');
+
 var twitter = require('./modules/twitter/index');
 
 var bot = new DiscordClient({
@@ -57,8 +60,9 @@ bot.on('ready', function() {
 	bot.setPresence({
 		game: "Hacking Simulator 2k16"
 	});
-	// Start the remindme function
+	// Start the logging function
 	remindme(bot);
+	lastseen(bot);
 });
 
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
@@ -81,6 +85,7 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
 		management(Config, bot, channelID, message, rawEvent);
 
 		remindmeCommand(bot, user, userID, channelID, message);
+		lastseenCommand(bot, user, userID, channelID, message);
 
 		twitter(bot, channelID, message);
 	}
