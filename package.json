@@ -8,7 +8,7 @@
   },
   "author": "tomo@pagu",
   "dependencies": {
-    "discord.io": "^1.6.5",
+    "discord.io": "~1.7.1",
     "dotenv": "^1.2.0",
     "express": "^4.13.3",
     "lolapi": "git://github.com/emmorts/lolapi.git#77a4c8c4899c7823ab73e43d4fb72641db02672c",

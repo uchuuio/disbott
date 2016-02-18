@@ -24,15 +24,15 @@ var remindmeCommand = require('./modules/remindme/command');
 var twitter = require('./modules/twitter/index');
 
 var bot = new DiscordClient({
-    email: Config.discord.email,
-    password: Config.discord.password
+	email: Config.discord.email,
+	password: Config.discord.password
 });
 
 bot.sendMessages = function (ID, messageArr, interval) {
 	var callback, resArr = [], len = messageArr.length;
 	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
 	if (typeof(interval) !== 'number') interval = 1000;
-	
+
 	function _sendMessages() {
 		setTimeout(function() {
 			if (messageArr[0]) {
@@ -53,38 +53,38 @@ bot.sendMessages = function (ID, messageArr, interval) {
 bot.connect();
 
 bot.on('ready', function() {
-    console.log(bot.username + " - (" + bot.id + ")");
-    bot.setPresence({
-        game: "Hacking Simulator 2k16"
-    });
-    // Start the remindme function
-    remindme(bot);
+	console.log(bot.username + " - (" + bot.id + ")");
+	bot.setPresence({
+		game: "Hacking Simulator 2k16"
+	});
+	// Start the remindme function
+	remindme(bot);
 });
 
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
-    var wasMentioned = _.findWhere(rawEvent.d.mentions, {id: bot.id});
+	var wasMentioned = _.findWhere(rawEvent.d.mentions, {id: bot.id});
 
-    if (wasMentioned && userID !== bot.id) {
-        message = S(message).chompLeft('<@' + bot.id + '> ').s;
+	if (wasMentioned && userID !== bot.id) {
+		message = S(message).chompLeft('<@' + bot.id + '> ').s;
 
-        ping(bot, channelID, message);
-        help(Config, bot, channelID, message);
-        about(Config, bot, channelID, message);
-        info(Config, bot, channelID, message);
-        kill(bot, channelID, message);
-        
-        league(bot, user, userID, channelID, message);
-        
-        sound(Config, bot, channelID, message, rawEvent);
-        
-        management(Config, bot, channelID, message, rawEvent);
-        
-        remindmeCommand(bot, user, userID, channelID, message);
-        
-        twitter(bot, channelID, message);
-    }
+		ping(bot, channelID, message);
+		help(Config, bot, channelID, message);
+		about(Config, bot, channelID, message);
+		info(Config, bot, channelID, message);
+		kill(bot, channelID, message);
 
-    // soundFileupload is a little different to other commands so it has to be put here
-    // Currently it'll accept any mp3, I'd like it to only be mp3's dm'd to it
-    soundFileupload(bot, channelID, rawEvent);
+		league(bot, user, userID, channelID, message);
+
+		sound(Config, bot, channelID, message, rawEvent);
+
+		management(Config, bot, channelID, message, rawEvent);
+
+		remindmeCommand(bot, user, userID, channelID, message);
+
+		twitter(bot, channelID, message);
+	}
+
+	// soundFileupload is a little different to other commands so it has to be put here
+	// Currently it'll accept any mp3, I'd like it to only be mp3's dm'd to it
+	soundFileupload(bot, channelID, rawEvent);
 });
