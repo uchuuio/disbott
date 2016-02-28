@@ -1,131 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Disbott</title>
-    <link href="//cdn.bootcss.com/tachyons/3.0.2/tachyons.min.css" rel="stylesheet">
-    <style>
-        .code {
-            background-color: #111;
-            color: #FFF;
-            display: inline-block;
-            padding: 5px;
-        }
-        h4.code { margin: 0; }
-    </style>
+	<meta charset="UTF-8">
+	<title>Disbott</title>
+	<link href="//cdn.bootcss.com/tachyons/3.0.2/tachyons.min.css" rel="stylesheet">
+	<style>
+		.code {
+			background-color: #111;
+			color: #FFF;
+			display: inline-block;
+			padding: 5px;
+		}
+		h4.code { margin: 0; }
+	</style>
 </head>
 <body class="sans-serif">
-    <div class="container mw7 phm center">
-        <header>
-            <h1 class="tc ttu tracked-tight mega mbn">Disbott</h1>
-            <h1 class="tc f3">A bot for Discord</h1>
-            <h1 class="tc f5">Version 0.17.0</h1>
-            <hr class="w-10" />
-        </header>
-        <div id="install">
-            <h2>Install</h2>
-            <p>Check out the repo on <a href="https://github.com/tomopagu/disbott" title="Repo on Github">Github!</a></p>
-        </div>
-        <div id="commands">
-            <h2>Commands</h2>
-            <p>All commands must start with @disbott (or if you have named it something else that!) to not conflict with anyother bots and conform to the <a href="https://github.com/meew0/discord-bot-best-practices" title="Discord Bot Best Practices">Discord Bot Best Practices</a>.</p>
-            <p>An example command would be <span class="code">@disbott ping</span>.
-            <hr class="w-10" />
-            <h3>General Commands</h3>
-            <div class="command">
-                <h4 class="code">help</h4>
-                <p>Brings up this command list!</p>
-            </div>
-            <div class="command">
-                <h4 class="code">about</h4>
-                <p>Tells you who the bot is</p>
-            </div>
-            <div class="command">
-                <h4 class="code">info</h4>
-                <p>Some information about the bot</p>
-            </div>
-            <div class="command">
-                <h4 class="code">ping</h4>
-                <p>The bot will reply to the ping with a pong.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">remindme=(time).(unitoftime);(message)</h4>
-                <p>The bot will remind you in a DM about the message given at the time given. You can chain multiple `(time).(unitoftime)` in one go e.g. <span class="code">@disbott remindme=2.hours.30.mins.15.s;Reminder Message</span> will DM you in 2hours 30mins &amp; 15secs about "Reminder Message".</p>
-            </div>
-            <hr class="w-10" />
-            <h3>Management Commands</h3>
-            <div class="command">
-                <h4 class="code">createtextinvite=(channel)</h4>
-                <p>The bot will create a 6hour instant invite code &amp; link for the given text channel of the server it is currently on.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">createvoiceinvite=(channel)</h4>
-                <p>The bot will create a 6hour instant invite code &amp; link for the given voice channel of the server it is currently on.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">join=(code)</h4>
-                <p>The bot will join the server/channel of the given code.</p>
-            </div>
-            <hr class="w-10" />
-            <h3>League of Legends Commands</h3>
-            <div class="command">
-                <h4 class="code">lolsetsummoner=(summonername)</h4>
-                <p>Will link your league username (summonername) with your discord user for ease of use. <b>Only EUW at the moment!</b></p>
-            </div>
-            <div class="command">
-                <h4 class="code">lolsummoner[=summonername, =@discorduser]</h4>
-                <p>Provided you have linked your discord to a league account this command just tells chat what account you are linked to. If you add <span class="code">=@(discorduser)</span> then it'll get their league user (provided they have linked too) and while a little silly it is possible to add <span class="code">=(summonername)</span> which'll tell you the summoner name of the summoner you just searched...</p>
-            </div>
-            <div class="command">
-                <h4 class="code">lolrankedstats[=summonername, =@discorduser]</h4>
-                <p>This command will post the specified users ranked status for this season. If you have linked your league account to disbott then you can just do `!lolrankedstats` and that will give you your ranked stats. <b>Only EUW at the moment!</b></p>
-            </div>
-            <div class="command">
-                <h4 class="code">lolcurrentgame[=summonername, =@discorduser]</h4>
-                <p>This command will post the specified users current game with information on who they are playing, what game mode and for approximately how long. If you have linked your league account to disbott then you can omit the = part and it will give you your current game. <b>Only EUW at the moment!</b></p>
-            </div>
-            <hr class="w-10" />
-            <h3>Sound Commands</h3>
-            <div class="command">
-                <h4 class="code">sound=(instantinvitecode)</h4>
-                <p>Run this command with an instantinvitecode to make the bot join your voice channel. You only need the code itself not the whole url (ie. not: https://discord.gg/{CODE} but: {CODE}) this must be run first before any of the other sound commands.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">stopsound</h4>
-                <p>This command stops any playing audio that the bot is playing, but keeps the bot in the voice channel.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">sounddisconnect</h4>
-                <p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span class="code">sound</span> before playing audio again.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">listsounds</h4>
-                <p>Will take you to a website to see all the uploaded sounds to disbott. Also showcases commands for the below command.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">playsound=(file)</h4>
-                <p>Plays whatever file specified to the voice channel, where file is the filename in the <span class="code">/modules/sound/sounds/</span>.</p>
-            </div>
-            <hr class="w-10" />
-            <h3>Twitter Commands</h3>
-            <div class="command">
-                <h4 class="code">headline</h4>
-                <p>The bot gets the latest tweet from The Guardian's (<a href="https://twitter.com/guardian" title="The Guardian on Twitter">@guardian</a>) twitter feed.</p>
-            </div>
-            <div class="command">
-                <h4 class="code">mirin</h4>
-                <p>The bot gets the latest tweet from Furukawa Mirin's' (<a href="https://twitter.com/FurukawaMirin" title="Furukawa Mirin on Twitter">@FurukawaMirin</a>) twitter feed. She is my idol oshimen!</p>
-            </div>
-            <div class="command">
-                <h4 class="code">gazo</h4>
-                <p><b>WARNING MAYBE NSFW</b></p>
-                <p>The bot gets a random tweet from <a href="https://twitter.com/idol_gazo" title="WARNING MAYBE NSFW">@idol_gazo</a>'s twitter feed and tells name/group & image.</p>
-            </div>
-        </div>
-        <footer class="tc">
-            <hr class="w-10" />
-            <p>Built by <a href="https://tomo.pagu.co" title="tomo@pagu">tomo@pagu</a></p>
-        </footer>
-    </div>
+	<div class="container mw7 phm center">
+		<header>
+			<h1 class="tc ttu tracked-tight mega mbn">Disbott</h1>
+			<h1 class="tc f3">A bot for Discord</h1>
+			<h1 class="tc f5">Version 0.17.0</h1>
+			<hr class="w-10" />
+		</header>
+		<div id="install">
+			<h2>Install</h2>
+			<p>Check out the repo on <a href="https://github.com/tomopagu/disbott" title="Repo on Github">Github!</a></p>
+		</div>
+		<div id="commands">
+			<h2>Commands</h2>
+			<p>All commands must start with @disbott (or if you have named it something else that!) to not conflict with anyother bots and conform to the <a href="https://github.com/meew0/discord-bot-best-practices" title="Discord Bot Best Practices">Discord Bot Best Practices</a>.</p>
+			<p>An example command would be <span class="code">@disbott ping</span>.
+			<hr class="w-10" />
+			<h3>General Commands</h3>
+			<div class="command">
+				<h4 class="code">help</h4>
+				<p>Brings up this command list!</p>
+			</div>
+			<div class="command">
+				<h4 class="code">about</h4>
+				<p>Tells you who the bot is</p>
+			</div>
+			<div class="command">
+				<h4 class="code">info</h4>
+				<p>Some information about the bot</p>
+			</div>
+			<div class="command">
+				<h4 class="code">ping</h4>
+				<p>The bot will reply to the ping with a pong.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">remindme=(time).(unitoftime);(message)</h4>
+				<p>The bot will remind you in a DM about the message given at the time given. You can chain multiple `(time).(unitoftime)` in one go e.g. <span class="code">@disbott remindme=2.hours.30.mins.15.s;Reminder Message</span> will DM you in 2hours 30mins &amp; 15secs about "Reminder Message".</p>
+			</div>
+			<hr class="w-10" />
+			<h3>Management Commands</h3>
+			<div class="command">
+				<h4 class="code">createtextinvite=(channel)</h4>
+				<p>The bot will create a 6hour instant invite code &amp; link for the given text channel of the server it is currently on.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">createvoiceinvite=(channel)</h4>
+				<p>The bot will create a 6hour instant invite code &amp; link for the given voice channel of the server it is currently on.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">join=(code)</h4>
+				<p>The bot will join the server/channel of the given code.</p>
+			</div>
+			<hr class="w-10" />
+			<h3>League of Legends Commands</h3>
+			<div class="command">
+				<h4 class="code">lolsetsummoner=(summonername)</h4>
+				<p>Will link your league username (summonername) with your discord user for ease of use. <b>Only EUW at the moment!</b></p>
+			</div>
+			<div class="command">
+				<h4 class="code">lolsummoner[=summonername, =@discorduser]</h4>
+				<p>Provided you have linked your discord to a league account this command just tells chat what account you are linked to. If you add <span class="code">=@(discorduser)</span> then it'll get their league user (provided they have linked too) and while a little silly it is possible to add <span class="code">=(summonername)</span> which'll tell you the summoner name of the summoner you just searched...</p>
+			</div>
+			<div class="command">
+				<h4 class="code">lolrankedstats[=summonername, =@discorduser]</h4>
+				<p>This command will post the specified users ranked status for this season. If you have linked your league account to disbott then you can just do `!lolrankedstats` and that will give you your ranked stats. <b>Only EUW at the moment!</b></p>
+			</div>
+			<div class="command">
+				<h4 class="code">lolcurrentgame[=summonername, =@discorduser]</h4>
+				<p>This command will post the specified users current game with information on who they are playing, what game mode and for approximately how long. If you have linked your league account to disbott then you can omit the = part and it will give you your current game. <b>Only EUW at the moment!</b></p>
+			</div>
+			<hr class="w-10" />
+			<h3>Sound Commands</h3>
+			<div class="command">
+				<h4 class="code">sound=(instantinvitecode)</h4>
+				<p>Run this command with an instantinvitecode to make the bot join your voice channel. You only need the code itself not the whole url (ie. not: https://discord.gg/{CODE} but: {CODE}) this must be run first before any of the other sound commands.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">stopsound</h4>
+				<p>This command stops any playing audio that the bot is playing, but keeps the bot in the voice channel.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">sounddisconnect</h4>
+				<p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span class="code">sound</span> before playing audio again.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">listsounds</h4>
+				<p>Will take you to a website to see all the uploaded sounds to disbott. Also showcases commands for the below command.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">playsound=(file)</h4>
+				<p>Plays whatever file specified to the voice channel, where file is the filename in the <span class="code">/modules/sound/sounds/</span>.</p>
+			</div>
+			<hr class="w-10" />
+			<h3>Twitter Commands</h3>
+			<div class="command">
+				<h4 class="code">headline</h4>
+				<p>The bot gets the latest tweet from The Guardian's (<a href="https://twitter.com/guardian" title="The Guardian on Twitter">@guardian</a>) twitter feed.</p>
+			</div>
+			<div class="command">
+				<h4 class="code">mirin</h4>
+				<p>The bot gets the latest tweet from Furukawa Mirin's' (<a href="https://twitter.com/FurukawaMirin" title="Furukawa Mirin on Twitter">@FurukawaMirin</a>) twitter feed. She is my idol oshimen!</p>
+			</div>
+			<div class="command">
+				<h4 class="code">gazo</h4>
+				<p><b>WARNING MAYBE NSFW</b></p>
+				<p>The bot gets a random tweet from <a href="https://twitter.com/idol_gazo" title="WARNING MAYBE NSFW">@idol_gazo</a>'s twitter feed and tells name/group & image.</p>
+			</div>
+		</div>
+		<footer class="tc">
+			<hr class="w-10" />
+			<p>Built by <a href="https://tomo.pagu.co" title="tomo@pagu">tomo@pagu</a></p>
+		</footer>
+	</div>
 </body>
 </html>
