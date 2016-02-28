@@ -28,45 +28,48 @@ var twitter = require('./modules/twitter/index');
 
 var bot = new DiscordClient({
 	email: Config.discord.email,
-	password: Config.discord.password
+	password: Config.discord.password,
 });
 
 bot.sendMessages = function (ID, messageArr, interval) {
 	var callback, resArr = [], len = messageArr.length;
-	typeof(arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
-	if (typeof(interval) !== 'number') interval = 1000;
+	typeof (arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
+	if (typeof (interval) !== 'number') interval = 1000;
 
 	function _sendMessages() {
-		setTimeout(function() {
+		setTimeout(function () {
 			if (messageArr[0]) {
 				bot.sendMessage({
 					to: ID,
-					message: messageArr.shift()
-				}, function(res) {
+					message: messageArr.shift(),
+				}, function (res) {
 					resArr.push(res);
-					if (resArr.length === len) if (typeof(callback) === 'function') callback(resArr);
+					if (resArr.length === len) if (typeof (callback) === 'function') callback(resArr);
 				});
+
 				_sendMessages();
 			}
 		}, interval);
 	}
+
 	_sendMessages();
-}
+};
 
 bot.connect();
 
-bot.on('ready', function() {
-	console.log(bot.username + " - (" + bot.id + ")");
+bot.on('ready', function () {
+	console.log(bot.username + ' - (' + bot.id + ')');
 	bot.setPresence({
-		game: "Hacking Simulator 2k16"
+		game: 'Hacking Simulator 2k16'
 	});
+
 	// Start the logging function
 	remindme(bot);
 	lastseen(bot);
 });
 
-bot.on('message', function(user, userID, channelID, message, rawEvent) {
-	var wasMentioned = _.findWhere(rawEvent.d.mentions, {id: bot.id});
+bot.on('message', function (user, userID, channelID, message, rawEvent) {
+	var wasMentioned = _.findWhere(rawEvent.d.mentions, { id: bot.id });
 
 	if (wasMentioned && userID !== bot.id) {
 		message = S(message).chompLeft('<@' + bot.id + '> ').s;

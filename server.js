@@ -17,7 +17,7 @@ app.get('/api/lol/current-game', function (req, res) {
 	var summonerID = req.query.summonerID;
 	lolapi.CurrentGame.getBySummonerId(summonerID, function (error, game) {
 		if (error) {
-			res.status(404).json({error: 'No Game Found'});
+			res.status(404).json({ error: 'No Game Found' });
 			console.log(error);
 		} else {
 			game.gameType = gameMode(game);
@@ -28,6 +28,7 @@ app.get('/api/lol/current-game', function (req, res) {
 			_.each(game.participants, function (participant, i) {
 				lolapi.Static.getChampion(participant.championId, function (error, champion) {
 					game.participants[i].champion = champion.name;
+
 					// Only send the json when we've set all the champions
 					if (count === i) {
 						getChampions.emit('completed', game);
