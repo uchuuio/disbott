@@ -5,7 +5,8 @@ var joinVoiceChannel = function (Config, soundDb, bot, channelID, message) {
 	}, function () {
 		var splitMessage = message.split('=');
 		var inviteCode = splitMessage[1];
-		bot.acceptInvite(inviteCode, function (response) {
+		bot.queryInvite(inviteCode, function (err, response) {
+			if (err) return console.log(err);
 			var voiceChannelID = response.channel.id;
 			bot.joinVoiceChannel(voiceChannelID, function () {
 				var data = {
