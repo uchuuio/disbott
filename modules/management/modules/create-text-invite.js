@@ -14,7 +14,7 @@ var createTextInvite = function (_, S, bot, channelID, message) {
 							channel: channel.id,
 							max_age: expiresIn,
 							temporary: true,
-						}, function (res) {
+						}, function (err, res) {
 							bot.sendMessages(channelID, [
 								'The following code/link lasts for 6hours',
 								'The instant invite code is ' + res.code + '.',
