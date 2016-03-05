@@ -4,6 +4,7 @@ var lolCurrentGameInfo = require('./modules/current-game');
 var lolRankedStats = require('./modules/ranked-stats');
 
 var league = function (bot, user, userID, channelID, message) {
+	message = message.toLowerCase();
 	lolSetSummoner(bot, user, userID, channelID, message);
 	lolGetSetSummoner(bot, user, userID, channelID, message);
 	lolCurrentGameInfo(bot, user, userID, channelID, message);

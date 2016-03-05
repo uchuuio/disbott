@@ -73,7 +73,6 @@ bot.on('message', function (user, userID, channelID, message, rawEvent) {
 
 	if (wasMentioned && userID !== bot.id) {
 		message = S(message).chompLeft('<@' + bot.id + '> ').s;
-		message = message.toLowerCase();
 
 		ping(bot, channelID, message);
 		help(Config, bot, channelID, message);
