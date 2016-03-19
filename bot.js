@@ -26,6 +26,8 @@ var lastseenCommand = require('./modules/lastseen/command');
 
 var twitter = require('./modules/twitter/index');
 
+var chunder = require('./modules/silly/chunder');
+
 var bot = new DiscordClient({
 	token: Config.discord.token,
 });
@@ -78,6 +80,8 @@ bot.on('message', function (user, userID, channelID, message, rawEvent) {
 		about(Config, bot, channelID, message);
 		info(Config, bot, channelID, message);
 		kill(bot, channelID, message);
+
+		chunder(bot, channelID, message);
 
 		league(bot, user, userID, channelID, message);
 
