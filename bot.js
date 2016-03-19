@@ -27,8 +27,7 @@ var lastseenCommand = require('./modules/lastseen/command');
 var twitter = require('./modules/twitter/index');
 
 var bot = new DiscordClient({
-	email: Config.discord.email,
-	password: Config.discord.password,
+	token: Config.discord.token,
 });
 
 bot.sendMessages = function (ID, messageArr, interval) {
@@ -60,7 +59,7 @@ bot.connect();
 bot.on('ready', function () {
 	console.log(bot.username + ' - (' + bot.id + ')');
 	bot.setPresence({
-		game: 'Hacking Simulator 2k16'
+		game: 'Hacking Simulator 2k16',
 	});
 
 	// Start the logging function
