@@ -1,6 +1,6 @@
-var S = require('string');
+import S from 'string';
 
-var gazo = function (T, bot, channelID, message) {
+export function gazo(T, bot, channelID, message) {
 	if (message === 'gazo') {
 		T.get('statuses/user_timeline', {
 			screen_name: 'idol_gazo',
@@ -17,5 +17,3 @@ var gazo = function (T, bot, channelID, message) {
 		});
 	}
 };
-
-module.exports = gazo;

@@ -1,7 +1,5 @@
-var Datastore = require('nedb');
-var lastseenDb = new Datastore({
+import Datastore from 'nedb';
+export var lastseenDb = new Datastore({
 	filename: './datastores/lastseen.db',
-	autoload: true
+	autoload: true,
 });
-
-module.exports = lastseenDb;

@@ -1,4 +1,4 @@
-var disconnect = function (soundDb, bot, channelID, message, voiceChannelID) {
+export default function disconnect(soundDb, bot, channelID, message, voiceChannelID) {
 	if (message === 'sounddisconnect') {
 		bot.sendMessage({
 			to: channelID,
@@ -11,5 +11,3 @@ var disconnect = function (soundDb, bot, channelID, message, voiceChannelID) {
 		});
 	}
 };
-
-module.exports = disconnect;

@@ -1,4 +1,4 @@
-var getSummonerIdFunction = function (S, lolapi, leagueDb, userID, getSummonerId, summonerName) {
+export default function getSummonerIdFunction(S, lolapi, leagueDb, userID, getSummonerId, summonerName) {
 	if (!S(summonerName).isEmpty()) {
 		if (S(summonerName).startsWith('<@')) {
 			userID = S(summonerName).chompLeft('<@').s;
@@ -39,5 +39,3 @@ var getSummonerIdFunction = function (S, lolapi, leagueDb, userID, getSummonerId
 		}));
 	};
 };
-
-module.exports = getSummonerIdFunction;

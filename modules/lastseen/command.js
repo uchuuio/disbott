@@ -1,9 +1,9 @@
-var lastseenDb = require('./lastseenDb');
+import { lastseenDb } from './lastseenDb';
 
-var S = require('string');
-var moment = require('moment');
+import S from 'string';
+import moment from 'moment';
 
-var lastseenCommand = function (bot, user, userID, channelID, message) {
+export default function lastseenCommand(bot, user, userID, channelID, message) {
 	if (S(message).contains('lastseen=')) {
 		var splitMessage = message.split('=');
 
@@ -36,5 +36,3 @@ var lastseenCommand = function (bot, user, userID, channelID, message) {
 		}));
 	}
 };
-
-module.exports = lastseenCommand;

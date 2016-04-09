@@ -1,7 +1,6 @@
-var Datastore = require('nedb');
-var db = new Datastore({
-	filename: './datastores/league.db',
-	autoload: true 
-});
+import Datastore from 'nedb';
 
-module.exports = db;
+export var leagueDb = new Datastore({
+	filename: './datastores/league.db',
+	autoload: true,
+});

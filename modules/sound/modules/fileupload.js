@@ -6,7 +6,7 @@ var spawn = require('child_process').spawn;
 
 var DOWNLOAD_DIR = './modules/sound/sounds/';
 
-var fileupload = function (bot, channelID, rawEvent) {
+export default function fileupload(bot, channelID, rawEvent) {
 	if (rawEvent.d.attachments.length > 0) {
 		var fileUrl = rawEvent.d.attachments[0].url;
 		var fileExt = rawEvent.d.attachments[0].url.split('.').pop();
@@ -45,5 +45,3 @@ var fileupload = function (bot, channelID, rawEvent) {
 		}
 	}
 };
-
-module.exports = fileupload;

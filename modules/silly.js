@@ -1,4 +1,5 @@
-var chunder = function (bot, channelID, message) {
+// Chunder
+export function chunder(bot, channelID, message) {
 	if (message === 'who is the chunder king?') {
 		bot.sendMessage({
 			to: channelID,
@@ -6,5 +7,3 @@ var chunder = function (bot, channelID, message) {
 		});
 	}
 };
-
-module.exports = chunder;

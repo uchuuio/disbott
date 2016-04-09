@@ -1,4 +1,4 @@
-var join = function (S, bot, channelID, message) {
+export default function join(S, bot, channelID, message) {
 	if (S(message).contains('join=')) {
 		var splitMessage = message.split('=');
 		var code = splitMessage[1];
@@ -19,5 +19,3 @@ var join = function (S, bot, channelID, message) {
 		});
 	}
 };
-
-module.exports = join;

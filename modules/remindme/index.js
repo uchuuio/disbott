@@ -1,9 +1,9 @@
-var remindmeDb = require('./remindmeDb');
+import { remindmeDb } from './remindmeDb';
 
-var _ = require('underscore');
-var moment = require('moment');
+import _ from 'underscore';
+import moment from 'moment';
 
-var remindme = function (bot) {
+export default function remindme(bot) {
 	setInterval(function () {
 		remindmeDb.find({ remindTime: moment().format() }, function (err, reminders) {
 			if (reminders.length > 0) {
@@ -18,5 +18,3 @@ var remindme = function (bot) {
 		});
 	}, 1000);
 };
-
-module.exports = remindme;

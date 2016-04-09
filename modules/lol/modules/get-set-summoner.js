@@ -1,16 +1,16 @@
-var Config = require('./../../../config');
+import { Config } from './../../../config';
 
-var _ = require('underscore');
+import _ from 'underscore';
 var EventEmitter = require('events');
-var S = require('string');
+import S from 'string';
 
 var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
-var leagueDb = require('./util/league-db');
+import { leagueDb } from './util/league-db';
 
-var gameMode = require('./util/gametype-constant');
-var getSummonerIdFunction = require('./util/get-summoner-id');
+import gameMode from './util/gametype-constant';
+import getSummonerIdFunction from './util/get-summoner-id';
 
-var lolGetSetSummoner = function (bot, user, userID, channelID, message) {
+export default function lolGetSetSummoner(bot, user, userID, channelID, message) {
 	if (S(message).contains('lolsummoner')) {
 		bot.simulateTyping(channelID, function () {
 			var splitMessage = message.split('=');
@@ -46,5 +46,3 @@ var lolGetSetSummoner = function (bot, user, userID, channelID, message) {
 		});
 	}
 };
-
-module.exports = lolGetSetSummoner;

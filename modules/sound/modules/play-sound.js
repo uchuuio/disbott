@@ -1,4 +1,4 @@
-var playSound = function (S, bot, channelID, message, voiceChannelID) {
+export default function playSound(S, bot, channelID, message, voiceChannelID) {
 	if (S(message).contains('playsound=')) {
 		var splitMessage = message.split('=');
 		var song = splitMessage[1];
@@ -18,5 +18,3 @@ var playSound = function (S, bot, channelID, message, voiceChannelID) {
 		});
 	}
 };
-
-module.exports = playSound;

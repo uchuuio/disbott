@@ -1,4 +1,4 @@
-var joinVoiceChannel = function (Config, soundDb, bot, channelID, message) {
+export default function joinVoiceChannel(Config, soundDb, bot, channelID, message) {
 	bot.sendMessage({
 		to: channelID,
 		message: 'Getting ready to play...',
@@ -18,5 +18,3 @@ var joinVoiceChannel = function (Config, soundDb, bot, channelID, message) {
 		});
 	});
 };
-
-module.exports = joinVoiceChannel;

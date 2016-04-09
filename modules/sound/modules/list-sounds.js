@@ -1,4 +1,4 @@
-var listSounds = function (Config, bot, channelID, message, voiceChannelID) {
+export default function listSounds(Config, bot, channelID, message, voiceChannelID) {
 	if (message === 'listsounds') {
 		bot.sendMessage({
 			to: channelID,
@@ -6,5 +6,3 @@ var listSounds = function (Config, bot, channelID, message, voiceChannelID) {
 		});
 	}
 };
-
-module.exports = listSounds;

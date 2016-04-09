@@ -1,9 +1,9 @@
-var remindmeDb = require('./remindmeDb');
+import { remindmeDb } from './remindmeDb';
 
-var S = require('string');
-var moment = require('moment');
+import S from 'string';
+import moment from 'moment';
 
-var remindmeCommand = function (bot, user, userID, channelID, message) {
+export default function remindmeCommand(bot, user, userID, channelID, message) {
 	if (S(message).contains('remindme=')) {
 		var splitMessage = message.split('=');
 		var timeAndMessage = splitMessage[1].split(';');
@@ -41,5 +41,3 @@ var remindmeCommand = function (bot, user, userID, channelID, message) {
 		});
 	}
 };
-
-module.exports = remindmeCommand;

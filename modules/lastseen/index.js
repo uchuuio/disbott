@@ -1,10 +1,10 @@
-var lastseenDb = require('./lastseenDb');
+import { lastseenDb } from './lastseenDb';
 
-var _ = require('underscore');
-var S = require('string');
-var moment = require('moment');
+import _ from 'underscore';
+import S from 'string';
+import moment from 'moment';
 
-var lastseen = function (bot) {
+export default function lastseen(bot) {
 	setInterval(function () {
 		// Check the users that are online, Update the DB
 		var connectedServers = bot.servers;
@@ -43,5 +43,3 @@ var lastseen = function (bot) {
 		});
 	}, 1000);
 };
-
-module.exports = lastseen;

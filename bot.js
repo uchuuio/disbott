@@ -1,39 +1,37 @@
-var Config = require('./config.js');
+import { Config } from './config';
 
-var _ = require('underscore');
-var S = require('string');
-var DiscordClient = require('discord.io');
+import _ from 'underscore';
+import S from 'string';
+import DiscordClient from 'discord.io';
 
 // Modules
-var ping = require('./modules/ping');
-var help = require('./modules/help');
-var about = require('./modules/about');
-var info = require('./modules/info');
-var kill = require('./modules/kill');
+import { about, help, info, ping } from './modules/utils';
 
-var league = require('./modules/lol/index');
+import league from './modules/lol/index';
 
-var sound = require('./modules/sound/index');
-var soundFileupload = require('./modules/sound/modules/fileupload');
+import sound from './modules/sound/index';
+import soundFileupload from './modules/sound/modules/fileupload';
 
-var management = require('./modules/management/index');
+import management from './modules/management/index';
 
-var remindme = require('./modules/remindme/index');
-var remindmeCommand = require('./modules/remindme/command');
+import remindme from './modules/remindme/index';
+import remindmeCommand from './modules/remindme/command';
 
-var lastseen = require('./modules/lastseen/index');
-var lastseenCommand = require('./modules/lastseen/command');
+import lastseen from './modules/lastseen/index';
+import lastseenCommand from './modules/lastseen/command';
 
-var twitter = require('./modules/twitter/index');
+import twitter from './modules/twitter/index';
 
-var chunder = require('./modules/silly/chunder');
+import { chunder } from './modules/silly';
 
 var bot = new DiscordClient({
 	token: Config.discord.token,
 });
 
 bot.sendMessages = function (ID, messageArr, interval) {
-	var callback, resArr = [], len = messageArr.length;
+	var callback = [];
+	var resArr = [];
+	var len = messageArr.length;
 	typeof (arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
 	if (typeof (interval) !== 'number') interval = 1000;
 
@@ -75,24 +73,29 @@ bot.on('message', function (user, userID, channelID, message, rawEvent) {
 	if (wasMentioned && userID !== bot.id) {
 		message = S(message).chompLeft('<@' + bot.id + '> ').s;
 
-		ping(bot, channelID, message);
-		help(Config, bot, channelID, message);
-		about(Config, bot, channelID, message);
-		info(Config, bot, channelID, message);
-		kill(bot, channelID, message);
+		try {
+			ping(bot, channelID, message);
+			help(Config, bot, channelID, message);
+			about(Config, bot, channelID, message);
+			info(Config, bot, channelID, message);
 
-		chunder(bot, channelID, message);
+			// kill(bot, channelID, message);
 
-		league(bot, user, userID, channelID, message);
+			chunder(bot, channelID, message);
 
-		sound(Config, bot, channelID, message, rawEvent);
+			league(bot, user, userID, channelID, message);
 
-		management(Config, bot, channelID, message, rawEvent);
+			sound(Config, bot, channelID, message, rawEvent);
 
-		remindmeCommand(bot, user, userID, channelID, message);
-		lastseenCommand(bot, user, userID, channelID, message);
+			management(Config, bot, channelID, message, rawEvent);
 
-		twitter(bot, channelID, message);
+			remindmeCommand(bot, user, userID, channelID, message);
+			lastseenCommand(bot, user, userID, channelID, message);
+
+			twitter(bot, channelID, message);
+		} catch (e) {
+			console.log(e);
+		}
 	}
 
 	// soundFileupload is a little different to other commands so it has to be put here

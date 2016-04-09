@@ -1,4 +1,4 @@
-var createVoiceInvite = function (_, S, bot, channelID, message) {
+export default function createVoiceInvite(_, S, bot, channelID, message) {
 	if (S(message).contains('createvoiceinvite=')) {
 		var splitMessage = message.split('=');
 		var inviteChannel = splitMessage[1];
@@ -28,5 +28,3 @@ var createVoiceInvite = function (_, S, bot, channelID, message) {
 
 	}
 };
-
-module.exports = createVoiceInvite;

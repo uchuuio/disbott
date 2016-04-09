@@ -1,17 +1,17 @@
-var Config = require('./../../../config');
+import { Config } from './../../../config';
 
-var _ = require('underscore');
+import _ from 'underscore';
 var EventEmitter = require('events');
-var S = require('string');
-var moment = require('moment');
+import S from 'string';
+import moment from 'moment';
 
 var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
-var leagueDb = require('./util/league-db');
+import { leagueDb } from './util/league-db';
 
-var gameMode = require('./util/gametype-constant');
-var getSummonerIdFunction = require('./util/get-summoner-id');
+import gameMode from './util/gametype-constant';
+import getSummonerIdFunction from './util/get-summoner-id';
 
-var lolCurrentGameInfo = function (bot, user, userID, channelID, message) {
+export default function lolCurrentGameInfo(bot, user, userID, channelID, message) {
 	if (S(message).contains('lolcurrentgame')) {
 		bot.simulateTyping(channelID, function () {
 			var splitMessage = message.split('=');
@@ -56,5 +56,3 @@ var lolCurrentGameInfo = function (bot, user, userID, channelID, message) {
 		});
 	}
 };
-
-module.exports = lolCurrentGameInfo;

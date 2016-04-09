@@ -3,11 +3,13 @@
   "version": "0.19.0",
   "description": "A bot for Discord",
   "scripts": {
-    "start:bot": "node bot.js",
-    "start:web": "node server.js"
+    "start:bot": "babel-node --presets es2015 ./bot.js",
+    "start:web": "babel-node --presets es2015 ./server.js"
   },
   "author": "tomo@pagu",
   "dependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
     "discord.io": "~1.8",
     "dotenv": "^1.2.0",
     "express": "^4.13.3",
@@ -17,5 +19,6 @@
     "string": "^3.3.1",
     "twit": "^2.1.1",
     "underscore": "^1.8.3"
-  }
+  },
+  "devDependencies": {}
 }

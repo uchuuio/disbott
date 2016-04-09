@@ -1,4 +1,4 @@
-var gameMode = function (game) {
+export default function gameMode(game) {
 	if (game.gameType === 'CUSTOM_GAME') {
 		return 'Custom';
 	} else if (game.gameType === 'MATCHED_GAME') {
@@ -35,5 +35,3 @@ var gameMode = function (game) {
 		}
 	}
 };
-
-module.exports = gameMode;

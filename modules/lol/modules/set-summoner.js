@@ -1,10 +1,10 @@
-var Config = require('./../../../config');
+import { Config } from './../../../config';
 
-var S = require('string');
+import S from 'string';
 var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
-var leagueDb = require('./util/league-db');
+import { leagueDb } from './util/league-db';
 
-var lolSetSummoner = function (bot, user, userID, channelID, message) {
+export default function lolSetSummoner(bot, user, userID, channelID, message) {
 	if (S(message).contains('lolsetsummoner')) {
 		bot.simulateTyping(channelID, function () {
 			var splitMessage = message.split('=');
@@ -47,5 +47,3 @@ var lolSetSummoner = function (bot, user, userID, channelID, message) {
 		});
 	}
 };
-
-module.exports = lolSetSummoner;

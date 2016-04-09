@@ -1,6 +1,6 @@
-require('dotenv').load();
+require('dotenv').config();
 
-var Config = {
+export var Config = {
 	discord: {
 		token: process.env.DISCORD_TOKEN,
 	},
@@ -16,5 +16,3 @@ var Config = {
 	},
 	domain: 'https://disbott.pagu.co',
 };
-
-module.exports = Config;

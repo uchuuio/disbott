@@ -1,6 +1,6 @@
-var moment = require('moment');
+import moment from 'moment';
 
-var mirin = function (T, bot, channelID, message) {
+export function mirin(T, bot, channelID, message) {
 	if (message === 'mirin') {
 		T.get('statuses/user_timeline', {
 			screen_name: 'FurukawaMirin',
@@ -14,5 +14,3 @@ var mirin = function (T, bot, channelID, message) {
 		});
 	}
 };
-
-module.exports = mirin;

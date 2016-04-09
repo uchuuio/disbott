@@ -3,17 +3,15 @@
 //	filename: './datastores/management.db',
 //	autoload: true
 // });
-var _ = require('underscore');
-var S = require('string');
+import _ from 'underscore';
+import S from 'string';
 
-var join = require('./modules/join');
-var createTextInvite = require('./modules/create-text-invite');
-var createVoiceInvite = require('./modules/create-voice-invite');
+import join from './modules/join';
+import createTextInvite from './modules/create-text-invite';
+import createVoiceInvite from './modules/create-voice-invite';
 
-var management = function (Config, bot, channelID, message, rawEvent) {
+export default function management(Config, bot, channelID, message, rawEvent) {
 	createTextInvite(_, S, bot, channelID, message);
 	createVoiceInvite(_, S, bot, channelID, message);
 	join(S, bot, channelID, message);
 };
-
-module.exports = management;

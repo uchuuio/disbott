@@ -1,4 +1,4 @@
-var createTextInvite = function (_, S, bot, channelID, message) {
+export default function createTextInvite(_, S, bot, channelID, message) {
 	if (S(message).contains('createtextinvite=')) {
 		var splitMessage = message.split('=');
 		var inviteChannel = splitMessage[1];
@@ -28,5 +28,3 @@ var createTextInvite = function (_, S, bot, channelID, message) {
 
 	}
 };
-
-module.exports = createTextInvite;

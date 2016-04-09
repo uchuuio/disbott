@@ -1,6 +1,6 @@
-var moment = require('moment');
+import moment from 'moment';
 
-var headline = function (T, bot, channelID, message) {
+export function headline(T, bot, channelID, message) {
 	if (message === 'headline') {
 		T.get('statuses/user_timeline', {
 			screen_name: 'guardian',
@@ -15,5 +15,3 @@ var headline = function (T, bot, channelID, message) {
 		});
 	}
 };
-
-module.exports = headline;

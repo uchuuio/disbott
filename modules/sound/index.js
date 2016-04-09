@@ -1,18 +1,18 @@
-var Datastore = require('nedb');
+import Datastore from 'nedb';
 var soundDb = new Datastore({
 	filename: './datastores/sound.db',
-	autoload: true
+	autoload: true,
 });
 
-var S = require('string');
+import S from 'string';
 
-var disconnect = require('./modules/disconnect');
-var joinVoiceChannel = require('./modules/join-voice-channel');
-var stopSound = require('./modules/stopsound');
-var listSounds = require('./modules/list-sounds');
-var playSound = require('./modules/play-sound');
+import disconnect from './modules/disconnect';
+import joinVoiceChannel from './modules/join-voice-channel';
+import stopSound from './modules/stopsound';
+import listSounds from './modules/list-sounds';
+import playSound from './modules/play-sound';
 
-var sound = function (Config, bot, channelID, message, rawEvent) {
+export default function sound(Config, bot, channelID, message, rawEvent) {
 	soundDb.find({ enabled: true }, function (err, data) {
 		if (data.length > 0) {
 			var voiceChannelID = data[0].voiceChannelID;
@@ -26,5 +26,3 @@ var sound = function (Config, bot, channelID, message, rawEvent) {
 
 	listSounds(Config, bot, channelID, message);
 };
-
-module.exports = sound;
