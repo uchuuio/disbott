@@ -34,7 +34,7 @@ client.Dispatcher.on('GATEWAY_READY', e => {
 	console.log('Connected as: ' + client.User.id + ' - ' + client.User.username);
 
 	client.User.setGame({
-		name: 'Hacking Simulator 2k16',
+		name: '@disbott help for cmd!',
 	});
 
 	// Start the logging functions
