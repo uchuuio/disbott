@@ -4,7 +4,7 @@
   "description": "A bot for Discord",
   "scripts": {
     "start:bot": "babel-node --presets es2015 ./bot.js",
-    "start:web": "babel-node --presets es2015 ./server.js"
+    "start": "babel-node --presets es2015 ./server.js"
   },
   "author": "tomo@pagu",
   "dependencies": {
