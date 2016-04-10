@@ -1,12 +1,12 @@
-var Config = require('./config');
+import { Config } from './config';
 
 var fs = require('fs');
 
 var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
-var _ = require('underscore');
+import _ from 'underscore';
 var EventEmitter = require('events');
-var moment = require('moment');
-var gameMode = require('./modules/lol/modules/util/gametype-constant');
+import moment from 'moment';
+import gameMode from './modules/lol/modules/util/gametype-constant';
 
 var express = require('express');
 var app = express();

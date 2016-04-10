@@ -3,7 +3,7 @@ import { remindmeDb } from './remindmeDb';
 import S from 'string';
 import moment from 'moment';
 
-export default function remindmeCommand(bot, user, userID, channelID, message) {
+export default function remindmeCommand(e, message) {
 	if (S(message).contains('remindme=')) {
 		var splitMessage = message.split('=');
 		var timeAndMessage = splitMessage[1].split(';');
@@ -27,17 +27,14 @@ export default function remindmeCommand(bot, user, userID, channelID, message) {
 		var remindMessage = timeAndMessage[1];
 
 		var data = {
-			userID: userID,
+			userID: e.message.author.id,
 			setTime: setTime,
 			remindTime: remindTime,
 			remindMessage: remindMessage,
 		};
 
 		remindmeDb.insert(data, function (err, newDoc) {
-			bot.sendMessage({
-				to: channelID,
-				message: 'I will remind you (<@' + userID + '>) ' + timeToNice + ': ' + remindMessage,
-			});
+			e.message.channel.sendMessage(`I will remind you (${e.message.author.mention}) ${timeToNice}: ${remindMessage}`);
 		});
 	}
 };

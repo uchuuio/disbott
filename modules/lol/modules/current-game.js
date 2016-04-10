@@ -11,47 +11,40 @@ import { leagueDb } from './util/league-db';
 import gameMode from './util/gametype-constant';
 import getSummonerIdFunction from './util/get-summoner-id';
 
-export default function lolCurrentGameInfo(bot, user, userID, channelID, message) {
+export default function lolCurrentGameInfo(e, message) {
 	if (S(message).contains('lolcurrentgame')) {
-		bot.simulateTyping(channelID, function () {
-			var splitMessage = message.split('=');
-			var summonerName = splitMessage[1];
+		e.message.channel.sendTyping();
 
-			var getSummonerId = new EventEmitter();
-			getSummonerIdFunction(S, lolapi, leagueDb, userID, getSummonerId, summonerName);
+		var splitMessage = message.split('=');
+		var summonerName = splitMessage[1];
+		var userID = e.message.author.id;
 
-			getSummonerId.on('fail', function (message) {
-				bot.sendMessage({
-					to: channelID,
-					message: message,
-				});
-			});
+		var getSummonerId = new EventEmitter();
+		getSummonerIdFunction(S, lolapi, leagueDb, userID, getSummonerId, summonerName);
 
-			getSummonerId.on('completed', function (summonerID) {
-				lolapi.CurrentGame.getBySummonerId(summonerID, function (error, game) {
-					if (error) {
-						bot.sendMessage({
-							to: channelID,
-							message: 'ERROR: ' + error + '. Are you in a game?',
-						});
-					} else {
-						var gameType = gameMode(game);
+		getSummonerId.on('fail', function (message) {
+			e.message.channel.sendMessage(message);
+		});
 
-						var currentLength = moment(game.gameStartTime).toNow(true);
+		getSummonerId.on('completed', function (summonerID) {
+			lolapi.CurrentGame.getBySummonerId(summonerID, function (error, game) {
+				if (error) {
+					e.message.channel.sendMessage('ERROR: ' + error + '. Are you in a game?');
+				} else {
+					var gameType = gameMode(game);
 
-						_.each(game.participants, function (participant) {
-							if (participant.summonerId === summonerID) {
-								lolapi.Static.getChampion(participant.championId, function (error, champion) {
-									var player = _.isString(summonerName) ? summonerName : user;
-									bot.sendMessage({
-										to: channelID,
-										message: player + ' has been playing ' + champion.name + ' in a ' + gameType + ' Game for ~' + currentLength + '. ' + Config.domain + '/currentgame.html?summonerID=' + summonerID,
-									});
-								});
-							}
-						});
-					}
-				});
+					var currentLength = moment(game.gameStartTime).toNow(true);
+
+					_.each(game.participants, function (participant) {
+						if (participant.summonerId === summonerID) {
+							lolapi.Static.getChampion(participant.championId, function (error, champion) {
+								var player = _.isString(summonerName) ? summonerName : e.message.author.mention;
+
+								e.message.channel.sendMessage(`${player} has been playing ${champion.name} in a ${gameType} Game for ~${currentLength}. ${Config.domain}/currentgame.html?summonerID=' + summonerID`);
+							});
+						}
+					});
+				}
 			});
 		});
 	}

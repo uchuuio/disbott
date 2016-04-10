@@ -1,13 +1,13 @@
-export default function disconnect(soundDb, bot, channelID, message, voiceChannelID) {
-	if (message === 'sounddisconnect') {
-		bot.sendMessage({
-			to: channelID,
-			message: 'Disconnecting from Voice Channel',
-		}, function () {
-			bot.leaveVoiceChannel(voiceChannelID);
-			soundDb.remove({ enabled: true }, { multi: true }, function (err, numRemoved) {});
+export default function disconnect(client, e, message) {
+	if (message === 'vleave') {
+		client.Channels
+			.filter(channel => channel.type == 'voice')
+			.forEach(channel => {
+				if (channel.joined) {
+					channel.leave();
+				}
+			});
 
-			soundDb.remove({ enabled: false }, { multi: true }, function (err, numRemoved) {});
-		});
+		e.message.channel.sendMessage('Disconnected!');
 	}
 };

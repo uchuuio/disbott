@@ -1,30 +1,27 @@
-export default function createTextInvite(_, S, bot, channelID, message) {
+import _ from 'underscore';
+import S from 'string';
+
+export default function createTextInvite(e, message) {
 	if (S(message).contains('createtextinvite=')) {
 		var splitMessage = message.split('=');
 		var inviteChannel = splitMessage[1];
 
-		var currentServerID = bot.serverFromChannel(channelID);
+		var server = e.message.channel.guild;
+		var channels = server.textChannels;
 
-		_.each(bot.servers, function (server) {
-			if (server.id === currentServerID) {
-				_.each(server.channels, function (channel) {
-					if (channel.type === 'text' && channel.name === inviteChannel) {
-						var expiresIn = (60 * 60) * 6; // 6hours
-						bot.createInvite({
-							channel: channel.id,
-							max_age: expiresIn,
-							temporary: true,
-						}, function (err, res) {
-							bot.sendMessages(channelID, [
-								'The following code/link lasts for 6hours',
-								'The instant invite code is ' + res.code + '.',
-								'And the instant invite link is http://discord.gg/' + res.code,
-							]);
-						});
-					}
+		_.each(channels, function (channel) {
+			if (channel.name === inviteChannel) {
+				var expiresIn = (60 * 60) * 6; // 6hours
+				channel.createInvite({
+					max_age: 60 * 60 * 24,
+				}).then(function(res) {
+					var message = 'The following code/link lasts for 6hours\r\n';
+					message += 'The instant invite code is ' + res.code + '.\r\n';
+					message += 'And the instant invite link is http://discord.gg/' + res.code;
+
+					e.message.channel.sendMessage(message);
 				});
 			}
 		});
-
 	}
 };

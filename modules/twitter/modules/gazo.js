@@ -1,6 +1,6 @@
 import S from 'string';
 
-export function gazo(T, bot, channelID, message) {
+export function gazo(T, e, message) {
 	if (message === 'gazo') {
 		T.get('statuses/user_timeline', {
 			screen_name: 'idol_gazo',
@@ -10,10 +10,9 @@ export function gazo(T, bot, channelID, message) {
 			var person = tweet.text.split(' #')[0];
 			var image = tweet.entities.media[0].media_url_https;
 
-			bot.sendMessages(channelID, [
-				person,
-				image,
-			]);
+			var message = person + '\r\n' + image;
+
+			e.message.channel.sendMessage(message);
 		});
 	}
 };

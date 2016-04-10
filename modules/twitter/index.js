@@ -12,8 +12,8 @@ import { mirin } from './modules/mirin';
 import { gazo } from './modules/gazo';
 import { headline } from './modules/headline';
 
-export default function twitter(bot, channelID, message) {
-	mirin(T, bot, channelID, message);
-	headline(T, bot, channelID, message);
-	gazo(T, bot, channelID, message);
+export default function twitter(e, message) {
+	mirin(T, e, message);
+	headline(T, e, message);
+	gazo(T, e, message);
 };
