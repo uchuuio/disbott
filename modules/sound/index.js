@@ -7,8 +7,6 @@ export default function sound(client, e, message) {
 	if (!client.VoiceConnections.length) {
 		if (message === 'vjoin') {
 			joinVoiceChannel(e, message);
-		} else {
-			return e.message.reply('Not connected to any channel');
 		}
 	} else {
 		if (message === 'vjoin') {
