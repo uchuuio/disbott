@@ -10,4 +10,4 @@ import createVoiceInvite from './modules/create-voice-invite';
 export default function management(e, message) {
 	createTextInvite(e, message);
 	createVoiceInvite(e, message);
-};
+}

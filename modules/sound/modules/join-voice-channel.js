@@ -1,8 +1,8 @@
-export default function joinVoiceChannel(e, message) {
-	var author = e.message.member;
-	var authorVoiceChannel = author.getVoiceChannel();
+export default function joinVoiceChannel(e) {
+	const author = e.message.member;
+	const authorVoiceChannel = author.getVoiceChannel();
 
-	authorVoiceChannel.join().then(function (res) {
+	authorVoiceChannel.join().then(() => {
 		e.message.channel.sendMessage('Ready to play!');
 	});
-};
+}

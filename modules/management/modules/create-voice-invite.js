@@ -1,27 +1,28 @@
 import _ from 'underscore';
 import S from 'string';
+const s = S;
 
 export default function createVoiceInvite(e, message) {
-	if (S(message).contains('createvoiceinvite=')) {
-		var splitMessage = message.split('=');
-		var inviteChannel = splitMessage[1];
+	if (s(message).contains('createvoiceinvite=')) {
+		const splitMessage = message.split('=');
+		const inviteChannel = splitMessage[1];
 
-		var server = e.message.channel.guild;
-		var channels = server.voiceChannels;
+		const server = e.message.channel.guild;
+		const channels = server.voiceChannels;
 
-		_.each(channels, function (channel) {
+		_.each(channels, (channel) => {
 			if (channel.name === inviteChannel) {
-				var expiresIn = (60 * 60) * 6; // 6hours
+				const expiresIn = (60 * 60) * 6; // 6hours
 				channel.createInvite({
-					max_age: 60 * 60 * 24,
-				}).then(function(res) {
-					var message = 'The following code/link lasts for 6hours\r\n';
-					message += 'The instant invite code is ' + res.code + '.\r\n';
-					message += 'And the instant invite link is http://discord.gg/' + res.code;
+					max_age: expiresIn,
+				}).then((res) => {
+					let inviteMessage = 'The following code/link lasts for 6hours\r\n';
+					inviteMessage += `The instant invite code is ${res.code}"\r\n"`;
+					inviteMessage += `And the instant invite link is http://discord.gg/${res.code}`;
 
-					e.message.channel.sendMessage(message);
+					e.message.channel.sendMessage(inviteMessage);
 				});
 			}
 		});
 	}
-};
+}

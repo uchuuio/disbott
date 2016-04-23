@@ -1,34 +1,34 @@
 import { Config } from './../../../config';
 
 import _ from 'underscore';
-var EventEmitter = require('events');
+const EventEmitter = require('events');
 import S from 'string';
+const s = S;
 
-var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
+const lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
 import { leagueDb } from './util/league-db';
 
-import gameMode from './util/gametype-constant';
 import getSummonerIdFunction from './util/get-summoner-id';
 
 export default function lolGetSetSummoner(e, message) {
-	if (S(message).contains('lolsummoner')) {
+	if (s(message).contains('lolsummoner')) {
 		e.message.channel.sendTyping();
 
-		var splitMessage = message.split('=');
-		var summonerName = splitMessage[1];
-		var userID = e.message.author.id;
+		const splitMessage = message.split('=');
+		const summonerName = splitMessage[1];
+		const userID = e.message.author.id;
 
-		var player = _.isString(summonerName) ? summonerName : e.message.author.mention;
+		const player = _.isString(summonerName) ? summonerName : e.message.author.mention;
 
-		var getSummonerId = new EventEmitter();
+		const getSummonerId = new EventEmitter();
 		getSummonerIdFunction(S, lolapi, leagueDb, userID, getSummonerId, summonerName);
 
-		getSummonerId.on('fail', function (message) {
-			e.message.channel.sendMessage(message);
+		getSummonerId.on('fail', (errMessage) => {
+			e.message.channel.sendMessage(errMessage);
 		});
 
-		getSummonerId.on('completed', function (summonerID) {
-			lolapi.Summoner.get(summonerID, function (error, summoner) {
+		getSummonerId.on('completed', (summonerID) => {
+			lolapi.Summoner.get(summonerID, (error, summoner) => {
 				if (error) {
 					e.message.channel.sendMessage('ERROR: Could not get summoner');
 				} else {
@@ -37,4 +37,4 @@ export default function lolGetSetSummoner(e, message) {
 			});
 		});
 	}
-};
+}

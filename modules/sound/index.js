@@ -1,4 +1,3 @@
-import disconnect from './modules/disconnect';
 import joinVoiceChannel from './modules/join-voice-channel';
 import listSounds from './modules/list-sounds';
 import playSound from './modules/play-sound';
@@ -7,21 +6,23 @@ export default function sound(client, e, message) {
 	if (!client.VoiceConnections.length) {
 		if (message === 'vjoin') {
 			joinVoiceChannel(e, message);
+			return;
 		}
 	} else {
 		if (message === 'vjoin') {
-			return e.message.reply('disbott is already connected');
+			e.message.reply('disbott is already connected');
 		}
 
-		var stopPlaying = false;
+		let stopPlaying = false;
 
-		if (message === 'vstop') {
+		if (message === 'vstop' || message === 'vleave') {
 			stopPlaying = true;
 		}
 
-		disconnect(client, e, message);
 		playSound(client, e, message, stopPlaying);
+
+		return;
 	}
 
 	listSounds(e, message);
-};
+}
