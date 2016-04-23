@@ -19,7 +19,6 @@
     "eslint-plugin-jsx-a11y": "^1.0.2",
     "eslint-plugin-react": "^5.0.1",
     "express": "^4.13.3",
-    "lame": "^1.2.3",
     "lolapi": "git://github.com/emmorts/lolapi.git#77a4c8c4899c7823ab73e43d4fb72641db02672c",
     "moment": "^2.10.6",
     "nedb": "^1.5.1",
