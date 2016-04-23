@@ -3,6 +3,8 @@ import listSounds from './modules/list-sounds';
 import playSound from './modules/play-sound';
 
 export default function sound(client, e, message) {
+	listSounds(e, message);
+
 	if (!client.VoiceConnections.length) {
 		if (message === 'vjoin') {
 			joinVoiceChannel(e, message);
@@ -23,6 +25,4 @@ export default function sound(client, e, message) {
 
 		return;
 	}
-
-	listSounds(e, message);
 }
