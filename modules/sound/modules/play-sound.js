@@ -27,7 +27,7 @@ export default function playSound(client, e, message) {
 			frameDuration: 60,
 			format: 'opus',
 			inputArgs: [],
-			outputArgs: [],
+			outputArgs: ['-af', 'volume=0.04'],
 			debug: true,
 		});
 		if (!encoder) return console.log('Voice connection is no longer valid'); // eslint-disable-line
