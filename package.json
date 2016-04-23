@@ -1,6 +1,6 @@
 {
   "name": "disbott",
-  "version": "0.20.0",
+  "version": "1.0.0",
   "description": "A bot for Discord",
   "scripts": {
     "start:bot": "babel-node --presets es2015 ./bot.js",
