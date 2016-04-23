@@ -2,7 +2,7 @@ var Sound = React.createClass({
 	render: function () {
 		var song = this.props.file.split('.').shift();
 		return (
-			<li>{ song } // <span className="code">!playsound={ song }</span></li>
+			<li>{ song } // <span className="code">@disbott vplay={ song }</span></li>
 		);
 	},
 });
