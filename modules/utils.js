@@ -42,3 +42,15 @@ export function userHasJoinedVoiceChannel(e) {
 		result.delete();
 	});
 }
+
+export function deleteMessages(e, message) {
+	if (message === 'deleteall') {
+		const channel = e.message.channel;
+		channel.sendMessage('Attempting to delete messages');
+		channel.fetchMessages(100).then(() => {
+			channel.messages.forEach((messageData) => {
+				messageData.delete();
+			});
+		});
+	}
+}
