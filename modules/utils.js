@@ -37,10 +37,12 @@ export function ping(e, message) {
 
 // User has joined
 export function userHasJoinedVoiceChannel(e) {
-	const channel = e.channel.guild.generalChannel;
-	channel.sendMessage(`${e.user.username} joined ${e.channel.name}`, true).then((result) => {
-		result.delete();
-	});
+	if (e.channel.position === 0) {
+		const channel = e.channel.guild.generalChannel;
+		channel.sendMessage(`${e.user.username} joined ${e.channel.name}`, true).then((result) => {
+			result.delete();
+		});
+	}
 }
 
 export function deleteMessages(e, message) {
