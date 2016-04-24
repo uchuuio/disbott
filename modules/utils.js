@@ -34,3 +34,11 @@ export function ping(e, message) {
 		e.message.channel.sendMessage(`${e.message.author.mention}, pong`);
 	}
 }
+
+// User has joined
+export function userHasJoinedVoiceChannel(e) {
+	const channel = e.channel.guild.generalChannel;
+	channel.sendMessage(`${e.user.username} joined ${e.channel.name}`, true).then((result) => {
+		result.delete();
+	});
+}

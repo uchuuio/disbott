@@ -4,7 +4,7 @@ import Discordie from 'discordie';
 const client = new Discordie();
 
 // Modules
-import { about, help, info, ping } from './modules/utils';
+import * as util from './modules/utils';
 
 import league from './modules/lol/index';
 
@@ -46,10 +46,10 @@ client.Dispatcher.on('MESSAGE_CREATE', e => {
 		const message = e.message.content.replace(`<@${client.User.id}> `, '');
 
 		try {
-			ping(e, message);
-			help(e, message);
-			about(e, message);
-			info(e, message);
+			util.ping(e, message);
+			util.help(e, message);
+			util.about(e, message);
+			util.info(e, message);
 
 			// kill(client, channelID, message);
 
@@ -74,4 +74,8 @@ client.Dispatcher.on('MESSAGE_CREATE', e => {
 	// soundFileupload is a little different to other commands so it has to be put here
 	// Currently it'll accept any mp3 messaged to it
 	soundFileupload(e);
+});
+
+client.Dispatcher.on('VOICE_CHANNEL_JOIN', e => {
+	util.userHasJoinedVoiceChannel(e);
 });
