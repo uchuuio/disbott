@@ -1,10 +1,7 @@
 import { Config } from './config';
 
-import _ from 'underscore';
-import S from 'string';
-
 import Discordie from 'discordie';
-var client = new Discordie();
+const client = new Discordie();
 
 // Modules
 import { about, help, info, ping } from './modules/utils';
@@ -30,8 +27,8 @@ client.connect({
 	token: Config.discord.token,
 });
 
-client.Dispatcher.on('GATEWAY_READY', e => {
-	console.log('Connected as: ' + client.User.id + ' - ' + client.User.username);
+client.Dispatcher.on('GATEWAY_READY', () => {
+	console.log('Connected as: ' + client.User.id + ' - ' + client.User.username); // eslint-disable-line
 
 	client.User.setGame({
 		name: '@disbott help for cmd!',
@@ -43,10 +40,10 @@ client.Dispatcher.on('GATEWAY_READY', e => {
 });
 
 client.Dispatcher.on('MESSAGE_CREATE', e => {
-	var wasMentioned = client.User.isMentioned(e.message);
+	const wasMentioned = client.User.isMentioned(e.message);
 
 	if (wasMentioned && e.message.author.id !== client.User.id) {
-		var message = S(e.message.content).chompLeft('<@' + client.User.id + '> ').s;
+		const message = e.message.content.replace(`<@${client.User.id}> `, '');
 
 		try {
 			ping(e, message);
@@ -70,7 +67,7 @@ client.Dispatcher.on('MESSAGE_CREATE', e => {
 
 			twitter(e, message);
 		} catch (error) {
-			console.log(error);
+			console.log(error); // eslint-disable-line
 		}
 	}
 
