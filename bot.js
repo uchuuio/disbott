@@ -23,59 +23,68 @@ import twitter from './modules/twitter/index';
 
 import { chunder } from './modules/silly';
 
-client.connect({
-	token: Config.discord.token,
-});
-
-client.Dispatcher.on('GATEWAY_READY', () => {
-	console.log('Connected as: ' + client.User.id + ' - ' + client.User.username); // eslint-disable-line
-
-	client.User.setGame({
-		name: '@disbott help for cmd!',
+export function bot() {
+	client.connect({
+		token: Config.discord.token,
 	});
 
-	// Start the logging functions
-	remindme(client);
-	// lastseen(client);
-});
+	client.Dispatcher.on('GATEWAY_READY', () => {
+		console.log('Connected as: ' + client.User.id + ' - ' + client.User.username); // eslint-disable-line
 
-client.Dispatcher.on('MESSAGE_CREATE', e => {
-	const wasMentioned = client.User.isMentioned(e.message);
+		client.User.setGame({
+			name: '@disbott help for cmd!',
+		});
 
-	if (wasMentioned && e.message.author.id !== client.User.id) {
-		const message = e.message.content.replace(`<@${client.User.id}> `, '');
+		// Start the logging functions
+		remindme(client);
+		// lastseen(client);
+	});
 
-		try {
-			util.ping(e, message);
-			util.help(e, message);
-			util.about(e, message);
-			util.info(e, message);
+	client.Dispatcher.on('MESSAGE_CREATE', e => {
+		const wasMentioned = client.User.isMentioned(e.message);
 
-			// kill(client, channelID, message);
+		if (wasMentioned && e.message.author.id !== client.User.id) {
+			const message = e.message.content.replace(`<@${client.User.id}> `, '');
 
-			chunder(e, message);
+			try {
+				util.ping(e, message);
+				util.help(e, message);
+				util.about(e, message);
+				util.info(e, message);
+				util.deleteMessages(e, message);
 
-			league(e, message);
+				// kill(client, channelID, message);
 
-			sound(client, e, message);
+				chunder(e, message);
 
-			management(e, message);
+				league(e, message);
 
-			remindmeCommand(e, message);
+				sound(client, e, message);
 
-			// lastseenCommand(client, user, userID, channelID, message);
+				management(e, message);
 
-			twitter(e, message);
-		} catch (error) {
-			console.log(error); // eslint-disable-line
+				remindmeCommand(e, message);
+
+				// lastseenCommand(client, user, userID, channelID, message);
+
+				twitter(e, message);
+			} catch (error) {
+				console.log(error); // eslint-disable-line
+			}
 		}
-	}
 
-	// soundFileupload is a little different to other commands so it has to be put here
-	// Currently it'll accept any mp3 messaged to it
-	soundFileupload(e);
-});
+		// soundFileupload is a little different to other commands so it has to be put here
+		// Currently it'll accept any mp3 messaged to it
+		soundFileupload(e);
+	});
 
-client.Dispatcher.on('VOICE_CHANNEL_JOIN', e => {
-	util.userHasJoinedVoiceChannel(e);
-});
+	client.Dispatcher.on('VOICE_CHANNEL_JOIN', e => {
+		util.userHasJoinedVoiceChannel(e);
+	});
+}
+
+export function botDisconnect() {
+	client.disconnect();
+}
+
+bot();

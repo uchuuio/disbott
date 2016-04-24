@@ -4,7 +4,8 @@
   "description": "A bot for Discord",
   "scripts": {
     "start:bot": "babel-node --presets es2015 ./bot.js",
-    "start": "babel-node --presets es2015 ./server.js"
+    "start": "babel-node --presets es2015 ./server.js",
+    "test": "ava --serial --tap | tap-summary"
   },
   "author": "tomo@pagu",
   "dependencies": {
@@ -26,5 +27,12 @@
     "twit": "^2.1.1",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "async": "^1.5.2",
+    "ava": "^0.14.0",
+    "tap-summary": "^1.2.0"
+  },
+  "ava": {
+    "require": "babel-register"
+  }
 }
