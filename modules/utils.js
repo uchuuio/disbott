@@ -21,13 +21,6 @@ export function info(e, message) {
 	}
 }
 
-// Kill Command
-export function kill(e, message) {
-	if (message === 'killdisbott') {
-		e.message.channel.sendMessage('Killing self, brb');
-	}
-}
-
 // Ping Command
 export function ping(e, message) {
 	if (message === 'ping') {
