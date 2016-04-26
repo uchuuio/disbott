@@ -17,7 +17,7 @@ export default function createVoiceInvite(e, message) {
 					max_age: expiresIn,
 				}).then((res) => {
 					let inviteMessage = 'The following code/link lasts for 6hours\r\n';
-					inviteMessage += `The instant invite code is ${res.code}"\r\n"`;
+					inviteMessage += `The instant invite code is ${res.code}\r\n`;
 					inviteMessage += `And the instant invite link is http://discord.gg/${res.code}`;
 
 					e.message.channel.sendMessage(inviteMessage);
