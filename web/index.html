@@ -3,8 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Disbott</title>
-	<link href="//cdn.bootcss.com/tachyons/3.0.2/tachyons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.0-beta.24/css/tachyons.min.css">
 	<style>
+		a {
+			color: #D53838;
+		}
+			a:hover {
+				color: #AD2424;
+			}
 		.code {
 			background-color: #111;
 			color: #FFF;
@@ -16,80 +22,28 @@
 </head>
 <!-- Test -->
 <body class="sans-serif">
-	<div class="container mw7 phm center">
-		<header>
-			<h1 class="tc ttu tracked-tight mega mbn">Disbott</h1>
-			<h1 class="tc f3">A bot for Discord</h1>
-			<h1 class="tc f5">Version 1.0.0</h1>
-			<h1 class="tc f5"><a href="https://discordapp.com/oauth2/authorize?&client_id=160829674748903434&scope=bot&permissions=4294967295" title="Add disbott to your server">Have disbott join your server</a></h1>
-			<hr class="w-10" />
-		</header>
-		<div id="addBot">
-			<h2>Add to server</h2>
-			<p>You can add disbott to your server by <a href="https://discordapp.com/oauth2/authorize?&client_id=160829674748903434&scope=bot&permissions=4294967295" title="Add disbott to your server">clicking here</a> and selecting the server you'd like to add disbott to. We also request the following permissions so disbott can do all it's commands:</p>
-			<ul class="list ph3 ph5-ns pv4">
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Manage Server</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Manage Roles</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Manage Channels</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Kick Members</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Ban Members</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Create Instant Invite</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Read Messages</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Send Messages</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Send TTS Messages</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Manage Messages</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Embed Links</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Attach Files</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Read Message History</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Mention Everyone</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Connect</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Speak</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Mute Members</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Deafen Members</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Move Members</span>
-				</li>
-				<li class="dib mr2">
-					<span class="f6 f5-ns b db pa2 mid-gray">Use Voice Activity</span>
-				</li>
-			</ul>
+	<nav class="dt w-100 border-box pa3 ph5-ns bg-white-80 bb b--light-gray fixed" style="display: none;">
+		<a class="dtc black v-mid link w-25" href="/" title="Disbott">
+			DISBOTT
+		</a>
+		<div class="dtc v-mid w-75 tr">
+			<a class="link f6 f5-ns dib mr3 mr4-ns" href="https://discordapp.com/oauth2/authorize?&client_id=160829674748903434&scope=bot&permissions=4294967295" title="Add disbott to your server" title="Add to Discord">Add to Discord</a>
+			<a class="link f6 f5-ns dib mr3 mr4-ns" href="#commands" title="Commands">Commands</a>
+			<a class="link f6 f5-ns dib" href="https://github.com/tomopagu/disbott" title="Github">Github</a>
 		</div>
+	</nav>
+
+	<div class="container mw7 phm center">
+		<nav class="pa3 pa4-ns">
+			<a class="link black b f1 f-headline-ns tc db mb3 mb4-ns" href="/" title="Disbott">DISBOTT</a>
+			<p class="tc f3">A bot for Discord</p>
+			<p class="tc f5">Version 1.0.0</p>
+			<div class="tc pb3">
+				<a class="link f6 f5-ns dib mr3" href="https://discordapp.com/oauth2/authorize?&client_id=160829674748903434&scope=bot&permissions=4294967295" title="Add disbott to your server" title="Add to Discord">Add to Discord</a>
+				<a class="link f6 f5-ns dib mr3" href="#commands" title="Commands">Commands</a>
+				<a class="link f6 f5-ns dib" href="https://github.com/tomopagu/disbott" title="Github">Github</a>
+			</div>
+		</nav>
 		<div id="commands">
 			<h2>Commands</h2>
 			<p>All commands must start with @disbott (or if you have named it something else that!) to not conflict with anyother bots and conform to the <a href="https://github.com/meew0/discord-bot-best-practices" title="Discord Bot Best Practices">Discord Bot Best Practices</a>.</p>
@@ -195,17 +149,27 @@
 			<div class="command">
 				<h4 class="code">gazo</h4>
 				<p><b>WARNING MAYBE NSFW</b></p>
-				<p>The bot gets a random tweet from <a href="https://twitter.com/idol_gazo" title="WARNING MAYBE NSFW">@idol_gazo</a>'s twitter feed and tells name/group & image.</p>
+				<p>The bot gets a random tweet from <a href="https://twitter.com/idol_gazo" title="WARNING MAYBE NSFW">@idol_gazo</a>'s twitter feed and tells name/group &amp; image.</p>
 			</div>
 		</div>
-		<div id="install">
-			<h2>Install</h2>
-			<p>Check out the repo on <a href="https://github.com/tomopagu/disbott" title="Repo on Github">Github!</a></p>
-		</div>
-		<footer class="tc">
-			<hr class="w-10" />
-			<p>Built by <a href="https://tomo.pagu.co" title="tomo@pagu">tomo@pagu</a></p>
+
+		<footer class="pv4 ph3 ph5-m ph6-l mid-gray">
+			<small class="f6 db tc">Built by <a href="https://tomo.pagu.co">tomo@pagu</a> &amp; <a href="https://github.com/tomopagu/disbott/graphs/contributors">other wonderful contributors</a></small>
 		</footer>
+
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			$(window).scroll(() => {
+				const scrollValue = $(window).scrollTop();
+				const commandTop = ($('#commands').position().top - $('nav.fixed').height() - 50);
+				if (scrollValue > commandTop) {
+					$('nav.fixed').slideDown();
+				} else {
+					$('nav.fixed').slideUp();
+				}
+			});
+		</script>
+
 	</div>
 </body>
 </html>
