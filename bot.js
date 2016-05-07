@@ -13,6 +13,8 @@ import soundFileupload from './modules/sound/modules/fileupload';
 
 import management from './modules/management/index';
 
+import poll from './modules/poll/index';
+
 import remindme from './modules/remindme/index';
 import remindmeCommand from './modules/remindme/command';
 
@@ -62,6 +64,8 @@ export function bot() {
 				sound(client, e, message);
 
 				management(e, message);
+
+				poll(e, message);
 
 				remindmeCommand(e, message);
 
