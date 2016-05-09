@@ -15,6 +15,8 @@ import management from './modules/management/index';
 
 import poll from './modules/poll/index';
 
+import { messagecountCommand, messageCountLog } from './modules/messagecount';
+
 import remindme from './modules/remindme/index';
 import remindmeCommand from './modules/remindme/command';
 
@@ -43,6 +45,8 @@ export function bot() {
 	});
 
 	client.Dispatcher.on('MESSAGE_CREATE', e => {
+		messageCountLog(e);
+
 		const wasMentioned = client.User.isMentioned(e.message);
 
 		if (wasMentioned && e.message.author.id !== client.User.id) {
@@ -68,6 +72,8 @@ export function bot() {
 				poll(e, message);
 
 				remindmeCommand(e, message);
+
+				messagecountCommand(e, message);
 
 				// lastseenCommand(client, user, userID, channelID, message);
 
