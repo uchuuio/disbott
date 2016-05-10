@@ -14,9 +14,15 @@ margin:0;
 .centerText {
   text-align:center;
 }
+.width100 {
+  width:100%;
+}
 h1 {
   font-weight:bold;
   font-size:50px;
+}
+.clearFix {
+  clear:both;
 }
 /*Header*/
 .headerDiv {
@@ -36,14 +42,14 @@ h1 {
   text-decoration: underline;
 }
 /*nav bar*/
-.navDiv {
+/*.navDiv {
   width:130px;
   background-color: #1c2021;
   height:100.0vh;
   float:left;
   color:#ffffff;
   padding:0 5px;
-}
+}*/
 .navTitle {
   font-size:24px;
   font-weight:bold;
@@ -51,11 +57,16 @@ h1 {
 }
 /*content bar*/
 .mainDiv {
-  float:right !important;
+  /*float:right !important;*/
   width:90%;
+  margin:0 auto;
 }
-/*footer*/
-.footerDiv {
-  float:left !important;
-  width:90%;
+.settingsContent {
+  width:70%;
+  background-color: #1c2021;
+  text-align: center;
+  padding:20px;
+  margin:20px auto;
+  color:#ffffff;
+  box-shadow: 10px 10px 5px #888888;
 }
