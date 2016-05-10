@@ -1,7 +1,12 @@
+@media screen and (max-width: 568px) {
+  .settingsContent {width:100% !important;}
+}
+
 * {
 font-family: 'Open sans', Verdana, Arial;
 box-sizing: border-box;;
 margin:0;
+font-size:16px;
 }
 /*Globals*/
 .vPadding {
@@ -21,8 +26,35 @@ h1 {
   font-weight:bold;
   font-size:50px;
 }
+h2 {
+  font-weight:bold;
+  font-size:28px;
+  margin: 10px 0;
+}
+h3 {
+  font-weight:bold;
+  font-size:26px;
+  text-decoration: underline;
+  padding-bottom:20px;
+}
+h4 {
+  font-weight:bold;
+  font-size:22px;
+  padding:10px 0;
+  background-color: #3b4345;
+}
+p {
+  padding:10px 0;
+}
 .clearFix {
   clear:both;
+}
+.styleLink {
+  text-decoration: none;
+  color: #3399ff;
+}
+.styleLink:hover {
+  text-decoration:underline;
 }
 /*Header*/
 .headerDiv {
