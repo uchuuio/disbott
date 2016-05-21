@@ -1,5 +1,6 @@
 @media screen and (max-width: 568px) {
   .settingsContent {width:100% !important;}
+  .navdims { background-color: rgba(54,58,61,0.9) !important;}
 }
 
 * {
@@ -106,23 +107,22 @@ p {
 }
 /*Nav*/
 .navContainer {
-  position: absolute;
+  position: fixed;
   width:200px;
-  height:800px;
+  height:100%;
   left:-160px;
   transition: transform 2s;
 }
 .navdims {
   width:100%;
-  height:100%;
+  height:100vh;
   background-color: rgba(54,58,61,0.5);
   z-index: 1;
   position: absolute;
-  opacity: 0.3;
   transition: transform 2s;
 }
 .navContainer:hover {
-  transform: translateX(170px);
+  transform: translateX(160px);
 }
 .navButtonSection {
   display:block;
@@ -136,4 +136,25 @@ p {
   background-color: black;
   border-radius: 2px;
   margin-bottom: 2px;
+}
+#navHeader {
+  margin:0;
+  font-weight: bold;
+  font-size: 26px;
+  padding-bottom: 20px;
+}
+.navSideLinks {
+  position: absolute;
+  z-index: 2;
+  left: 10px;
+  }
+.navTitleLink {
+  font-size: 20px;
+  text-decoration: none;
+  padding-bottom: 10px;
+  color: black;
+  font-weight: bold;
+}
+.navTitleLink:hover {
+  text-decoration: underline;
 }
