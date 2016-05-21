@@ -108,7 +108,7 @@ p {
 }
 /*Nav*/
 .navContainer {
-  position: fixed;
+  position: absolute;
   width:200px;
   height:100%;
   left:-160px;
@@ -144,6 +144,7 @@ p {
   font-weight: bold;
   font-size: 26px;
   padding-bottom: 20px;
+  color:#0d0d0d;
 }
 .navSideLinks {
   position: absolute;
@@ -156,6 +157,7 @@ p {
   padding-bottom: 10px;
   color: black;
   font-weight: bold;
+  color:#0d0d0d;
 }
 .navTitleLink:hover {
   text-decoration: underline;
