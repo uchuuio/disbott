@@ -27,11 +27,11 @@
 		<div class="navContainer">
 			<div class="navSideLinks">
 				<h2 id="navHeader">Commands</h2>
-				<p><a class="navTitleLink" href="">General</a></p>
-				<p><a class="navTitleLink" href="">Management</a></p>
-				<p><a class="navTitleLink" href="">Poll</a></p>
-				<p><a class="navTitleLink" href="">League of<br />Legends</a></p>
-				<p><a class="navTitleLink" href="">Sound</a></p>
+				<p><a class="navTitleLink" href="#General">General</a></p>
+				<p><a class="navTitleLink" href="#Management">Management</a></p>
+				<p><a class="navTitleLink" href="#Poll">Poll</a></p>
+				<p><a class="navTitleLink" href="#LeagueOfLegends">League of<br />Legends</a></p>
+				<p><a class="navTitleLink" href="#Sound">Sound</a></p>
 				<p><a class="navTitleLink" href="#twitter">twitter</a></p>
 			</div>
 			<div class="navdims"></div>
@@ -47,7 +47,7 @@
 				<p>All commands must start with <b>@disbott</b> (or if you have named it something else that!) to not conflict with anyother bots and conform to the <br /> <a class="styleLink" href="https://github.com/meew0/discord-bot-best-practices" title="Discord Bot Best Practices">Discord Bot Best Practices</a>.</p>
 				<p>An example command would be <b>@disbott ping</b>.
 			</div>
-			<div class="settingsContent clearFix">
+			<div id="General" class="settingsContent clearFix">
 				<h3>General Commands</h3>
 				<h4>help</h4>
 				<p>Brings up this command list!</p>
@@ -62,21 +62,21 @@
 				<h4 >remindme=(time).(unitoftime);(message)</h4>
 				<p>The bot will remind you in a DM about the message given at the time given. You can chain multiple `(time).(unitoftime)` in one go e.g. <span class="code">@disbott remindme=2.hours.30.mins.15.s;Reminder Message</span> will DM you in 2hours 30mins &amp; 15secs about "Reminder Message".</p>
 			</div>
-			<div class="clearFix settingsContent">
+			<div id="Management" class="clearFix settingsContent">
 				<h3>Management Commands</h3>
 				<h4>createtextinvite=(channel)</h4>
 				<p>The bot will create a 6hour instant invite code &amp; link for the given text channel of the server it is currently on.</p>
 				<h4 >createvoiceinvite=(channel)</h4>
 				<p>The bot will create a 6hour instant invite code &amp; link for the given voice channel of the server it is currently on.</p>
 			</div>
-			<div class="settingsContent clearFix ">
+			<div id="Poll" class="settingsContent clearFix ">
 				<h3>Poll Commands</h3>
 				<h4>startpoll=(topic)</h4>
 				<p>The bot will start a 60second poll on the specified topic. After the 60seconds it will count the total number of votes made with the below commands and let the channel know.</p>
 				<h4 >votepoll=[y,n]</h4>
 				<p>The bot will register a vote for the currently running poll with either a yes (y) or no (n).</p>
 			</div>
-			<div class="settingsContent clearFix">
+			<div id="LeagueOfLegends" class="settingsContent clearFix">
 				<h3>League of Legends Commands</h3>
 				<h4 >lolsetsummoner=(summonername)</h4>
 				<p>Will link your league username (summonername) with your discord user for ease of use. <b>Only EUW at the moment!</b></p>
@@ -87,7 +87,7 @@
 				<h4 >lolcurrentgame[=summonername, =@discorduser]</h4>
 				<p>This command will post the specified users current game with information on who they are playing, what game mode and for approximately how long. If you have linked your league account to disbott then you can omit the = part and it will give you your current game. <b>Only EUW at the moment!</b></p>
 			</div>
-			<div class="settingsContent clearFix">
+			<div id="Sound" class="settingsContent clearFix">
 				<h3>Sound Commands</h3>
 				<h4 >vjoin</h4>
 				<p>Run this command to make disbott join your current voice channel. This must be run first before any of the other sound commands.</p>
