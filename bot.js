@@ -1,7 +1,7 @@
 import { Config } from './config';
 
 import Discordie from 'discordie';
-const client = new Discordie();
+const client = new Discordie({ autoReconnect: true });
 
 // Modules
 import * as util from './modules/utils';
@@ -90,6 +90,10 @@ export function bot() {
 
 	client.Dispatcher.on('VOICE_CHANNEL_JOIN', e => {
 		util.userHasJoinedVoiceChannel(e);
+	});
+
+	client.Dispatcher.on('DISCONNECTED', e => {
+		console.log(e); // eslint-disable-line
 	});
 }
 
