@@ -30,7 +30,7 @@ Each command the bot uses is it's own file in `/modules` if you're adding new mo
 
 ### Contributing
 
-I know my code isn't good looking by any standards so please let me know if there are better ways for me to do things.
+I'll gladly accept any help or pointers you want to give, if you're going to do a pull request it'll be nice if you can follow the eslint for the javascript. It's pretty much just airbnb's javascript guide with tabs instead of spaces.
 
 #### Why the disbott rather than disbot
 
