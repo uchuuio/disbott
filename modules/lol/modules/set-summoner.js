@@ -1,49 +1,49 @@
 import { Config } from './../../../config';
 
 import S from 'string';
-var lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
+const s = S;
+const lolapi = require('lolapi')(Config.league.apikey, Config.league.location);
 import { leagueDb } from './util/league-db';
 
-export default function lolSetSummoner(bot, user, userID, channelID, message) {
-	if (S(message).contains('lolsetsummoner')) {
-		bot.simulateTyping(channelID, function () {
-			var splitMessage = message.split('=');
-			var summonerName = splitMessage[1];
+export default function lolSetSummoner(e, message) {
+	if (s(message).contains('lolsetsummoner')) {
+		e.message.channel.sendTyping();
 
-			lolapi.Summoner.getByName(summonerName, function (error, summoner) {
-				if (error) throw error;
+		const splitMessage = message.split('=');
+		const summonerName = splitMessage[1];
+		const userID = e.message.author.id;
 
-				var summonerId = summoner[summonerName].id;
-				var data = {
+		lolapi.Summoner.getByName(summonerName, (error, apisummoner) => {
+			try {
+				const summonerId = apisummoner[summonerName].id;
+				const data = {
 					discordUserId: userID,
 					leagueSummonerId: summonerId,
 				};
 
-				if (leagueDb.find({
+				leagueDb.find({
 					discordUserId: userID,
-				}, function (err, summoner) {
-					if (S(summoner).isEmpty()) {
-						leagueDb.insert(data, function (err, newData) {
-							bot.sendMessage({
-								to: channelID,
-								message: user + ' set ' + summonerName + ' as their league account for disbot.',
-							});
+				}, (err, summoner) => {
+					if (s(summoner).isEmpty()) {
+						leagueDb.insert(data, (errorInsert) => {
+							if (errorInsert) { throw errorInsert; }
+							e.message.channel.sendMessage(`${e.message.author.mention} set ${summonerName} as their league account for disbott.`);
 						});
 					} else {
 						leagueDb.update(
 							{ discordUserId: userID },
 							{ $set: { leagueSummonerId: summonerId } },
 							{},
-							function (err, numReplaced) {
-								bot.sendMessage({
-									to: channelID,
-									message: user + ' set ' + summonerName + ' as their league account for disbot.',
-								});
+							(errorUpdate) => {
+								if (errorUpdate) { throw errorUpdate; }
+								e.message.channel.sendMessage(`${e.message.author.mention} set ${summonerName} as their updated league account for disbott.`);
 							}
 						);
 					}
-				}));
-			});
+				});
+			} catch (err) {
+				e.message.channel.sendMessage('There was an error, are you sure you spelt the summonername right?');
+			}
 		});
 	}
-};
+}

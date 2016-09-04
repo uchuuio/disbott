@@ -1,6 +1,6 @@
 import Datastore from 'nedb';
 
-export var leagueDb = new Datastore({
+export const leagueDb = new Datastore({
 	filename: './datastores/league.db',
 	autoload: true,
 });

@@ -1,52 +1,51 @@
+import { Config } from './../config';
+
 // About Command
-export function about(Config, bot, channelID, message) {
+export function about(e, message) {
 	if (message === 'about') {
-		bot.sendMessage({
-			to: channelID,
-			message: 'Hello, I\'m Disbott. A bot for Discord. Find out more about me here ' + Config.domain,
-		});
+		e.message.channel.sendMessage(`Hello, I\'m Disbott. A bot for Discord. Find out more about me here ${Config.domain}`);
 	}
-};
+}
 
 // Help Command
-export function help(Config, bot, channelID, message) {
+export function help(e, message) {
 	if (message === 'help') {
-		bot.sendMessage({
-			to: channelID,
-			message: 'You can find my command list here: ' + Config.domain + '/#commands',
-		});
+		e.message.channel.sendMessage(`You can find my command list here: ${Config.domain}/#commands`);
 	}
-};
+}
 
 // Info Command
-export function info(Config, bot, channelID, message) {
+export function info(e, message) {
 	if (message === 'info') {
-		// version, uptime
-		bot.sendMessage({
-			to: channelID,
-			message: 'Disbott Version ' + process.env.npm_package_version + ', ' + Config.domain,
-		});
+		e.message.channel.sendMessage(`Disbott Version ${process.env.npm_package_version}, ${Config.domain}`);
 	}
-};
-
-// Kill Command
-export function kill(bot, channelID, message) {
-	if (message === 'killdisbott') {
-		bot.sendMessage({
-			to: channelID,
-			message: 'Killing self, brb',
-		}, function () {
-			bot.disconnect();
-		});
-	}
-};
+}
 
 // Ping Command
-export function ping(bot, channelID, message) {
+export function ping(e, message) {
 	if (message === 'ping') {
-		bot.sendMessage({
-			to: channelID,
-			message: 'pong',
+		e.message.channel.sendMessage(`${e.message.author.mention}, pong`);
+	}
+}
+
+// User has joined
+export function userHasJoinedVoiceChannel(e) {
+	if (e.channel.position === 0) {
+		const channel = e.channel.guild.generalChannel;
+		channel.sendMessage(`${e.user.username} joined ${e.channel.name}`, true).then((result) => {
+			result.delete();
 		});
 	}
-};
+}
+
+export function deleteMessages(e, message) {
+	if (message === 'deleteall') {
+		const channel = e.message.channel;
+		channel.sendMessage('Attempting to delete messages');
+		channel.fetchMessages(100).then(() => {
+			channel.messages.forEach((messageData) => {
+				messageData.delete();
+			});
+		});
+	}
+}

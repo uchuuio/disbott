@@ -3,8 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Disbott</title>
-	<link href="//cdn.bootcss.com/tachyons/3.0.2/tachyons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://npmcdn.com/tachyons@4.0.0-beta.24/css/tachyons.min.css">
 	<style>
+		a {
+			color: #D53838;
+		}
+			a:hover {
+				color: #AD2424;
+			}
 		.code {
 			background-color: #111;
 			color: #FFF;
@@ -16,17 +22,33 @@
 </head>
 <!-- Test -->
 <body class="sans-serif">
-	<div class="container mw7 phm center">
-		<header>
-			<h1 class="tc ttu tracked-tight mega mbn">Disbott</h1>
-			<h1 class="tc f3">A bot for Discord</h1>
-			<h1 class="tc f5">Version 0.20.0</h1>
-			<hr class="w-10" />
-		</header>
-		<div id="install">
-			<h2>Install</h2>
-			<p>Check out the repo on <a href="https://github.com/tomopagu/disbott" title="Repo on Github">Github!</a></p>
+	<nav class="dt w-100 border-box pa3 ph5-ns bg-white-80 bb b--light-gray fixed" style="display: none;">
+		<a class="dtc black v-mid link w-25" href="/" title="Disbott">
+			DISBOTT
+		</a>
+		<div class="dtc v-mid w-75 tr">
+			<a class="link f6 f5-ns dib mr3 mr4-ns" href="https://discordapp.com/oauth2/authorize?&client_id=160829674748903434&scope=bot&permissions=4294967295" title="Add disbott to your server" title="Add to Discord">Add to Discord</a>
+			<a class="link f6 f5-ns dib mr3 mr4-ns" href="#commands" title="Commands">Commands</a>
+			<a class="link f6 f5-ns dib" href="https://github.com/tomopagu/disbott" title="Github">Github</a>
 		</div>
+	</nav>
+
+	<div style="background-color: #D53838;">
+		<div class="container mw7 phm center">
+			<nav class="pa3 pa4-ns">
+				<a class="link white b f1 f-headline-ns tc db mb3 mb4-ns" href="/" title="Disbott">DISBOTT</a>
+				<p class="tc white f3">A bot for Discord</p>
+				<p class="tc white f5">Version 1.0.0</p>
+				<div class="tc pb3">
+					<a class="link white f6 f5-ns dib mr3" href="https://discordapp.com/oauth2/authorize?&client_id=160829674748903434&scope=bot&permissions=4294967295" title="Add disbott to your server" title="Add to Discord">Add to Discord</a>
+					<a class="link white f6 f5-ns dib mr3" href="#commands" title="Commands">Commands</a>
+					<a class="link white f6 f5-ns dib" href="https://github.com/tomopagu/disbott" title="Github">Github</a>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+	<div class="container mw7 phm center">
 		<div id="commands">
 			<h2>Commands</h2>
 			<p>All commands must start with @disbott (or if you have named it something else that!) to not conflict with anyother bots and conform to the <a href="https://github.com/meew0/discord-bot-best-practices" title="Discord Bot Best Practices">Discord Bot Best Practices</a>.</p>
@@ -50,6 +72,10 @@
 				<p>The bot will reply to the ping with a pong.</p>
 			</div>
 			<div class="command">
+				<h4 class="code">ping</h4>
+				<p>The bot will reply to the ping with a pong.</p>
+			</div>
+			<div class="command">
 				<h4 class="code">lastseen=@discorduser</h4>
 				<p>The bot will tell you when a user was last online.</p>
 			</div>
@@ -67,9 +93,13 @@
 				<h4 class="code">createvoiceinvite=(channel)</h4>
 				<p>The bot will create a 6hour instant invite code &amp; link for the given voice channel of the server it is currently on.</p>
 			</div>
+			<hr class="w-10" />
+			<h3>Poll Commands</h3>
 			<div class="command">
-				<h4 class="code">join=(code)</h4>
-				<p>The bot will join the server/channel of the given code.</p>
+				<h4 class="code">startpoll=(topic)</h4>
+				<p>The bot will start a 60second poll on the specified topic. After the 60seconds it will count the total number of votes made with the below commands and let the channel know.</p>
+				<h4 class="code">votepoll=[y,n]</h4>
+				<p>The bot will register a vote for the currently running poll with either a yes (y) or no (n).</p>
 			</div>
 			<hr class="w-10" />
 			<h3>League of Legends Commands</h3>
@@ -92,15 +122,15 @@
 			<hr class="w-10" />
 			<h3>Sound Commands</h3>
 			<div class="command">
-				<h4 class="code">sound=(instantinvitecode)</h4>
-				<p>Run this command with an instantinvitecode to make the bot join your voice channel. You only need the code itself not the whole url (ie. not: https://discord.gg/{CODE} but: {CODE}) this must be run first before any of the other sound commands.</p>
+				<h4 class="code">vjoin</h4>
+				<p>Run this command to make disbott join your current voice channel. This must be run first before any of the other sound commands.</p>
 			</div>
 			<div class="command">
-				<h4 class="code">stopsound</h4>
+				<h4 class="code">vstop</h4>
 				<p>This command stops any playing audio that the bot is playing, but keeps the bot in the voice channel.</p>
 			</div>
 			<div class="command">
-				<h4 class="code">sounddisconnect</h4>
+				<h4 class="code">vleave</h4>
 				<p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span class="code">sound</span> before playing audio again.</p>
 			</div>
 			<div class="command">
@@ -108,7 +138,7 @@
 				<p>Will take you to a website to see all the uploaded sounds to disbott. Also showcases commands for the below command.</p>
 			</div>
 			<div class="command">
-				<h4 class="code">playsound=(file)</h4>
+				<h4 class="code">vplay=(file)</h4>
 				<p>Plays whatever file specified to the voice channel, where file is the filename in the <span class="code">/modules/sound/sounds/</span>.</p>
 			</div>
 			<hr class="w-10" />
@@ -119,18 +149,32 @@
 			</div>
 			<div class="command">
 				<h4 class="code">mirin</h4>
-				<p>The bot gets the latest tweet from Furukawa Mirin's' (<a href="https://twitter.com/FurukawaMirin" title="Furukawa Mirin on Twitter">@FurukawaMirin</a>) twitter feed. She is my idol oshimen!</p>
+				<p>The bot gets the latest tweet from Furukawa Mirin's (<a href="https://twitter.com/FurukawaMirin" title="Furukawa Mirin on Twitter">@FurukawaMirin</a>) twitter feed. She is my idol oshimen!</p>
 			</div>
 			<div class="command">
 				<h4 class="code">gazo</h4>
 				<p><b>WARNING MAYBE NSFW</b></p>
-				<p>The bot gets a random tweet from <a href="https://twitter.com/idol_gazo" title="WARNING MAYBE NSFW">@idol_gazo</a>'s twitter feed and tells name/group & image.</p>
+				<p>The bot gets a random tweet from <a href="https://twitter.com/idol_gazo" title="WARNING MAYBE NSFW">@idol_gazo</a>'s twitter feed and tells name/group &amp; image.</p>
 			</div>
 		</div>
-		<footer class="tc">
-			<hr class="w-10" />
-			<p>Built by <a href="https://tomo.pagu.co" title="tomo@pagu">tomo@pagu</a></p>
+
+		<footer class="pv4 ph3 ph5-m ph6-l mid-gray">
+			<small class="f6 db tc">Built by <a href="https://tomo.pagu.co">tomo@pagu</a> &amp; <a href="https://github.com/tomopagu/disbott/graphs/contributors">other wonderful contributors</a></small>
 		</footer>
+
+		<script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			$(window).scroll(() => {
+				const scrollValue = $(window).scrollTop();
+				const commandTop = ($('#commands').position().top - $('nav.fixed').height() - 50);
+				if (scrollValue > commandTop) {
+					$('nav.fixed').slideDown();
+				} else {
+					$('nav.fixed').slideUp();
+				}
+			});
+		</script>
+
 	</div>
 </body>
 </html>

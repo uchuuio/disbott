@@ -34,4 +34,5 @@ export default function gameMode(game) {
 			return 'Poro King';
 		}
 	}
-};
+	return 'error';
+}

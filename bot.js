@@ -1,11 +1,10 @@
 import { Config } from './config';
 
-import _ from 'underscore';
-import S from 'string';
-import DiscordClient from 'discord.io';
+import Discordie from 'discordie';
+const client = new Discordie({ autoReconnect: true });
 
 // Modules
-import { about, help, info, ping } from './modules/utils';
+import * as util from './modules/utils';
 
 import league from './modules/lol/index';
 
@@ -14,91 +13,92 @@ import soundFileupload from './modules/sound/modules/fileupload';
 
 import management from './modules/management/index';
 
+import poll from './modules/poll/index';
+
+import { messagecountCommand, messageCountLog } from './modules/messagecount';
+
 import remindme from './modules/remindme/index';
 import remindmeCommand from './modules/remindme/command';
 
-import lastseen from './modules/lastseen/index';
-import lastseenCommand from './modules/lastseen/command';
+// import lastseen from './modules/lastseen/index';
+// import lastseenCommand from './modules/lastseen/command';
 
 import twitter from './modules/twitter/index';
 
 import { chunder } from './modules/silly';
 
-var bot = new DiscordClient({
-	token: Config.discord.token,
-});
-
-bot.sendMessages = function (ID, messageArr, interval) {
-	var callback = [];
-	var resArr = [];
-	var len = messageArr.length;
-	typeof (arguments[2]) === 'function' ? callback = arguments[2] : callback = arguments[3];
-	if (typeof (interval) !== 'number') interval = 1000;
-
-	function _sendMessages() {
-		setTimeout(function () {
-			if (messageArr[0]) {
-				bot.sendMessage({
-					to: ID,
-					message: messageArr.shift(),
-				}, function (res) {
-					resArr.push(res);
-					if (resArr.length === len) if (typeof (callback) === 'function') callback(resArr);
-				});
-
-				_sendMessages();
-			}
-		}, interval);
-	}
-
-	_sendMessages();
-};
-
-bot.connect();
-
-bot.on('ready', function () {
-	console.log(bot.username + ' - (' + bot.id + ')');
-	bot.setPresence({
-		game: 'Hacking Simulator 2k16',
+export function bot() {
+	client.connect({
+		token: Config.discord.token,
 	});
 
-	// Start the logging function
-	remindme(bot);
-	lastseen(bot);
-});
+	client.Dispatcher.on('GATEWAY_READY', () => {
+		console.log('Connected as: ' + client.User.id + ' - ' + client.User.username); // eslint-disable-line
 
-bot.on('message', function (user, userID, channelID, message, rawEvent) {
-	var wasMentioned = _.findWhere(rawEvent.d.mentions, { id: bot.id });
+		client.User.setGame({
+			name: '@disbott help for cmd!',
+		});
 
-	if (wasMentioned && userID !== bot.id) {
-		message = S(message).chompLeft('<@' + bot.id + '> ').s;
+		// Start the logging functions
+		remindme(client);
+		// lastseen(client);
+	});
 
-		try {
-			ping(bot, channelID, message);
-			help(Config, bot, channelID, message);
-			about(Config, bot, channelID, message);
-			info(Config, bot, channelID, message);
+	client.Dispatcher.on('MESSAGE_CREATE', e => {
+		messageCountLog(e);
 
-			// kill(bot, channelID, message);
+		const wasMentioned = client.User.isMentioned(e.message);
 
-			chunder(bot, channelID, message);
+		if (wasMentioned && e.message.author.id !== client.User.id) {
+			const message = e.message.content.replace(`<@${client.User.id}> `, '');
 
-			league(bot, user, userID, channelID, message);
+			try {
+				util.ping(e, message);
+				util.help(e, message);
+				util.about(e, message);
+				util.info(e, message);
+				util.deleteMessages(e, message);
 
-			sound(Config, bot, channelID, message, rawEvent);
+				// kill(client, channelID, message);
 
-			management(Config, bot, channelID, message, rawEvent);
+				chunder(e, message);
 
-			remindmeCommand(bot, user, userID, channelID, message);
-			lastseenCommand(bot, user, userID, channelID, message);
+				league(e, message);
 
-			twitter(bot, channelID, message);
-		} catch (e) {
-			console.log(e);
+				sound(client, e, message);
+
+				management(e, message);
+
+				poll(e, message);
+
+				remindmeCommand(e, message);
+
+				messagecountCommand(e, message);
+
+				// lastseenCommand(client, user, userID, channelID, message);
+
+				twitter(e, message);
+			} catch (error) {
+				console.log(error); // eslint-disable-line
+			}
 		}
-	}
 
-	// soundFileupload is a little different to other commands so it has to be put here
-	// Currently it'll accept any mp3, I'd like it to only be mp3's dm'd to it
-	soundFileupload(bot, channelID, rawEvent);
-});
+		// soundFileupload is a little different to other commands so it has to be put here
+		// Currently it'll accept any mp3 messaged to it
+		soundFileupload(e);
+	});
+
+	client.Dispatcher.on('VOICE_CHANNEL_JOIN', e => {
+		util.userHasJoinedVoiceChannel(e);
+	});
+
+	client.Dispatcher.on('DISCONNECTED', e => {
+		console.log(e); // eslint-disable-line
+	});
+}
+
+export function botDisconnect() {
+	client.disconnect();
+}
+
+bot();

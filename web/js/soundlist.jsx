@@ -1,7 +1,8 @@
 var Sound = React.createClass({
 	render: function () {
+		var song = this.props.file.split('.').shift();
 		return (
-			<li>{ this.props.file } // <span className="code">!playsound={ this.props.file }</span></li>
+			<li>{ song } // <span className="code">@disbott vplay={ song }</span></li>
 		);
 	},
 });
@@ -13,7 +14,7 @@ var SoundlistApp = React.createClass({
 		};
 	},
 
-	getCurrentGameData: function () {
+	getSoundlist: function () {
 		var _this = this;
 
 		$.ajax({
@@ -34,7 +35,7 @@ var SoundlistApp = React.createClass({
 
 	render: function () {
 		if (this.state.loading) {
-			this.getCurrentGameData();
+			this.getSoundlist();
 			return (
 				<div className="soundlist-area">
 					<h1 className="tc">Loading Disbott's Soundlist</h1>

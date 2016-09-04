@@ -16,13 +16,17 @@ Next you'll want to clone this and then add a `.env` file to the root of the clo
 DISCORD_TOKEN=
 LEAGUE_APIKEY=
 LEAGUE_LOCATION=
+TWITTER_CONSUMER_KEY=
+TWITTER_CONSUMER_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_ACCESS_TOKEN_SECRET=
 ```
 
 You'll want to fill these in with your own values.
 
 Once that's all sorted you can then run `npm install` to install the dependencies for the bot and webserver.
 
-When that's all sorted you should be able to run `npm run start:bot` to start the bot or `npm run start:web` to start the websever on http://localhost:5000. For making the bot join a server you'll want to login as the user the bot will act as first and then join the server first (an easier way should be on the way soon!).
+When that's all sorted you should be able to run `npm run start:bot` to start the bot or `npm run start:web` to start the websever on http://localhost:5000.
 
 ### Bot Modules
 
@@ -30,10 +34,8 @@ Each command the bot uses is it's own file in `/modules` if you're adding new mo
 
 ### Contributing
 
-I'll gladly accept any help or pointers you want to give, if you're going to do a pull request it'll be nice if you can follow the eslint for the javascript. It's pretty much just airbnb's javascript guide with tabs instead of spaces.
+I try to keep to [Airbnb's Javascript Standards](https://github.com/airbnb/javascript) where possible using the [.eslintrc](https://github.com/tomopagu/disbott/blob/discordie/.eslintrc) file in the root of disbott. I'm happy to have any help or suggestions where possible, just stick a PR on the Repo!
 
 #### Why the disbott rather than disbot
 
-Funny story, I broke the first disbot user. For some reason it remains connected to discord but remains unresponsive to any message whatsoever. I can't send anything as that user when logged into the discord client myself. No idea on the reason why for it still.
-
-If you do happen to know why, please let me know!
+Funny story, I broke the first disbot user. For some reason it remained connected to discord but remains unresponsive to any message whatsoever. I couldn't send anything as that user when logged into the discord client myself. This was way before the bots we have today so disbot probably could work but the disbott name has kinda stuck.
