@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Disbott</title>
+        <link rel="stylesheet" href="stylesheet.css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- https://disbott.pagu.co/ -->
+        </head>
+<body>
+	<div class="centerDiv width100;">
+		<div class="centerDiv headerDiv">
+			<div id="#top" class="centerDiv " >
+				<h1 class="centerText">DISBOTT</h1>
+				<p class="centerText">A bot for Discord</p>
+				<p class="centerText">Version 1.0.0</p>
+				<div class="centerDiv " style="width:100%">
+					<p class="centerText navParagraph">
+						<a class="navLinks" href="https://discordapp.com/oauth2/authorize?&client_id=160829674748903434&scope=bot&permissions=4294967295">Add to Discord</a>
+						|<a class="navLinks" href="#commands">Commands</a>
+						|<a class="navLinks" href="https://github.com/tomopagu/disbott">Github</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="navContainer">
+			<div class="navSideLinks">
+				<h2 id="navHeader">Commands</h2>
+				<p><a class="navTitleLink" href="#General">General</a></p>
+				<p><a class="navTitleLink" href="#Management">Management</a></p>
+				<p><a class="navTitleLink" href="#Poll">Poll</a></p>
+				<p><a class="navTitleLink" href="#LeagueOfLegends">League of<br />Legends</a></p>
+				<p><a class="navTitleLink" href="#Sound">Sound</a></p>
+				<p><a class="navTitleLink" href="#twitter">twitter</a></p>
+			</div>
+			<div class="navdims"></div>
+			<div class="navButtonSection">
+				<div class="navButton"> </div>
+				<div class="navButton"> </div>
+				<div class="navButton"> </div>
+			</div>
+		</div>
+		<div class="centerText">
+			<h2>Commands</h2>
+			<p>All commands must start with <b>@disbott</b> (or if you have named it something else that!) to not conflict with anyother bots and conform to the <br /> <a class="styleLink" href="https://github.com/meew0/discord-bot-best-practices" title="Discord Bot Best Practices">Discord Bot Best Practices</a>.</p>
+			<p>An example command would be <b>@disbott ping</b>.
+		</div>
+		<div class="centerText">
+			<div id="General" class="settingsContent clearFix">
+				<h3>General Commands</h3>
+				<h4>help</h4>
+				<p>Brings up this command list!</p>
+				<h4>about</h4>
+				<p>Tells you who the bot is</p>
+				<h4 >info</h4>
+				<p>Some information about the bot</p>
+				<h4 >ping</h4>
+				<p>The bot will reply to the ping with a pong.</p>
+				<h4 >ping</h4>
+				<p>The bot will reply to the ping with a pong.</p>
+				<h4 >remindme=(time).(unitoftime);(message)</h4>
+				<p>The bot will remind you in a DM about the message given at the time given. You can chain multiple `(time).(unitoftime)` in one go e.g. <span class="code">@disbott remindme=2.hours.30.mins.15.s;Reminder Message</span> will DM you in 2hours 30mins &amp; 15secs about "Reminder Message".</p>
+			</div>
+			<div id="Management" class="clearFix settingsContent">
+				<h3>Management Commands</h3>
+				<h4>createtextinvite=(channel)</h4>
+				<p>The bot will create a 6hour instant invite code &amp; link for the given text channel of the server it is currently on.</p>
+				<h4 >createvoiceinvite=(channel)</h4>
+				<p>The bot will create a 6hour instant invite code &amp; link for the given voice channel of the server it is currently on.</p>
+			</div>
+			<div id="Poll" class="settingsContent clearFix ">
+				<h3>Poll Commands</h3>
+				<h4>startpoll=(topic)</h4>
+				<p>The bot will start a 60second poll on the specified topic. After the 60seconds it will count the total number of votes made with the below commands and let the channel know.</p>
+				<h4 >votepoll=[y,n]</h4>
+				<p>The bot will register a vote for the currently running poll with either a yes (y) or no (n).</p>
+			</div>
+			<div id="LeagueOfLegends" class="settingsContent clearFix">
+				<h3>League of Legends Commands</h3>
+				<h4 >lolsetsummoner=(summonername)</h4>
+				<p>Will link your league username (summonername) with your discord user for ease of use. <b>Only EUW at the moment!</b></p>
+				<h4 >lolsummoner[=summonername, =@discorduser]</h4>
+				<p>Provided you have linked your discord to a league account this command just tells chat what account you are linked to. If you add <span >=@(discorduser)</span> then it'll get their league user (provided they have linked too) and while a little silly it is possible to add <span >=(summonername)</span> which'll tell you the summoner name of the summoner you just searched...</p>
+				<h4>lolrankedstats[=summonername, =@discorduser]</h4>
+				<p>This command will post the specified users ranked status for this season. If you have linked your league account to disbott then you can just do `!lolrankedstats` and that will give you your ranked stats. <b>Only EUW at the moment!</b></p>
+				<h4 >lolcurrentgame[=summonername, =@discorduser]</h4>
+				<p>This command will post the specified users current game with information on who they are playing, what game mode and for approximately how long. If you have linked your league account to disbott then you can omit the = part and it will give you your current game. <b>Only EUW at the moment!</b></p>
+			</div>
+			<div id="Sound" class="settingsContent clearFix">
+				<h3>Sound Commands</h3>
+				<h4 >vjoin</h4>
+				<p>Run this command to make disbott join your current voice channel. This must be run first before any of the other sound commands.</p>
+				<h4 >vstop</h4>
+				<p>This command stops any playing audio that the bot is playing, but keeps the bot in the voice channel.</p>
+				<h4 >vleave</h4>
+				<p>This command will instantly disconnect the bot from the voice channel and you'll need to rejoin with <span >sound</span> before playing audio again.</p>
+				<h4 >listsounds</h4>
+				<p>Will take you to a website to see all the uploaded sounds to disbott. Also showcases commands for the below command.</p>
+				<h4 >vplay=(file)</h4>
+				<p>Plays whatever file specified to the voice channel, where file is the filename in the <span >/modules/sound/sounds/</span>.</p>
+			</div>
+			<div id="twitter" class="settingsContent clearFix">
+				<h3 >Twitter Commands</h3>
+				<h4>headline</h4>
+				<p>The bot gets the latest tweet from The Guardian's (<a class="styleLink" href="https://twitter.com/guardian" title="The Guardian on Twitter" target="_blank">@guardian</a>) twitter feed.</p>
+				<h4 >mirin</h4>
+				<p>The bot gets the latest tweet from Furukawa Mirin's (<a class="styleLink" href="https://twitter.com/FurukawaMirin" title="Furukawa Mirin on Twitter" target="_blank">@FurukawaMirin</a>) twitter feed. She is my idol oshimen!</p>
+				<h4 >gazo</h4>
+				<p><b>WARNING MAYBE NSFW</b></p>
+				<p>The bot gets a random tweet from <a class="styleLink" href="https://twitter.com/idol_gazo" title="WARNING MAYBE NSFW">@idol_gazo</a>'s twitter feed and tells name/group &amp; image.</p>
+			</div>
+			<footer>
+				<small >Built by <a class="styleLink" href="https://tomo.pagu.co" target="_blank">tomo@pagu</a> &amp; <a class="styleLink" href="https://github.com/tomopagu/disbott/graphs/contributors" target="_blank">other wonderful contributors</a></small>
+			</footer>
+		</div>
+	</div>
+</body>
+</html>
