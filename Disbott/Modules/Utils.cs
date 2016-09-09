@@ -26,7 +26,7 @@ namespace Disbott.Modules
         [Command("info"), Description("Tells user the current Disbott info")]
         public async Task Info(IUserMessage msg)
         {
-            await msg.Channel.SendMessageAsync("Disbott C# Edition, Version 2.0.0-alpha.1 -- https://github.com/tomopagu/disbott/tree/c%23");
+            await msg.Channel.SendMessageAsync("Disbott C# Edition, Version 3.0.0-alpha.1 -- https://github.com/tomopagu/disbott/tree/c%23");
         }
     }
 }
