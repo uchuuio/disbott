@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Configuration;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 using Discord;
@@ -19,7 +20,7 @@ namespace Disbott.Modules
         [Command("about"), Description("Tells user about Disbott")]
         public async Task About(IUserMessage msg)
         {
-            await msg.Channel.SendMessageAsync("Hello, I\'m Disbott. A bot for Discord. Find out more about me here https://disbott.pagu.co");
+            await msg.Channel.SendMessageAsync("Hello, I\'m Disbott. A bot for Discord. Find out more about me here " + ConfigurationManager.AppSettings["domain"]);
         }
 
         [Command("info"), Description("Tells user the current Disbott info")]

@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Configuration;
+using System.Threading.Tasks;
 using System.Reflection;
+
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
@@ -11,14 +13,14 @@ namespace Disbott
         private CommandService commands;
         private DiscordSocketClient client;
 
-        static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
+        private static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
 
         public async Task Start()
         {
             client = new DiscordSocketClient();
             commands = new CommandService();
 
-            string token = "MTMxMDk0MzY0NjEyMDY3MzI4.CrRQtg.iH_BbVcTvXActUewvyy4wEd0wxk";
+            var token = ConfigurationManager.AppSettings["token"];
 
             await InstallCommands();
 
@@ -34,8 +36,9 @@ namespace Disbott
         {
             await (await client.GetCurrentUserAsync()).ModifyStatusAsync(x =>
             {
+                var username = client.GetCurrentUser().Username;
                 x.Status = UserStatus.Idle;
-                x.Game = new Game("'@disbott-dev about' for commands");
+                x.Game = new Game("'@" + username + " about' for commands");
             });
         }
 
