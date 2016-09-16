@@ -13,11 +13,11 @@ namespace Disbott.Modules
     public class Roll
     {
         [Command("roll"), Description("Rolls a Dice!")]
-        public async Task d6(IUserMessage msg)
+        public async Task roll(IUserMessage msg)
         {
             Random rnd = new Random();
-            int roll = rnd.Next(1, 7);
-            string result = roll.ToString();
+            int rolling = rnd.Next(1, 7);
+            string result = rolling.ToString();
             await msg.Channel.SendMessageAsync(result);
         }
     }
