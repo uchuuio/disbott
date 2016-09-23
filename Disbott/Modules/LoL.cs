@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.ComponentModel;
@@ -18,8 +19,9 @@ namespace Disbott.Modules
 {
     public class LoLSummoner
     {
+        public ulong Id { get; set; }
         public ulong DiscordID { get; set; }
-        public long SummonerID { get; set; }
+        public int SummonerID { get; set; }
     }
 
     [Module]
@@ -40,11 +42,14 @@ namespace Disbott.Modules
 
                     var summoner = new LoLSummoner
                     {
+                        Id = msg.Author.Id,
                         DiscordID = msg.Author.Id,
-                        SummonerID = summonerDetails.Id
+                        SummonerID = (int)summonerDetails.Id
                     };
 
-                    if (summoners.Find(x => x.DiscordID.Equals(msg.Author.Id)).Any())
+                    var isNew = summoners.Find(x => x.Id.Equals(msg.Author.Id));
+
+                    if (isNew.Any())
                     {
                         summoners.Update(summoner);
                     }
@@ -77,15 +82,52 @@ namespace Disbott.Modules
 
                 try
                 {
-                    var rankedStats = api.GetStatsRanked(Region.euw, discordSummoner.SummonerID);
+                    var summonerApi = api.GetSummoner(Region.euw, discordSummoner.SummonerID);
+
+                    var message = "The Ranked Stats for " + summonerApi.Name + " are as follows:\r\n";
+
+                    var rankedLeagueData = summonerApi.GetLeagues();
+                    foreach (var league in rankedLeagueData)
+                    {
+                        if (league.Queue.Equals(RiotSharp.Queue.RankedSolo5x5))
+                        {
+                            var tier = league.Tier;
+                            foreach (var leagueEntry in league.Entries)
+                            {
+                                var division = leagueEntry.Division;
+                                var lp = leagueEntry.LeaguePoints + "lp";
+
+                                message += tier + " " + division + " with " +
+                                lp + "\r\n";
+                            }
+                        }
+                    }
+
+                    var rankedStatsData = summonerApi.GetStatsRanked();
+                    foreach (var stats in rankedStatsData)
+                    {
+                        if (stats.ChampionId.Equals(0))
+                        {
+                            double k = stats.Stats.TotalChampionKills;
+                            double d = stats.Stats.TotalDeathsPerSession;
+                            double a = (stats.Stats.TotalAssists / 4);
+                            double ka = k + a;
+                            double kdaVal = ka/d;
+                            string kda = string.Format("{0:N2}", kdaVal);
+
+                            message += stats.Stats.TotalSessionsWon + " wins & " + stats.Stats.TotalSessionsLost + " losses\r\n";
+                            message += k + "kills " + d + "deaths " + a + "assists which is a " + kda +
+                                       "kda this season";
+                        }
+                    }
+
+                    await msg.Channel.SendMessageAsync(message);
                 }
                 catch (RiotSharpException ex)
                 {
                     // Handle the exception however you want.
                 }
             }
-
-            await msg.Channel.SendMessageAsync("");
         }
     }
 }
