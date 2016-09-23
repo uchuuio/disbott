@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.ComponentModel;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 using LiteDB;
 using RiotSharp;
 
 using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
-using Tweetinvi.Models;
+using Tweetinvi.Core.Extensions;
 
 namespace Disbott.Modules
 {
@@ -27,14 +22,61 @@ namespace Disbott.Modules
     [Module]
     public class LoL
     {
+        public static dynamic GetSummonerData(string summonerName)
+        {
+            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
+            return api.GetSummoner(Region.euw, summonerName);
+        }
+
+        public static string getRankedStats(dynamic summonerApi)
+        {
+            var message = "The Ranked Stats for " + summonerApi.Name + " are as follows:\r\n";
+
+            var rankedLeagueData = summonerApi.GetLeagues();
+            foreach (var league in rankedLeagueData)
+            {
+                if (league.Queue.Equals(RiotSharp.Queue.RankedSolo5x5))
+                {
+                    var tier = league.Tier;
+                    foreach (var leagueEntry in league.Entries)
+                    {
+                        var division = leagueEntry.Division;
+                        var lp = leagueEntry.LeaguePoints + "lp";
+
+                        message += tier + " " + division + " with " +
+                                   lp + "\r\n";
+                    }
+                }
+            }
+
+            var rankedStatsData = summonerApi.GetStatsRanked();
+            foreach (var stats in rankedStatsData)
+            {
+                if (stats.ChampionId.Equals(0))
+                {
+                    double k = stats.Stats.TotalChampionKills;
+                    double d = stats.Stats.TotalDeathsPerSession;
+                    double a = (stats.Stats.TotalAssists / 4);
+                    var ka = k + a;
+                    var kdaVal = ka / d;
+                    var kda = $"{kdaVal:N2}";
+
+                    message += stats.Stats.TotalSessionsWon + " wins & " + stats.Stats.TotalSessionsLost +
+                               " losses\r\n";
+                    message += k + "kills " + d + "deaths " + a + "assists which is a " + kda +
+                               "kda this season";
+                }
+            }
+
+            return message;
+        }
+
         [Command("set-summoner"), Description("Links the specified summoner to your discord account")]
         public async Task SetSummoner(IUserMessage msg, [Summary("Summoner name")] string summonerName)
         {
-            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
-
             try
             {
-                var summonerDetails = api.GetSummoner(Region.euw, summonerName);
+                var summonerDetails = GetSummonerData(summonerName);
 
                 using (var db = new LiteDatabase(@"LoL.db"))
                 {
@@ -68,65 +110,41 @@ namespace Disbott.Modules
         }
 
         [Command("ranked"), Description("Gets the ranked stats for yourself or another discord/league account")]
-        public async Task Ranked(IUserMessage msg)
+        public Task Ranked(IUserMessage msg)
         {
-            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
+            return Ranked(msg, null);
+        }
 
-            using (var db = new LiteDatabase(@"LoL.db"))
+        [Command("ranked"), Description("Gets the ranked stats for yourself or another discord/league account")]
+        public async Task Ranked(IUserMessage msg, [Summary("Summoner name")] string summonerName)
+        {
+            if (summonerName.IsNullOrEmpty())
             {
-                var summoners = db.GetCollection<LoLSummoner>("lolsummoners");
-
-                var summoner = summoners.Find(x => x.DiscordID.Equals(msg.Author.Id));
-                var loLSummoners = summoner as LoLSummoner[] ?? summoner.ToArray();
-                var discordSummoner = loLSummoners[0];
-
-                try
+                using (var db = new LiteDatabase(@"LoL.db"))
                 {
-                    var summonerApi = api.GetSummoner(Region.euw, discordSummoner.SummonerID);
+                    var summoners = db.GetCollection<LoLSummoner>("lolsummoners");
 
-                    var message = "The Ranked Stats for " + summonerApi.Name + " are as follows:\r\n";
+                    var summoner = summoners.Find(x => x.DiscordID.Equals(msg.Author.Id));
+                    var loLSummoners = summoner as LoLSummoner[] ?? summoner.ToArray();
+                    var discordSummoner = loLSummoners[0];
 
-                    var rankedLeagueData = summonerApi.GetLeagues();
-                    foreach (var league in rankedLeagueData)
+                    try
                     {
-                        if (league.Queue.Equals(RiotSharp.Queue.RankedSolo5x5))
-                        {
-                            var tier = league.Tier;
-                            foreach (var leagueEntry in league.Entries)
-                            {
-                                var division = leagueEntry.Division;
-                                var lp = leagueEntry.LeaguePoints + "lp";
-
-                                message += tier + " " + division + " with " +
-                                lp + "\r\n";
-                            }
-                        }
+                        var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
+                        var message = getRankedStats(summonerApi);
+                        await msg.Channel.SendMessageAsync(message);
                     }
-
-                    var rankedStatsData = summonerApi.GetStatsRanked();
-                    foreach (var stats in rankedStatsData)
+                    catch (RiotSharpException ex)
                     {
-                        if (stats.ChampionId.Equals(0))
-                        {
-                            double k = stats.Stats.TotalChampionKills;
-                            double d = stats.Stats.TotalDeathsPerSession;
-                            double a = (stats.Stats.TotalAssists / 4);
-                            double ka = k + a;
-                            double kdaVal = ka/d;
-                            string kda = string.Format("{0:N2}", kdaVal);
-
-                            message += stats.Stats.TotalSessionsWon + " wins & " + stats.Stats.TotalSessionsLost + " losses\r\n";
-                            message += k + "kills " + d + "deaths " + a + "assists which is a " + kda +
-                                       "kda this season";
-                        }
+                        // Handle the exception however you want.
                     }
-
-                    await msg.Channel.SendMessageAsync(message);
                 }
-                catch (RiotSharpException ex)
-                {
-                    // Handle the exception however you want.
-                }
+            }
+            else
+            {
+                var summonerApi = GetSummonerData(summonerName);
+                var message = getRankedStats(summonerApi);
+                await msg.Channel.SendMessageAsync(message);
             }
         }
     }
