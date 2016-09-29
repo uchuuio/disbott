@@ -45,9 +45,7 @@ namespace Disbott.Modules.Roll
                     string rolls = string.Join(", ", rolledDice);
                     
                     // Send all the Information back into the chat to the user
-                    await msg.Channel.SendMessageAsync(DiscordID + " Rolled:");
-                    await msg.Channel.SendMessageAsync(rolls.ToString());
-                    await msg.Channel.SendMessageAsync("Total: " + total.ToString());
+                    await msg.Channel.SendMessageAsync($"{DiscordID} Rolled: \r\n{rolls.ToString()} \r\nTotal: {total.ToString()}");
                 }
             }
             else
