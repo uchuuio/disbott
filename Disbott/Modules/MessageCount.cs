@@ -68,7 +68,7 @@ namespace Disbott.Modules
                 }
                 else
                 {
-                    await msg.Channel.SendMessageAsync("@person has posted no messages, incredible lurking");
+                    await msg.Channel.SendMessageAsync("wow this user has posted no messages, incredible lurking");
                 }
 
             }
