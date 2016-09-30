@@ -77,6 +77,17 @@ namespace Disbott.Modules
             return message;
         }
 
+        public static string getCurrentGame(dynamic summonerApi)
+        {
+            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
+            var currentGameData = api.GetCurrentGame((Platform) Region.euw, summonerApi.Id);
+
+            Console.WriteLine(currentGameData);
+            //var message = summonerApi.Name + " is currently in a game as " + Champion + " and is " + Current Stats + " as of " + time;
+
+            return "current";
+        }
+
         [Command("set-summoner"), Description("Links the specified summoner to your discord account")]
         public async Task SetSummoner(IUserMessage msg, [Summary("Summoner name")] string summonerName)
         {
@@ -143,6 +154,38 @@ namespace Disbott.Modules
             {
                 var summonerApi = GetSummonerData(summonerName);
                 var message = getRankedStats(summonerApi);
+                await msg.Channel.SendMessageAsync(message);
+            }
+        }
+
+        [Command("current-game"), Description("Gets the current game for yourself or another discord/league account")]
+        public Task CurrentGame(IUserMessage msg)
+        {
+            return CurrentGame(msg, null);
+        }
+
+        [Command("current-game"), Description("Gets the current game for yourself or another discord/league account")]
+        public async Task CurrentGame(IUserMessage msg, [Summary("Summoner name")] string summonerName)
+        {
+            if (summonerName.IsNullOrEmpty())
+            {
+                using (var db = new LiteDatabase(@"LoL.db"))
+                {
+                    var summoners = db.GetCollection<LoLSummoner>("lolsummoners");
+
+                    var summoner = summoners.Find(x => x.DiscordID.Equals(msg.Author.Id));
+                    var loLSummoners = summoner as LoLSummoner[] ?? summoner.ToArray();
+                    var discordSummoner = loLSummoners[0];
+
+                    var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
+                    var message = getCurrentGame(summonerApi);
+                    await msg.Channel.SendMessageAsync(message);
+                }
+            }
+            else
+            {
+                var summonerApi = GetSummonerData(summonerName);
+                var message = getCurrentGame(summonerApi);
                 await msg.Channel.SendMessageAsync(message);
             }
         }
