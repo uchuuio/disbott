@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
 using System.Reflection;
-
+using Disbott.Modules;
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
@@ -42,7 +42,6 @@ namespace Disbott
             });
         }
 
-
         public async Task InstallCommands()
         {
             // Hook the MessageReceived Event into our Command Handler
@@ -69,6 +68,9 @@ namespace Disbott
                 if (!result.IsSuccess)
                     await msg.Channel.SendMessageAsync(result.ErrorReason);
             }
+
+            // MessageCount Record
+            MessageCount.MessageRecord(msg);
         }
     }
 }
