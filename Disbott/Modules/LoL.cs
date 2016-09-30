@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +25,12 @@ namespace Disbott.Modules
     {
         public static dynamic GetSummonerData(string summonerName)
         {
+            int summonerId;
             var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
+            if (int.TryParse(summonerName, out summonerId))
+            {
+                return api.GetSummoner(Region.euw, summonerId);
+            }
             return api.GetSummoner(Region.euw, summonerName);
         }
 
@@ -128,16 +134,9 @@ namespace Disbott.Modules
                     var loLSummoners = summoner as LoLSummoner[] ?? summoner.ToArray();
                     var discordSummoner = loLSummoners[0];
 
-                    try
-                    {
-                        var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
-                        var message = getRankedStats(summonerApi);
-                        await msg.Channel.SendMessageAsync(message);
-                    }
-                    catch (RiotSharpException ex)
-                    {
-                        // Handle the exception however you want.
-                    }
+                    var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
+                    var message = getRankedStats(summonerApi);
+                    await msg.Channel.SendMessageAsync(message);
                 }
             }
             else
