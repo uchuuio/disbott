@@ -29,6 +29,8 @@ namespace Disbott.Modules
 
                 quotes.Insert(newQuote);
             }
+
+            await msg.Channel.SendMessageAsync($"Added quote for {name}", true);
         }
 
         [Command("getquote"), Description("Gets a quote from a person")]
@@ -47,7 +49,7 @@ namespace Disbott.Modules
                 Random rand = new Random();
                 int randIndex = rand.Next(0, (totalUserQuotes - 1));
 
-                await msg.Channel.SendMessageAsync(userquotes[randIndex].Quotes, true);
+                await msg.Channel.SendMessageAsync($"{name} said {userquotes[randIndex].Quotes}", true);
             }
         }
     }
