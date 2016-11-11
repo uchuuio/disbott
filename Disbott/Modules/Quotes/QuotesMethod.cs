@@ -30,11 +30,11 @@ namespace Disbott.Modules
                 quotes.Insert(newQuote);
             }
 
-            await msg.Channel.SendMessageAsync($"Added quote for {name}", true);
+            await msg.Channel.SendMessageAsync($"Added quote for {name} saying, {newquote}", true);
         }
 
-        [Command("getquote"), Description("Gets a quote from a person")]
-        public async Task getquote(IUserMessage msg, string name)
+        [Command("quote"), Description("Gets a quote from a person")]
+        public async Task quote(IUserMessage msg, string name)
         {
             using (var db = new LiteDatabase(@"Quotes.db"))
             {
@@ -46,10 +46,17 @@ namespace Disbott.Modules
 
                 int totalUserQuotes = userquotes.Length;
 
-                Random rand = new Random();
-                int randIndex = rand.Next(0, (totalUserQuotes - 1));
+                if (totalUserQuotes == 0)
+                {
+                    await msg.Channel.SendMessageAsync("This person has no quotes");
+                }
+                else
+                {
+                    Random rand = new Random();
+                    int randIndex = rand.Next(0, (totalUserQuotes - 1));
 
-                await msg.Channel.SendMessageAsync($"{name} said {userquotes[randIndex].Quotes}", true);
+                    await msg.Channel.SendMessageAsync($"{name} said {userquotes[randIndex].Quotes}", true);
+                }
             }
         }
 
@@ -60,7 +67,7 @@ namespace Disbott.Modules
             {
                 var quotes = db.GetCollection<Quote>("quotes");
 
-                var results = quotes.Delete(x => x.Quotes.Equals(""));
+                var results = quotes.Delete(x => x.Quotes.Equals(quote));
 
                 await msg.Channel.SendMessageAsync($"Deleted quote {quote}", true);
             }
