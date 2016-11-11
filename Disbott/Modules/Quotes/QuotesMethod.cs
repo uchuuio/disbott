@@ -52,5 +52,21 @@ namespace Disbott.Modules
                 await msg.Channel.SendMessageAsync($"{name} said {userquotes[randIndex].Quotes}", true);
             }
         }
+
+        [Command("deletequote"), Description("Removes quote from a person")]
+        public async Task deletequote(IUserMessage msg, string quote)
+        {
+            using (var db = new LiteDatabase(@"Quotes.db"))
+            {
+                var quotes = db.GetCollection<Quote>("quotes");
+
+                var results = quotes.Delete(x => x.Quotes.Equals(""));
+
+                await msg.Channel.SendMessageAsync($"Deleted quote {quote}", true);
+            }
+        }
+        
+    
+
     }
 }
