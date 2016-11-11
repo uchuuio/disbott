@@ -10,5 +10,8 @@
     "express": "3.4.4",
     "jade": "*",
     "stylus": "*"
+  },
+  "scripts": {
+    "prepublish": "typings install"
   }
 }
