@@ -247,6 +247,8 @@
   <ItemGroup>
     <Compile Include="Giphy\Gif.cs" />
     <Compile Include="Giphy\Giphy.cs" />
+    <Compile Include="Modules\Quotes\QuotesMethod.cs" />
+    <Compile Include="Modules\Quotes\Quote.cs" />
     <Compile Include="Modules\LoL.cs" />
     <Compile Include="Modules\MessageCount.cs" />
     <Compile Include="Modules\Coinflip.cs" />
