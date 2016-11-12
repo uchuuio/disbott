@@ -53,9 +53,10 @@ namespace Disbott.Modules
                 else
                 {
                     Random rand = new Random();
-                    int randIndex = rand.Next(0, (totalUserQuotes - 1));
+                    int randIndex = rand.Next(1, (totalUserQuotes + 1));
+                    int convertedRandIndex = randIndex - 1;
 
-                    await msg.Channel.SendMessageAsync($"{name} said {userquotes[randIndex].Quotes}", true);
+                    await msg.Channel.SendMessageAsync($"{name} said {userquotes[convertedRandIndex].Quotes}", true);
                 }
             }
         }
