@@ -31,7 +31,7 @@ namespace Disbott.Controllers
             }
             else
             {
-                return $"The current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll";
+                return $"The current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll \r\nAn officer can do this using the 'officerendpoll' command";
             }
 
         }
@@ -94,7 +94,7 @@ namespace Disbott.Controllers
                 }
                 else
                 {
-                    return $"Only the current poll owner can end a poll \r\nThe current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll";
+                    return $"Only the current poll owner can end a poll \r\nThe current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll \r\nAn officer can do this using the 'officerendpoll' command";
                 }
             }
         }
