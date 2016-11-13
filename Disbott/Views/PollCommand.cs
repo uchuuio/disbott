@@ -1,92 +1,58 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
-using System.Timers;
 using Discord;
 using Discord.Commands;
-using Disbott.Models.Objects;
-using LiteDB;
-using System.Diagnostics;
+using Disbott.Controllers;
 
 namespace Disbott.Views
 {
     [Module]
     public class PollCommand
     {
-        Polls currentPoll = new Polls()
-        {
-            PollName = "",
-            Yes = 0,
-            No = 0
-
-        };
-        bool running = false;
-        
+        Poll pollOption = new Poll();
 
         [Command("newpoll"), Description("Starts A Poll")]
         public async Task newpoll(IUserMessage msg, string pollName)
         {
-            if (running == false)
-            {
-                running = true;
-                string discordID = msg.Author.Username;
-                await msg.Channel.SendMessageAsync($"{discordID} created a new poll: \r\n'{pollName}?' (yes / no)");
-                currentPoll.PollName = pollName;
-                currentPoll.Owner = discordID;
-            }
-            else
-            {
-                await msg.Channel.SendMessageAsync($"The current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll");
-            }
-            
+            string createdPoll = pollOption.CreateNewPoll(msg, pollName);
+
+            await msg.Channel.SendMessageAsync(createdPoll);
         }
 
         [Command("vote"), Description("Vote on a poll")]
         public async Task vote(IUserMessage msg, string vote)
         {
-            switch (vote)
+            if (vote == "yes" || vote == "no")
             {
-                case "yes":
-                    currentPoll.Yes += 1;
-                    break;
-                case "no":
-                    currentPoll.No += 1;
-                    break;
-                default:
-                    await msg.Channel.SendMessageAsync("Please selecet 'yes' or 'no'");
-                    break;
+                string createdPoll = pollOption.VoteOnPoll(vote);
+                if (string.IsNullOrEmpty(createdPoll) == false)
+                {
+                    await msg.Channel.SendMessageAsync(createdPoll);
+                }
             }
-            
+            else
+            {
+                await msg.Channel.SendMessageAsync("Please type 'yes' or 'no'");
+            }
         }
 
         [Command("endpoll"), Description("End the current poll")]
         public async Task endpoll(IUserMessage msg)
         {
-            
-            if (currentPoll.Owner == msg.Author.Username)
-            {
-                string winner;
-                running = false;
+            string createdPoll = pollOption.EndPoll(msg);
 
-                if (currentPoll.Yes > currentPoll.No)
-                {
-                    winner = "YES";
-                }
-                else
-                {
-                    winner = "No";
-                }
+            await msg.Channel.SendMessageAsync(createdPoll);
 
-                await msg.Channel.SendMessageAsync($"The Votes for '{currentPoll.PollName}?' are: \r\nYes: {currentPoll.Yes} \r\nNo: {currentPoll.No} \r\nThe winner is {winner}");
+        }
 
-                currentPoll.PollName = "";
-                currentPoll.Yes = 0;
-                currentPoll.No = 0;
-            }
-            else
-            {
-                await msg.Channel.SendMessageAsync($"Only the current poll owner can end a poll \r\nThe current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll");
-            }
+        [Command("officerendpoll"), Description("Ends the poll as admin")]
+        [RequirePermission(GuildPermission.BanMembers)]
+        public async Task officerendpoll(IUserMessage msg)
+        {
+            string createdPoll = pollOption.OfficerEndPoll();
+
+            await msg.Channel.SendMessageAsync(createdPoll);
+
         }
     }
 }

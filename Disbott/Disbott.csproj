@@ -247,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CoinFlip.cs" />
+    <Compile Include="Controllers\Poll.cs" />
     <Compile Include="Models\Objects\LolSummoner.cs" />
     <Compile Include="Models\Objects\DiceResults.cs" />
     <Compile Include="Models\Objects\Gif.cs" />
@@ -259,7 +260,6 @@
     <Compile Include="Views\MessageCountCommand.cs" />
     <Compile Include="Views\CoinflipCommand.cs" />
     <Compile Include="Controllers\Roll.cs" />
-    <Compile Include="Views\test.cs" />
     <Compile Include="Views\TwitterCommand.cs" />
     <Compile Include="Views\UtilsCommand.cs" />
     <Compile Include="Program.cs" />
