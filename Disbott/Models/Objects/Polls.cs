@@ -12,5 +12,6 @@ namespace Disbott.Models.Objects
         public string PollName { get; set; }
         public int Yes { get; set; }
         public int No { get; set; }
+        public string Owner { get; set; }
     }
 }

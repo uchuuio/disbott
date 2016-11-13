@@ -259,6 +259,7 @@
     <Compile Include="Views\MessageCountCommand.cs" />
     <Compile Include="Views\CoinflipCommand.cs" />
     <Compile Include="Controllers\Roll.cs" />
+    <Compile Include="Views\test.cs" />
     <Compile Include="Views\TwitterCommand.cs" />
     <Compile Include="Views\UtilsCommand.cs" />
     <Compile Include="Program.cs" />
