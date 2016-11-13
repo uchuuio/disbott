@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Disbott.Modules
+namespace Disbott.Models.Objects
 {
     public class Gif
     {

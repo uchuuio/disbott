@@ -12,10 +12,10 @@ using Discord.WebSocket;
 using Discord.Commands;
 using Tweetinvi.Models;
 
-namespace Disbott.Modules
+namespace Disbott.Views
 {
     [Module]
-    public class Twitter
+    public class TwitterCommand
     {
         public void Authenticate()
         {

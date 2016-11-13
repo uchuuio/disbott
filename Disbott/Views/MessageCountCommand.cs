@@ -10,7 +10,7 @@ using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
 
-namespace Disbott.Modules
+namespace Disbott.Views
 {
     public class MessageCountSchema
     {
@@ -19,7 +19,7 @@ namespace Disbott.Modules
     }
 
     [Module]
-    public class MessageCount
+    public class MessageCountCommand
     {
         [Description("Adds message to the user's total message count")]
         public static void MessageRecord(IUserMessage msg)

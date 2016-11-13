@@ -8,11 +8,12 @@ using Discord.WebSocket;
 using Discord.Commands;
 using LiteDB;
 using System.Linq;
+using Disbott.Models.Objects;
 
-namespace Disbott.Modules
+namespace Disbott.Views
 {
     [Module]
-    public class QuotesMethod
+    public class QuotesCommand
     {
         [Command("addquote"), Description("adds a new quote")]
         public async Task addquote(IUserMessage msg, string name, string newquote)

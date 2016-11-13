@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Disbott.Models.Objects;
 
-namespace Disbott.Modules.Roll
+namespace Disbott.Controllers
 {
-    public static class RollMethod
+    public static class Roll
     {
         // Method to Validat the dice roll
         public static Match ValidateDiceRoll(string userInput)
@@ -55,7 +56,7 @@ namespace Disbott.Modules.Roll
         }
 
         //Method to roll the dice
-        public static List<int> Rolling(int dicerolled, int dicesides)
+        public static DiceResults Rolling(int dicerolled, int dicesides)
         {
             // creates a random number and stores it as the variable rnd
             Random rnd = new Random();
@@ -76,9 +77,14 @@ namespace Disbott.Modules.Roll
                 arrayList.Add(totalRolled);
             }
 
+            string rolls = string.Join(", ", arrayList);
             int total = arrayList.Sum();
 
-            return arrayList;
+            DiceResults Results = new DiceResults(rolls, total);
+
+            return Results;
+            
+            
         }
     }
 }

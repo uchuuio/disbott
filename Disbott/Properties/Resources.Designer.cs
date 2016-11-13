@@ -59,5 +59,14 @@ namespace Disbott.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heads.
+        /// </summary>
+        internal static string Heads {
+            get {
+                return ResourceManager.GetString("Heads", resourceCulture);
+            }
+        }
     }
 }

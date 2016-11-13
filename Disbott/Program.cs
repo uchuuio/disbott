@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
 using System.Reflection;
-using Disbott.Modules;
+using Disbott.Views;
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
@@ -70,7 +70,7 @@ namespace Disbott
             }
 
             // MessageCount Record
-            MessageCount.MessageRecord(msg);
+            MessageCountCommand.MessageRecord(msg);
         }
     }
 }

@@ -9,19 +9,13 @@ using RiotSharp;
 
 using Discord;
 using Discord.Commands;
+using Disbott.Models.Objects;
 using Tweetinvi.Core.Extensions;
 
-namespace Disbott.Modules
+namespace Disbott.Views
 {
-    public class LoLSummoner
-    {
-        public ulong Id { get; set; }
-        public ulong DiscordID { get; set; }
-        public int SummonerID { get; set; }
-    }
-
     [Module]
-    public class LoL
+    public class LoLCommand
     {
         public static dynamic GetSummonerData(string summonerName)
         {

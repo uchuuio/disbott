@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Configuration;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
 using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using Disbott.Models.Objects;
 
-namespace Disbott.Modules
+namespace Disbott.Views
 {
     [Module]
-    public class Giphy
+    public class GiphyCommand
     {
         [Command("giphy"), Description("Gets a random gif")]
         public async Task giphy(IUserMessage msg, string search = null)
