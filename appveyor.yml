@@ -9,7 +9,7 @@
 #---------------------------------#
 
 # version format
-version: 2.0.{build}
+version: 3.0.0.{build}
 
 # you can use {branch} name in version format too
 # version: 1.0.{build}-{branch}
@@ -19,41 +19,6 @@ branches:
   # whitelist
   only:
     - 'c#'
-
-  # blacklist
-  except:
-    - gh-pages
-
-# Do not build on tags (GitHub and BitBucket)
-skip_tags: true
-
-# Start builds on tags only (GitHub and BitBucket)
-skip_non_tags: true
-
-# Skipping commits with particular message or from specific user
-#skip_commits:
-#  message: /Created.*\.(png|jpg|jpeg|bmp|gif)/      # Regex for matching commit message
-#  author: John                                      # Commit author's username, name, email or regexp maching one of these.
-
-# Including commits with particular message or from specific user
-#only_commits:
-#   message: /build/                # Start a new build if message contains 'build'
-#  author: jack@company.com        # Start a new build for commit of user with email jack@company.com
-
-# Skipping commits affecting specific files (GitHub only). More details here: /docs/appveyor-yml
-#skip_commits:
-#  files:
-#    - docs/*
-#    - '**/*.html'
-
-# Including commits affecting specific files (GitHub only). More details here: /docs/appveyor-yml
-#only_commits:
-#  files:
-#    - Project-A/
-#    - Project-B/
-
-# Do not build feature branch with open Pull Requests
-skip_branch_with_pr: true
 
 # Maximum number of concurrent jobs for the project
 max_jobs: 1
