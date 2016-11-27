@@ -27,13 +27,13 @@ build:
   publish_wap: true
   verbosity: minimal
 artifacts:
-- path: C:\projects\disbott\Disbott\bin\Release
+- path: Disbott\bin\Release
   name: azure
 deploy:
 - provider: GitHub
   auth_token:
     secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
-  artifact: C:\projects\disbott\Disbott\bin\Release
+  artifact: Disbott\bin\Release
   prerelease: true
   force_update: false
 - provider: AzureWebJob
@@ -41,5 +41,5 @@ deploy:
   username: $disbott
   password:
     secure: kAh3PlrZEjybpv2ZRsNu7CWk3VJkr2pl1P3jno+62m7kfQQT2Gh3N4RhhCexolxQjiomzMey/QVp5PfmK1NIYw==
-  artifact: C:\projects\disbott\Disbott\bin\Release
+  artifact: Disbott\bin\Release
   manually_triggered: true
