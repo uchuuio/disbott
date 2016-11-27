@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Discord;
@@ -33,6 +34,16 @@ namespace Disbott.Views
         {
             await
                 ReplyAsync("Disbott C# Edition, Version 3.0.0-alpha.2 -- https://github.com/tomopagu/disbott/tree/c%23");
+        }
+
+        [Command("Kill")]
+        [Remarks("Kills the Disbott Instance")]
+        [RequireUserPermission(GuildPermission.BanMembers)]
+        public async Task Kill()
+        {
+            await ReplyAsync("Killing self");
+            await Context.Client.ApiClient.LogoutAsync();
+            Process.GetCurrentProcess().Kill();
         }
     }
 }
