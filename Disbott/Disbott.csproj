@@ -247,10 +247,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CoinFlip.cs" />
+    <Compile Include="Controllers\Poll.cs" />
     <Compile Include="Models\Objects\LolSummoner.cs" />
     <Compile Include="Models\Objects\DiceResults.cs" />
     <Compile Include="Models\Objects\Gif.cs" />
+    <Compile Include="Models\Objects\Polls.cs" />
     <Compile Include="Views\GiphyCommand.cs" />
+    <Compile Include="Views\PollCommand.cs" />
     <Compile Include="Views\QuotesCommand.cs" />
     <Compile Include="Models\Objects\Quote.cs" />
     <Compile Include="Views\LoLCommand.cs" />

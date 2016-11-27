@@ -69,7 +69,7 @@ namespace Disbott.Views
             {
                 var quotes = db.GetCollection<Quote>("quotes");
 
-                var results = quotes.Delete(x => x.Quotes.Equals(quote));
+                quotes.Delete(x => x.Quotes.Equals(quote));
 
                 await msg.Channel.SendMessageAsync($"Deleted quote {quote}", true);
             }
