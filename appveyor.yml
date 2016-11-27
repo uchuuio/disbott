@@ -17,7 +17,7 @@ environment:
   lol_api_key:
     secure: /jcw3Qe1zuG6GWOYsRV9546M75ObTD8DpjWLRwb2pMPTX1Nb7gqlr2gwFLLTx21T
   token:
-    secure: T0H81y6AaiLN1ZVJk1VbiEyHo95GllrkGaQSXsk1sBEOsS5iEXA3y8O/tG74XQYONI9cQVH0GaVuKasyxBea5Q==
+    secure: T0H81y6AaiLN1ZVJk1VbiKFvtbgoAON2T35ptv5ya0porgMLKL0LKU2pEYrgJpvh4RXdOZDteG16tIZ97yjVNQ==
 before_build:
 - cmd: >-
     nuget sources add -Name DiscordNet -Source https://www.myget.org/F/discord-net/api/v3/index.json
