@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Disbott.Controllers
 {
@@ -16,10 +12,7 @@ namespace Disbott.Controllers
             {
                 return "Heads";
             }
-            else
-            {
-                return "Tails";
-            }
+            return "Tails";
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Configuration;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
-using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
 using LiteDB;
 using System.Linq;

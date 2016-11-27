@@ -1,7 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Threading.Tasks;
-using Discord;
+
 using Discord.Commands;
 using System.Text.RegularExpressions;
 using Disbott.Models.Objects;

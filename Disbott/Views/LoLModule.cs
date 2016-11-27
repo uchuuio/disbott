@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Configuration;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 using LiteDB;
 using RiotSharp;
-
-using Discord;
 using Discord.Commands;
 using Disbott.Models.Objects;
 using Tweetinvi.Core.Extensions;

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Configuration;
-using System.ComponentModel;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 using Tweetinvi;
 
-using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
 using Tweetinvi.Models;
 

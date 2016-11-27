@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Disbott.Views;
-using Disbott.Models.Objects;
+﻿using Disbott.Models.Objects;
 using Discord;
 
 namespace Disbott.Controllers

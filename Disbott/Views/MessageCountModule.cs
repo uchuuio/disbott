@@ -1,13 +1,10 @@
-﻿using System;
-using System.Configuration;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 using LiteDB;
 
 using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
 
 namespace Disbott.Views

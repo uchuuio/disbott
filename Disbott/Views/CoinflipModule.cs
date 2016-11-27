@@ -1,11 +1,6 @@
-﻿using System;
-using System.Configuration;
-using System.ComponentModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Disbott.Controllers;
 
-using Discord;
-using Discord.WebSocket;
 using Discord.Commands;
 
 namespace Disbott.Views
