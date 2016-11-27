@@ -1,150 +1,34 @@
-# Notes:
-#   - Minimal appveyor.yml file is an empty file. All sections are optional.
-#   - Indent each level of configuration with 2 spaces. Do not use tabs!
-#   - All section names are case-sensitive.
-#   - Section names should be unique on each level.
-
-#---------------------------------#
-#      general configuration      #
-#---------------------------------#
-
-# version format
 version: 3.0.0.{build}
-
-# you can use {branch} name in version format too
-# version: 1.0.{build}-{branch}
-
-# branches to build
 branches:
-  # whitelist
   only:
-    - 'c#'
-
-# Maximum number of concurrent jobs for the project
-max_jobs: 1
-
-#---------------------------------#
-#    environment configuration    #
-#---------------------------------#
-
-# Build worker image (VM template)
-image: Visual Studio 2015
-
-# scripts that are called at very beginning, before repo cloning
-init:
-  - git config --global core.autocrlf input
-
-# clone directory
-clone_folder: c:\projects\disbott
-
-# fetch repository as zip archive
-shallow_clone: false                 # default is "false"
-
-# set clone depth
-clone_depth: 5                      # clone entire repository history if not defined
-
-# environment:
-#  global:
-#    connection_string: server=12;password=13;
-#    service_url: https://127.0.0.1:8090
-#
-#  matrix:
-#  - db: mysql
-#    provider: mysql
-#
-#  - db: mssql
-#    provider: mssql
-#    password:
-#      secure: $#(JFDA)jQ@#$
-
-# this is how to allow failing jobs in the matrix
-matrix:
-  fast_finish: true     # set this flag to immediately finish build once one of the jobs fails.
-
-# build cache to preserve files/folders between builds
-cache:
-  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
-  - projectA\libs
-  - node_modules                    # local npm modules
-  - '%LocalAppData%\NuGet\Cache'
-
-# enable service required for build/tests
-services:
-  - iis                 # start IIS
-
-# scripts that run after cloning repository
-install:
-
-# enable patching of AssemblyInfo.* files
-assembly_info:
-  patch: true
-  file: AssemblyInfo.*
-  assembly_version: "2.2.{build}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version}"
-
-#---------------------------------#
-#       build configuration       #
-#---------------------------------#
-
-# build platform, i.e. x86, x64, Any CPU. This setting is optional.
-platform: Any CPU
-
-# to add several platforms to build matrix:
-#platform:
-#  - x86
-#  - Any CPU
-
-# build Configuration, i.e. Debug, Release, etc.
+  - c#
 configuration: Release
-
-# to add several configurations to build matrix:
-#configuration:
-#  - Debug
-#  - Release
-
+environment:
+  domain: https://disbott.pagu.co
+  twitter_consumer_key:
+    secure: WnxCl2HFwfnOmN+pOapi1i25e0q1+tVzPBitq9VvU1s=
+  twitter_consumer_secret:
+    secure: W8JFdizZxrqxf2n+SEXe605E2EjBwxL1yvLVnOcN42WvRDoXeqHf8anav5imKBYB+lsRQa2QEaZBdA4vS6Yj9w==
+  twitter_access_token:
+    secure: QfdOz1/3t0fWgwp0hIVT2dPXaOS6umHilOTKw9fZXkax1C8R4Bo2Ki79TUMLemDn2+KOcVL2OUFQjmCALFPdpg==
+  twitter_access_token_secret:
+    secure: mjwAfKwJMEQYdyf6erkVfTi4fdkwAV2WU3XaDa9T9bZjuCy2ajuIIcYaNLB6Q+Xo
+  lol_api_key:
+    secure: /jcw3Qe1zuG6GWOYsRV9546M75ObTD8DpjWLRwb2pMPTX1Nb7gqlr2gwFLLTx21T
+  token:
+    secure: T0H81y6AaiLN1ZVJk1VbiEyHo95GllrkGaQSXsk1sBEOsS5iEXA3y8O/tG74XQYONI9cQVH0GaVuKasyxBea5Q==
 build:
-  parallel: true                  # enable MSBuild parallel builds
-#  project: MyTestAzureCS.sln      # path to Visual Studio solution or project
-#  publish_wap: true               # package Web Application Projects (WAP) for Web Deploy
-#  publish_wap_xcopy: true         # package Web Application Projects (WAP) for XCopy deployment
-#  publish_azure: true             # package Azure Cloud Service projects and push to artifacts
-#  publish_nuget: true             # package projects with .nuspec files and push to artifacts
-#  publish_nuget_symbols: true     # generate and publish NuGet symbol packages
-#  include_nuget_references: true  # add -IncludeReferencedProjects option while packaging NuGet artifacts
-
-  # MSBuild verbosity level
-  verbosity: normal
-
-
-# scripts to run before build
-before_build:
-  - nuget sources add -Name DiscordNet -Source https://www.myget.org/F/discord-net/api/v3/index.json
-  - nuget restore
-
-# scripts to run *after* solution is built and *before* automatic packaging occurs (web apps, NuGet packages, Azure Cloud Services)
-before_package:
-
-# scripts to run after build
-after_build:
-
-# to run your custom scripts instead of automatic MSBuild
-build_script:
-
-# to disable automatic builds
-#build: off
-
-#---------------------------------#
-#       tests configuration       #
-#---------------------------------#
-
-# disable automatic tests
-test: off
-
-
-#---------------------------------#
-#     deployment configuration    #
-#---------------------------------#
-
-# disable deployment
-deploy: off
+  publish_wap: true
+  verbosity: minimal
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
+  prerelease: true
+  force_update: false
+- provider: AzureWebJob
+  website: disbott
+  username: $disbott
+  password:
+    secure: kAh3PlrZEjybpv2ZRsNu7CWk3VJkr2pl1P3jno+62m7kfQQT2Gh3N4RhhCexolxQjiomzMey/QVp5PfmK1NIYw==
+  manually_triggered: true
