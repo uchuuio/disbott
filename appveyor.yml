@@ -33,6 +33,7 @@ deploy:
 - provider: GitHub
   auth_token:
     secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
+  draft: true
   prerelease: true
   force_update: false
 - provider: AzureWebJob
