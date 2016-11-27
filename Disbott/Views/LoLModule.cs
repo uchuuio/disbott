@@ -14,8 +14,8 @@ using Tweetinvi.Core.Extensions;
 
 namespace Disbott.Views
 {
-    [Module]
-    public class LoLCommand
+    [Name("LoL")]
+    public class LoLModule : ModuleBase
     {
         public static dynamic GetSummonerData(string summonerName)
         {
@@ -28,7 +28,7 @@ namespace Disbott.Views
             return api.GetSummoner(Region.euw, summonerName);
         }
 
-        public static string getRankedStats(dynamic summonerApi)
+        public static string GetRankedStats(dynamic summonerApi)
         {
             var message = "The Ranked Stats for " + summonerApi.Name + " are as follows:\r\n";
 
@@ -71,7 +71,7 @@ namespace Disbott.Views
             return message;
         }
 
-        public static string getCurrentGame(dynamic summonerApi)
+        public static string GetCurrentGame(dynamic summonerApi)
         {
             var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
             var currentGameData = api.GetCurrentGame((Platform) Region.euw, summonerApi.Id);
@@ -82,9 +82,11 @@ namespace Disbott.Views
             return "current";
         }
 
-        [Command("set-summoner"), Description("Links the specified summoner to your discord account")]
-        public async Task SetSummoner(IUserMessage msg, [Summary("Summoner name")] string summonerName)
+        [Command("set-summoner")]
+        [Remarks("Links the specified summoner to your discord account")]
+        public async Task SetSummoner([Summary("Summoner name")] string summonerName)
         {
+            var msg = Context.Message;
             try
             {
                 var summonerDetails = GetSummonerData(summonerName);
@@ -112,23 +114,27 @@ namespace Disbott.Views
                     }
                 }
 
-                await msg.Channel.SendMessageAsync("You have now linked " + summonerName + " to your Discord Account");
+                await ReplyAsync("You have now linked " + summonerName + " to your Discord Account");
             }
             catch (RiotSharpException ex)
             {
                 // Handle the exception however you want.
+                Console.WriteLine(ex);
             }
         }
 
-        [Command("ranked"), Description("Gets the ranked stats for yourself or another discord/league account")]
-        public Task Ranked(IUserMessage msg)
+        [Command("ranked")]
+        [Remarks("Gets the ranked stats for yourself or another discord/league account")]
+        public Task Ranked()
         {
-            return Ranked(msg, null);
+            return Ranked(null);
         }
 
-        [Command("ranked"), Description("Gets the ranked stats for yourself or another discord/league account")]
-        public async Task Ranked(IUserMessage msg, [Summary("Summoner name")] string summonerName)
+        [Command("ranked")]
+        [Remarks("Gets the ranked stats for yourself or another discord/league account")]
+        public async Task Ranked([Summary("Summoner name")] string summonerName)
         {
+            var msg = Context.Message;
             if (summonerName.IsNullOrEmpty())
             {
                 using (var db = new LiteDatabase(@"LoL.db"))
@@ -140,27 +146,30 @@ namespace Disbott.Views
                     var discordSummoner = loLSummoners[0];
 
                     var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
-                    var message = getRankedStats(summonerApi);
-                    await msg.Channel.SendMessageAsync(message);
+                    var message = GetRankedStats(summonerApi);
+                    await ReplyAsync(message);
                 }
             }
             else
             {
                 var summonerApi = GetSummonerData(summonerName);
-                var message = getRankedStats(summonerApi);
-                await msg.Channel.SendMessageAsync(message);
+                var message = GetRankedStats(summonerApi);
+                await ReplyAsync(message);
             }
         }
 
-        [Command("current-game"), Description("Gets the current game for yourself or another discord/league account")]
-        public Task CurrentGame(IUserMessage msg)
+        [Command("current-game")]
+        [Remarks("Gets the current game for yourself or another discord/league account")]
+        public Task CurrentGame()
         {
-            return CurrentGame(msg, null);
+            return CurrentGame(null);
         }
 
-        [Command("current-game"), Description("Gets the current game for yourself or another discord/league account")]
-        public async Task CurrentGame(IUserMessage msg, [Summary("Summoner name")] string summonerName)
+        [Command("current-game")]
+        [Remarks("Gets the current game for yourself or another discord/league account")]
+        public async Task CurrentGame([Summary("Summoner name")] string summonerName)
         {
+            var msg = Context.Message;
             if (summonerName.IsNullOrEmpty())
             {
                 using (var db = new LiteDatabase(@"LoL.db"))
@@ -172,15 +181,15 @@ namespace Disbott.Views
                     var discordSummoner = loLSummoners[0];
 
                     var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
-                    var message = getCurrentGame(summonerApi);
-                    await msg.Channel.SendMessageAsync(message);
+                    var message = GetCurrentGame(summonerApi);
+                    await ReplyAsync(message);
                 }
             }
             else
             {
                 var summonerApi = GetSummonerData(summonerName);
-                var message = getCurrentGame(summonerApi);
-                await msg.Channel.SendMessageAsync(message);
+                var message = GetCurrentGame(summonerApi);
+                await ReplyAsync(message);
             }
         }
     }

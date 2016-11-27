@@ -10,22 +10,22 @@ namespace Disbott
 {
     public class Program
     {
-        private CommandService commands;
-        private DiscordSocketClient client;
+        private CommandService _commands;
+        private DiscordSocketClient _client;
 
         private static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
 
         public async Task Start()
         {
-            client = new DiscordSocketClient();
-            commands = new CommandService();
+            _client = new DiscordSocketClient();
+            _commands = new CommandService();
 
             var token = ConfigurationManager.AppSettings["token"];
 
             await InstallCommands();
 
-            await client.LoginAsync(TokenType.Bot, token);
-            await client.ConnectAsync();
+            await _client.LoginAsync(TokenType.Bot, token);
+            await _client.ConnectAsync();
 
             await ModifyStatus();
 
@@ -34,43 +34,40 @@ namespace Disbott
 
         public async Task ModifyStatus()
         {
-            await (await client.GetCurrentUserAsync()).ModifyStatusAsync(x =>
-            {
-                var username = client.GetCurrentUser().Username;
-                x.Status = UserStatus.Idle;
-                x.Game = new Game("'@" + username + " about' for commands");
-            });
+            var username = _client.CurrentUser.Username;
+            await _client.SetStatus(UserStatus.Idle);
+            await _client.SetGame($"\'@{username} about\' for commands");
         }
 
         public async Task InstallCommands()
         {
             // Hook the MessageReceived Event into our Command Handler
-            client.MessageReceived += HandleCommand;
+            _client.MessageReceived += HandleCommand;
             // Discover all of the commands in this assembly and load them.
-            await commands.LoadAssembly(Assembly.GetEntryAssembly());
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
         }
-
-        public async Task HandleCommand(IMessage paramMessage)
+        public async Task HandleCommand(SocketMessage messageParam)
         {
-            // Cast paramMessage to an IUserMessage, return if the message was a System message.
-            var msg = paramMessage as IUserMessage;
-            if (msg == null) return;
-            // Internal integer, marks where the command begins
+            // Don't process the command if it was a System Message
+            var message = messageParam as SocketUserMessage;
+            if (message == null) return;
+            // Create a number to track where the prefix ends and the command begins
             int argPos = 0;
-            // Get the current user (used for Mention parsing)
-            var currentUser = await client.GetCurrentUserAsync();
-            // Determine if the message is a command, based on if it contains a mention prefix
-            if (msg.HasMentionPrefix(currentUser, ref argPos))
+            // Determine if the message is a command, based on if it starts with '!' or a mention prefix
+            if (message.HasMentionPrefix(_client.CurrentUser, ref argPos))
             {
+                // Create a Command Context
+                var context = new CommandContext(_client, message);
                 // Execute the command. (result does not indicate a return value, 
                 // rather an object stating if the command executed succesfully)
-                var result = await commands.Execute(msg, argPos);
+                var result = await _commands.ExecuteAsync(context, argPos);
                 if (!result.IsSuccess)
-                    await msg.Channel.SendMessageAsync(result.ErrorReason);
+                    await message.Channel.SendMessageAsync(result.ErrorReason);
             }
 
             // MessageCount Record
-            MessageCountCommand.MessageRecord(msg);
+            MessageCountModule.MessageRecord(message);
         }
+
     }
 }

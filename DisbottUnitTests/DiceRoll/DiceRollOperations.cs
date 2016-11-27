@@ -13,33 +13,33 @@ namespace DisbottUnitTests
         [TestMethod]
         public void Can_Validate_Dice_Roll_Passes()
         {
-            var validated = Roll.ValidateDiceRoll("1d20");
+            var validated = RollController.ValidateDiceRoll("1d20");
             Assert.IsTrue(validated.Success);
 
-            var validated_cake = Roll.ValidateDiceRoll("Cake");
+            var validated_cake = RollController.ValidateDiceRoll("Cake");
             Assert.IsFalse(validated_cake.Success);
 
-            var validated_null = Roll.ValidateDiceRoll("");
+            var validated_null = RollController.ValidateDiceRoll("");
             Assert.IsFalse(validated_null.Success);
         }
 
         [TestMethod]
         public void Can_Get_Number_Of_Dice()
         {
-            var numberOfDice_below10 = Roll.GetNumberOfDice("1d20");
+            var numberOfDice_below10 = RollController.GetNumberOfDice("1d20");
             Assert.IsTrue(Convert.ToInt32(numberOfDice_below10.Value) == 1);
 
-            var numberOfDice_above10 = Roll.GetNumberOfDice("20d20");
+            var numberOfDice_above10 = RollController.GetNumberOfDice("20d20");
             Assert.IsTrue(Convert.ToInt32(numberOfDice_above10.Value) == 20);
         }
 
         [TestMethod]
         public void Can_Get_Number_Of_Sides()
         {
-            var numberOfSides_below10 = Roll.GetNumberOfSides("1d2");
+            var numberOfSides_below10 = RollController.GetNumberOfSides("1d2");
             Assert.IsTrue(Convert.ToInt32(numberOfSides_below10.Value) == 2);
 
-            var numberOfSides_above10 = Roll.GetNumberOfSides("10d20");
+            var numberOfSides_above10 = RollController.GetNumberOfSides("10d20");
             Assert.IsTrue(Convert.ToInt32(numberOfSides_above10.Value) == 20);
         }
 

@@ -11,11 +11,12 @@ using Disbott.Models.Objects;
 
 namespace Disbott.Views
 {
-    [Module]
-    public class GiphyCommand
+    [Name("Giphy")]
+    public class GiphyModule : ModuleBase
     {
-        [Command("giphy"), Description("Gets a random gif")]
-        public async Task giphy(IUserMessage msg, string search = null)
+        [Command("giphy")]
+        [Remarks("Gets a random gif")]
+        public async Task Giphy([Remainder]string search = null)
         {
             HttpClient client = new HttpClient();
 
@@ -34,7 +35,7 @@ namespace Disbott.Views
 
             var value = gif.data["image_url"];
 
-            await msg.Channel.SendMessageAsync(value);
+            await ReplyAsync(value);
         }
     }
 }

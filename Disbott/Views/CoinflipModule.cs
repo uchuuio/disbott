@@ -10,14 +10,15 @@ using Discord.Commands;
 
 namespace Disbott.Views
 {
-    [Module]
-    public class CoinflipCommand
+    [Name("Coinflip")]
+    public class CoinflipModule : ModuleBase
     {
-        [Command("flip"), Description("Flips a coin!")]
-        public async Task flip(IUserMessage msg)
+        [Command("flip")]
+        [Remarks("Flips a coin!")]
+        public async Task Flip()
         {
-            string result = CoinFlip.Flip();
-            await msg.Channel.SendMessageAsync(result);
+            string result = CoinFlipController.Flip();
+            await ReplyAsync(result);
         }
     }
 }

@@ -17,9 +17,18 @@ environment:
     secure: /jcw3Qe1zuG6GWOYsRV9546M75ObTD8DpjWLRwb2pMPTX1Nb7gqlr2gwFLLTx21T
   token:
     secure: T0H81y6AaiLN1ZVJk1VbiEyHo95GllrkGaQSXsk1sBEOsS5iEXA3y8O/tG74XQYONI9cQVH0GaVuKasyxBea5Q==
+before_build:
+- cmd: >-
+    nuget sources add -Name DiscordNet -Source https://www.myget.org/F/discord-net/api/v3/index.json
+
+    nuget restore
 build:
   publish_wap: true
   verbosity: minimal
+artifacts:
+- path: bin
+  name: azure
+  type: WebDeployPackage
 deploy:
 - provider: GitHub
   auth_token:

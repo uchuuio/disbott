@@ -9,7 +9,7 @@ using Discord;
 
 namespace Disbott.Controllers
 {
-    public class Poll
+    public class PollController
     {
         Polls currentPoll = new Polls()
         {

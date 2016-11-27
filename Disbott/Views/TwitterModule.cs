@@ -14,8 +14,8 @@ using Tweetinvi.Models;
 
 namespace Disbott.Views
 {
-    [Module]
-    public class TwitterCommand
+    [Name("Twitter")]
+    public class TwitterModule : ModuleBase
     {
         public void Authenticate()
         {
@@ -27,51 +27,55 @@ namespace Disbott.Views
             );
         }
 
-        [Command("headline"), Description("Gets the latest tweet from The Guardian's Twitter Account")]
-        public async Task Headline(IUserMessage msg)
+        [Command("headline")]
+        [Remarks("Gets the latest tweet from The Guardian's Twitter Account")]
+        public async Task Headline()
         {
-            this.Authenticate();
+            Authenticate();
             var userTweets = Timeline.GetUserTimeline("guardian", 1);
             var tweets = userTweets as ITweet[] ?? userTweets.ToArray();
             var tweetMsg = tweets[0].FullText;
 
-            await msg.Channel.SendMessageAsync(tweetMsg);
+            await ReplyAsync(tweetMsg);
         }
 
-        [Command("mirin"), Description("Gets the latest tweet from Mirin Furukawa's Twitter Account")]
-        public async Task Mirin(IUserMessage msg)
+        [Command("mirin")]
+        [Remarks("Gets the latest tweet from Mirin Furukawa's Twitter Account")]
+        public async Task Mirin()
         {
-            this.Authenticate();
+            Authenticate();
             var userTweets = Timeline.GetUserTimeline("furukawamirin", 1);
             var tweets = userTweets as ITweet[] ?? userTweets.ToArray();
             var tweetMsg = tweets[0].FullText;
 
-            await msg.Channel.SendMessageAsync(tweetMsg);
+            await ReplyAsync(tweetMsg);
         }
 
-        [Command("gumi"), Description("Gets the latest tweet from Nanase Gumi's Twitter Account")]
-        public async Task Gumi(IUserMessage msg)
+        [Command("gumi")]
+        [Remarks("Gets the latest tweet from Nanase Gumi's Twitter Account")]
+        public async Task Gumi()
         {
-            this.Authenticate();
+            Authenticate();
             var userTweets = Timeline.GetUserTimeline("gumi_nanase", 1);
             var tweets = userTweets as ITweet[] ?? userTweets.ToArray();
             var tweetMsg = tweets[0].FullText;
 
-            await msg.Channel.SendMessageAsync(tweetMsg);
+            await ReplyAsync(tweetMsg);
         }
 
-        [Command("gazo"), Description("NSFW, gets a random image from @idol_gazo twitter account")]
-        public async Task Gazo(IUserMessage msg)
+        [Command("gazo")]
+        [Remarks("NSFW, gets a random image from @idol_gazo twitter account")]
+        public async Task Gazo()
         {
             Random rnd = new Random();
-            this.Authenticate();
+            Authenticate();
 
             var userTweets = Timeline.GetUserTimeline("idol_gazo");
             var tweets = userTweets as ITweet[] ?? userTweets.ToArray();
             var selectedTweetNumber = rnd.Next(0, 39);
             var tweetMsg = tweets[selectedTweetNumber].FullText;
 
-            await msg.Channel.SendMessageAsync(tweetMsg);
+            await ReplyAsync(tweetMsg);
         }
     }
 }

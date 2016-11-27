@@ -18,8 +18,8 @@ namespace Disbott.Views
         public ulong Messages { get; set; }
     }
 
-    [Module]
-    public class MessageCountCommand
+    [Name("Message Count")]
+    public class MessageCountModule : ModuleBase
     {
         [Description("Adds message to the user's total message count")]
         public static void MessageRecord(IUserMessage msg)
@@ -52,9 +52,11 @@ namespace Disbott.Views
             }
         }
 
-        [Command("message-count"), Description("Displays Current Message Count for Current or Another Discord User")]
-        public async Task Messagecount(IUserMessage msg)
+        [Command("message-count")]
+        [Remarks("Displays Current Message Count for Current or Another Discord User")]
+        public async Task Messagecount()
         {
+            var msg = Context.Message;
             using (var db = new LiteDatabase(@"MessageCount.db"))
             {
                 var totalMessages = db.GetCollection<MessageCountSchema>("totalmessages");
@@ -64,13 +66,12 @@ namespace Disbott.Views
                 if (users.Any())
                 {
                     var user = users[0];
-                    await msg.Channel.SendMessageAsync(MentionUtils.MentionUser(user.Id) + " has posted " + user.Messages + " messages");
+                    await ReplyAsync(MentionUtils.MentionUser(user.Id) + " has posted " + user.Messages + " messages");
                 }
                 else
                 {
-                    await msg.Channel.SendMessageAsync("wow this user has posted no messages, incredible lurking");
+                    await ReplyAsync("wow this user has posted no messages, incredible lurking");
                 }
-
             }
         }
     }

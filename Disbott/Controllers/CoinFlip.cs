@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Disbott.Controllers
 {
-    public static class CoinFlip
+    public static class CoinFlipController
     {
         public static string Flip()
         {

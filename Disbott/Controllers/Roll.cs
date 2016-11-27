@@ -6,7 +6,7 @@ using Disbott.Models.Objects;
 
 namespace Disbott.Controllers
 {
-    public static class Roll
+    public static class RollController
     {
         // Method to Validat the dice roll
         public static Match ValidateDiceRoll(string userInput)
