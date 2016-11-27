@@ -15,10 +15,10 @@ namespace Disbott.Views
         public void Authenticate()
         {
             Auth.SetUserCredentials(
-                ConfigurationManager.AppSettings["twitter_consumer_key"],
-                ConfigurationManager.AppSettings["twitter_consumer_secret"],
-                ConfigurationManager.AppSettings["twitter_access_token"],
-                ConfigurationManager.AppSettings["twitter_access_token_secret"]
+                Environment.GetEnvironmentVariable("twitter_consumer_key", EnvironmentVariableTarget.Machine),
+                Environment.GetEnvironmentVariable("twitter_consumer_secret", EnvironmentVariableTarget.Machine),
+                Environment.GetEnvironmentVariable("twitter_access_token", EnvironmentVariableTarget.Machine),
+                Environment.GetEnvironmentVariable("twitter_access_token_secret", EnvironmentVariableTarget.Machine)
             );
         }
 

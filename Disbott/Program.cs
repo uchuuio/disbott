@@ -20,7 +20,7 @@ namespace Disbott
             _client = new DiscordSocketClient();
             _commands = new CommandService();
 
-            var token = ConfigurationManager.AppSettings["token"];
+            var token = Environment.GetEnvironmentVariable("token", EnvironmentVariableTarget.Machine);
 
             await InstallCommands();
 

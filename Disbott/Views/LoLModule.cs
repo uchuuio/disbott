@@ -16,7 +16,7 @@ namespace Disbott.Views
         public static dynamic GetSummonerData(string summonerName)
         {
             int summonerId;
-            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
+            var api = RiotApi.GetInstance(Environment.GetEnvironmentVariable("lol_api_key", EnvironmentVariableTarget.Machine));
             if (int.TryParse(summonerName, out summonerId))
             {
                 return api.GetSummoner(Region.euw, summonerId);
@@ -69,7 +69,7 @@ namespace Disbott.Views
 
         public static string GetCurrentGame(dynamic summonerApi)
         {
-            var api = RiotApi.GetInstance(ConfigurationManager.AppSettings["lol_api_key"]);
+            var api = RiotApi.GetInstance(Environment.GetEnvironmentVariable("lol_api_key", EnvironmentVariableTarget.Machine));
             var currentGameData = api.GetCurrentGame((Platform) Region.euw, summonerApi.Id);
 
             Console.WriteLine(currentGameData);
