@@ -33,7 +33,7 @@ deploy:
 - provider: GitHub
   auth_token:
     secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
-  artifact: Disbott\bin\Release
+  artifact: azure
   prerelease: true
   force_update: false
 - provider: AzureWebJob
@@ -41,5 +41,5 @@ deploy:
   username: $disbott
   password:
     secure: kAh3PlrZEjybpv2ZRsNu7CWk3VJkr2pl1P3jno+62m7kfQQT2Gh3N4RhhCexolxQjiomzMey/QVp5PfmK1NIYw==
-  artifact: Disbott\bin\Release
+  artifact: azure
   manually_triggered: true
