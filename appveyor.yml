@@ -24,6 +24,7 @@ before_build:
 
     nuget restore
 build:
+  project: Disbott.sln
   publish_wap: true
   verbosity: minimal
 artifacts:
@@ -36,6 +37,7 @@ deploy:
   draft: true
   prerelease: true
   force_update: false
+  artifact: 
 - provider: AzureWebJob
   website: disbott
   username: $disbott
