@@ -30,8 +30,14 @@ namespace Disbott.Views
         [Remarks("Tells user the current Disbott info")]
         public async Task Info()
         {
-            await
-                ReplyAsync("Disbott C# Edition, Version 3.0.0-alpha.2 -- https://github.com/tomopagu/disbott/tree/c%23");
+            #if DEBUG
+                await
+                    ReplyAsync("Disbott C# Edition, Dev Version -- https://github.com/paguco/disbott/");
+            #else
+                // Ideally this should get the deployed version number and release url from github
+                await
+                    ReplyAsync("Disbott C# Edition, Version 3.0.0 -- https://github.com/tomopagu/disbott/");
+            #endif
         }
 
         [Command("Kill")]
