@@ -199,5 +199,6 @@ ModelManifest.xml
 .fake/
 # Typings Folder
 typings/
+
 .env
-/test-env.txt
+variables.env

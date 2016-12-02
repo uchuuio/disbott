@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Reflection;
-using Disbott.Views;
+
 using Discord;
 using Discord.WebSocket;
 using Discord.Commands;
+
+using Disbott.Views;
 
 namespace Disbott
 {
@@ -20,7 +24,16 @@ namespace Disbott
             _client = new DiscordSocketClient();
             _commands = new CommandService();
 
-            var token = Environment.GetEnvironmentVariable("token", EnvironmentVariableTarget.Machine);
+            #if DEBUG
+            var envpath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/../variables.env";
+            if (File.Exists(envpath))
+            {
+                Dictionary<string, string> variables = DotEnvFile.DotEnvFile.LoadFile(envpath);
+                DotEnvFile.DotEnvFile.InjectIntoEnvironment(variables);
+            }
+            #endif
+
+            var token = Environment.GetEnvironmentVariable("token");
 
             await InstallCommands();
 
