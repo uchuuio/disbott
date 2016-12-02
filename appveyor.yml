@@ -1,0 +1,47 @@
+version: 3.0.0.{build}
+branches:
+  only:
+  - c#
+skip_tags: true
+configuration: Release
+environment:
+  domain: https://disbott.pagu.co
+  twitter_consumer_key:
+    secure: WnxCl2HFwfnOmN+pOapi1i25e0q1+tVzPBitq9VvU1s=
+  twitter_consumer_secret:
+    secure: W8JFdizZxrqxf2n+SEXe605E2EjBwxL1yvLVnOcN42WvRDoXeqHf8anav5imKBYB+lsRQa2QEaZBdA4vS6Yj9w==
+  twitter_access_token:
+    secure: QfdOz1/3t0fWgwp0hIVT2dPXaOS6umHilOTKw9fZXkax1C8R4Bo2Ki79TUMLemDn2+KOcVL2OUFQjmCALFPdpg==
+  twitter_access_token_secret:
+    secure: mjwAfKwJMEQYdyf6erkVfTi4fdkwAV2WU3XaDa9T9bZjuCy2ajuIIcYaNLB6Q+Xo
+  lol_api_key:
+    secure: /jcw3Qe1zuG6GWOYsRV9546M75ObTD8DpjWLRwb2pMPTX1Nb7gqlr2gwFLLTx21T
+  token:
+    secure: T0H81y6AaiLN1ZVJk1VbiKFvtbgoAON2T35ptv5ya0porgMLKL0LKU2pEYrgJpvh4RXdOZDteG16tIZ97yjVNQ==
+before_build:
+- cmd: >-
+    nuget sources add -Name DiscordNet -Source https://www.myget.org/F/discord-net/api/v3/index.json
+
+    nuget restore
+build:
+  project: Disbott.sln
+  publish_wap: true
+  verbosity: minimal
+artifacts:
+- path: Disbott\bin\Release
+  name: azure
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
+  draft: true
+  prerelease: true
+  force_update: false
+  artifact: 
+- provider: AzureWebJob
+  website: disbott
+  username: $disbott
+  password:
+    secure: kAh3PlrZEjybpv2ZRsNu7CWk3VJkr2pl1P3jno+62m7kfQQT2Gh3N4RhhCexolxQjiomzMey/QVp5PfmK1NIYw==
+  artifact: azure
+  manually_triggered: true
