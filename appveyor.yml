@@ -1,7 +1,7 @@
 version: 3.0.0.{build}
 branches:
   only:
-  - c#
+  - master
 skip_tags: true
 configuration: Release
 environment:
@@ -30,14 +30,17 @@ build:
 artifacts:
 - path: Disbott\bin\Release
   name: azure
+- path: Disbott\bin\Release\Disbott.exe
+  name: github
 deploy:
 - provider: GitHub
+  release: v$(appveyor_build_version)
   auth_token:
     secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
+  artifact: github
   draft: true
   prerelease: true
   force_update: false
-  artifact: 
 - provider: AzureWebJob
   website: disbott
   username: $disbott
