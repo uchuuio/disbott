@@ -12,10 +12,10 @@ namespace DisbottUnitTests
     public class DiceRollOperations
     {
         /// <summary>
-        /// Validate that dices can roll
+        /// Validate the dice input is valid
         /// </summary>
         [Test]
-        public void Can_Validate_Dice_Roll_Passes()
+        public void Can_Validate_Dice_Roll_Input()
         {
             var validated = RollController.ValidateDiceRoll("1d20");
             Assert.IsTrue(validated.Success);
@@ -51,6 +51,21 @@ namespace DisbottUnitTests
 
             var numberOfSides_above10 = RollController.GetNumberOfSides("10d20");
             Assert.IsTrue(Convert.ToInt32(numberOfSides_above10.Value) == 20);
+        }
+
+        /// <summary>
+        /// Validate dices can roll
+        /// </summary>
+        [Test]
+        public void Can_Dice_Roll()
+        {
+            var numberOfDice = 1;
+            var numberOfSides = 6;
+            var result = RollController.Rolling(numberOfDice, numberOfSides);
+
+            Assert.That(result.Results.Length, Is.EqualTo(1));
+            Assert.That(result.Total, Is.GreaterThanOrEqualTo(1));
+            Assert.That(result.Total, Is.LessThanOrEqualTo(6));
         }
     }
 }

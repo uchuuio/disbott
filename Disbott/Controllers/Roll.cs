@@ -83,8 +83,6 @@ namespace Disbott.Controllers
             DiceResults Results = new DiceResults(rolls, total);
 
             return Results;
-            
-            
         }
     }
 }
