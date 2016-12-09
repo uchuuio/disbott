@@ -270,6 +270,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Quotes.cs" />
     <Compile Include="Controllers\Twitter.cs" />
     <Compile Include="Controllers\LoL.cs" />
     <Compile Include="Controllers\CoinFlip.cs" />

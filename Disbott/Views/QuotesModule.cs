@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Discord.Commands;
 using LiteDB;
 using System.Linq;
+using Disbott.Controllers;
 using Disbott.Models.Objects;
 
 namespace Disbott.Views
@@ -15,62 +16,44 @@ namespace Disbott.Views
         [Remarks("adds a new quote")]
         public async Task AddQuote(string name, [Remainder]string newquote)
         {
-            using (var db = new LiteDatabase(@"Quotes.db"))
+            var addQuote = QuotesController.AddQuoteMethod(name, newquote);
+
+            if (addQuote)
             {
-                var quotes = db.GetCollection<Quote>("quotes");
-
-                var newQuote = new Quote
-                {
-                    Name = name,
-                    Quotes = newquote
-                };
-
-                quotes.Insert(newQuote);
+                await ReplyAsync($"Added quote for {name} saying, {newquote}", true);
             }
-
-            await ReplyAsync($"Added quote for {name} saying, {newquote}", true);
+            else
+            {
+                await ReplyAsync("Could not add quote");
+            }
         }
 
         [Command("quote")]
         [Remarks("Gets a quote from a person")]
         public async Task Quote(string name)
         {
-            using (var db = new LiteDatabase(@"Quotes.db"))
+            var quoteTuple = QuotesController.GetQuoteMethod(name);
+
+            if (quoteTuple.Item2 == null)
             {
-                var quotes = db.GetCollection<Quote>("quotes");
-
-                var result = quotes.Find(x => x.Name.Equals(name));
-
-                var userquotes = result as Quote[] ?? result.ToArray();
-
-                int totalUserQuotes = userquotes.Length;
-
-                if (totalUserQuotes == 0)
-                {
-                    await ReplyAsync("This person has no quotes");
-                }
-                else
-                {
-                    Random rand = new Random();
-                    int randIndex = rand.Next(1, (totalUserQuotes + 1));
-                    int convertedRandIndex = randIndex - 1;
-
-                    await ReplyAsync($"{name} said {userquotes[convertedRandIndex].Quotes}", true);
-                }
+                await ReplyAsync("This person has no quotes");
             }
+
+            await ReplyAsync($"{quoteTuple.Item1} said {quoteTuple.Item2}", true);
         }
 
         [Command("deletequote")]
         [Remarks("Removes quote from a person")]
         public async Task DeleteQuote([Remainder]string quote)
         {
-            using (var db = new LiteDatabase(@"Quotes.db"))
+            var result = QuotesController.DeleteQuoteMethod(quote);
+            if (result)
             {
-                var quotes = db.GetCollection<Quote>("quotes");
-
-                quotes.Delete(x => x.Quotes.Equals(quote));
-
                 await ReplyAsync($"Deleted quote {quote}", true);
+            }
+            else
+            {
+                await ReplyAsync("Could not delete quote");
             }
         }
     }
