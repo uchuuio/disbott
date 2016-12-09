@@ -12,8 +12,10 @@ namespace Disbott.Views
         [Remarks("Flips a coin!")]
         public async Task Flip()
         {
-            string result = CoinFlipController.Flip();
-            await ReplyAsync(result);
+            int result = CoinFlipController.Flip();
+            string stringResult = CoinFlipController.GetString(result);
+
+            await ReplyAsync(stringResult);
         }
     }
 }
