@@ -55,9 +55,8 @@ deploy:
   artifact: azure
   manually_triggered: true
 notifications:
-- provider: Webhook
-  url: https://discordapp.com/api/webhooks/256921709498728448/IMrXREwaISVnoPg_Ckod469Pqh1f1J4ayAFCgQRzJddcsAg58rg2RD-zyJKWu6lHBbN6
-  method: POST
+- provider: Slack
+  incoming_webhook: https://discordapp.com/api/webhooks/256921709498728448/IMrXREwaISVnoPg_Ckod469Pqh1f1J4ayAFCgQRzJddcsAg58rg2RD-zyJKWu6lHBbN6/slack
   on_build_success: true
   on_build_failure: true
   on_build_status_changed: false
