@@ -1,16 +1,20 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Disbott;
-using Disbott.Views;
-using System.Linq;
+using NUnit.Framework;
+
 using Disbott.Controllers;
 
 namespace DisbottUnitTests
 {
-    [TestClass]
+    /// <summary>
+    /// Tests to confirm DiceRolls work as intended
+    /// </summary>
+    [TestFixture]
     public class DiceRollOperations
     {
-        [TestMethod]
+        /// <summary>
+        /// Validate that dices can roll
+        /// </summary>
+        [Test]
         public void Can_Validate_Dice_Roll_Passes()
         {
             var validated = RollController.ValidateDiceRoll("1d20");
@@ -23,7 +27,10 @@ namespace DisbottUnitTests
             Assert.IsFalse(validated_null.Success);
         }
 
-        [TestMethod]
+        /// <summary>
+        /// Validate we can get the number of dice
+        /// </summary>
+        [Test]
         public void Can_Get_Number_Of_Dice()
         {
             var numberOfDice_below10 = RollController.GetNumberOfDice("1d20");
@@ -33,7 +40,10 @@ namespace DisbottUnitTests
             Assert.IsTrue(Convert.ToInt32(numberOfDice_above10.Value) == 20);
         }
 
-        [TestMethod]
+        /// <summary>
+        /// Validate we can get the number of sides
+        /// </summary>
+        [Test]
         public void Can_Get_Number_Of_Sides()
         {
             var numberOfSides_below10 = RollController.GetNumberOfSides("1d2");
@@ -42,15 +52,5 @@ namespace DisbottUnitTests
             var numberOfSides_above10 = RollController.GetNumberOfSides("10d20");
             Assert.IsTrue(Convert.ToInt32(numberOfSides_above10.Value) == 20);
         }
-
-        //[TestMethod]
-        //public void Can_Create_Number_Array()
-        //{
-        //    var array = Roll.Rolling(1, 20);
-        //    Assert.IsTrue(array.Sum() >= 1 && array.Sum() <= 20);
-
-        //    var array2 = Roll.Rolling(20, 10);
-        //    Assert.IsTrue(array2.Sum() > 20 && array2.Sum() < 200);
-        //}
     }
 }
