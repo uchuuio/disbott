@@ -12,14 +12,6 @@ namespace DisbottUnitTests
     public class QuotesOperations
     {
         /// <summary>
-        /// Add a quote to begin with
-        /// </summary>
-        public void SetUp()
-        {
-            QuotesController.AddQuoteMethod("disbott", "this is a test");
-        }
-
-        /// <summary>
         /// Confirms Adding A Quote works
         /// </summary>
         [Test]
@@ -35,6 +27,7 @@ namespace DisbottUnitTests
         [Test]
         public void Get_Quote_Check()
         {
+            QuotesController.AddQuoteMethod("disbott", "this is a test");
             var quoteTuple = QuotesController.GetQuoteMethod("disbott");
 
             Assert.That(quoteTuple.Item1, Is.EqualTo("disbott"));
