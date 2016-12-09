@@ -1,20 +1,15 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
 using LiteDB;
 
 using Discord;
 using Discord.Commands;
 
+using Disbott.Models.Objects;
+
 namespace Disbott.Views
 {
-    public class MessageCountSchema
-    {
-        public ulong Id { get; set; }
-        public ulong Messages { get; set; }
-    }
-
     [Name("Message Count")]
     public class MessageCountModule : ModuleBase
     {

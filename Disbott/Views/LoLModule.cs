@@ -5,79 +5,16 @@ using System.Threading.Tasks;
 using LiteDB;
 using RiotSharp;
 using Discord.Commands;
-using Disbott.Models.Objects;
 using Tweetinvi.Core.Extensions;
+
+using Disbott.Controllers;
+using Disbott.Models.Objects;
 
 namespace Disbott.Views
 {
     [Name("LoL")]
     public class LoLModule : ModuleBase
     {
-        public static dynamic GetSummonerData(string summonerName)
-        {
-            int summonerId;
-            var api = RiotApi.GetInstance(Environment.GetEnvironmentVariable("lol_api_key", EnvironmentVariableTarget.Machine));
-            if (int.TryParse(summonerName, out summonerId))
-            {
-                return api.GetSummoner(Region.euw, summonerId);
-            }
-            return api.GetSummoner(Region.euw, summonerName);
-        }
-
-        public static string GetRankedStats(dynamic summonerApi)
-        {
-            var message = "The Ranked Stats for " + summonerApi.Name + " are as follows:\r\n";
-
-            var rankedLeagueData = summonerApi.GetLeagues();
-            foreach (var league in rankedLeagueData)
-            {
-                if (league.Queue.Equals(RiotSharp.Queue.RankedSolo5x5))
-                {
-                    var tier = league.Tier;
-                    foreach (var leagueEntry in league.Entries)
-                    {
-                        var division = leagueEntry.Division;
-                        var lp = leagueEntry.LeaguePoints + "lp";
-
-                        message += tier + " " + division + " with " +
-                                   lp + "\r\n";
-                    }
-                }
-            }
-
-            var rankedStatsData = summonerApi.GetStatsRanked();
-            foreach (var stats in rankedStatsData)
-            {
-                if (stats.ChampionId.Equals(0))
-                {
-                    double k = stats.Stats.TotalChampionKills;
-                    double d = stats.Stats.TotalDeathsPerSession;
-                    double a = (stats.Stats.TotalAssists / 4);
-                    var ka = k + a;
-                    var kdaVal = ka / d;
-                    var kda = $"{kdaVal:N2}";
-
-                    message += stats.Stats.TotalSessionsWon + " wins & " + stats.Stats.TotalSessionsLost +
-                               " losses\r\n";
-                    message += k + "kills " + d + "deaths " + a + "assists which is a " + kda +
-                               "kda this season";
-                }
-            }
-
-            return message;
-        }
-
-        public static string GetCurrentGame(dynamic summonerApi)
-        {
-            var api = RiotApi.GetInstance(Environment.GetEnvironmentVariable("lol_api_key", EnvironmentVariableTarget.Machine));
-            var currentGameData = api.GetCurrentGame((Platform) Region.euw, summonerApi.Id);
-
-            Console.WriteLine(currentGameData);
-            //var message = summonerApi.Name + " is currently in a game as " + Champion + " and is " + Current Stats + " as of " + time;
-
-            return "current";
-        }
-
         [Command("set-summoner")]
         [Remarks("Links the specified summoner to your discord account")]
         public async Task SetSummoner([Summary("Summoner name")] string summonerName)
@@ -85,7 +22,7 @@ namespace Disbott.Views
             var msg = Context.Message;
             try
             {
-                var summonerDetails = GetSummonerData(summonerName);
+                var summonerDetails = LoLController.GetSummonerData(summonerName);
 
                 using (var db = new LiteDatabase(@"LoL.db"))
                 {
@@ -141,15 +78,15 @@ namespace Disbott.Views
                     var loLSummoners = summoner as LoLSummoner[] ?? summoner.ToArray();
                     var discordSummoner = loLSummoners[0];
 
-                    var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
-                    var message = GetRankedStats(summonerApi);
+                    var summonerApi = LoLController.GetSummonerData(discordSummoner.SummonerID.ToString());
+                    var message = LoLController.GetRankedStats(summonerApi);
                     await ReplyAsync(message);
                 }
             }
             else
             {
-                var summonerApi = GetSummonerData(summonerName);
-                var message = GetRankedStats(summonerApi);
+                var summonerApi = LoLController.GetSummonerData(summonerName);
+                var message = LoLController.GetRankedStats(summonerApi);
                 await ReplyAsync(message);
             }
         }
@@ -176,15 +113,15 @@ namespace Disbott.Views
                     var loLSummoners = summoner as LoLSummoner[] ?? summoner.ToArray();
                     var discordSummoner = loLSummoners[0];
 
-                    var summonerApi = GetSummonerData(discordSummoner.SummonerID.ToString());
-                    var message = GetCurrentGame(summonerApi);
+                    var summonerApi = LoLController.GetSummonerData(discordSummoner.SummonerID.ToString());
+                    var message = LoLController.GetCurrentGame(summonerApi);
                     await ReplyAsync(message);
                 }
             }
             else
             {
-                var summonerApi = GetSummonerData(summonerName);
-                var message = GetCurrentGame(summonerApi);
+                var summonerApi = LoLController.GetSummonerData(summonerName);
+                var message = LoLController.GetCurrentGame(summonerApi);
                 await ReplyAsync(message);
             }
         }
