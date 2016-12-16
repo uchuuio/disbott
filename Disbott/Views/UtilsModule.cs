@@ -45,7 +45,12 @@ namespace Disbott.Views
         [RequireUserPermission(GuildPermission.BanMembers)]
         public async Task Kill()
         {
-            await ReplyAsync("Killing self");
+            var guilds = await Context.Client.GetGuildsAsync();
+            foreach (var guild in guilds)
+            {
+                var channel = guild.GetDefaultChannelAsync();
+                await channel.Result.SendMessageAsync("I have been killed, brb");
+            }
             await Context.Client.ApiClient.LogoutAsync();
             Process.GetCurrentProcess().Kill();
         }
