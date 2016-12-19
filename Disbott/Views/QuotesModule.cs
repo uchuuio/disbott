@@ -6,6 +6,7 @@ using LiteDB;
 using System.Linq;
 using Disbott.Controllers;
 using Disbott.Models.Objects;
+using Disbott.Properties;
 
 namespace Disbott.Views
 {
@@ -20,11 +21,11 @@ namespace Disbott.Views
 
             if (addQuote)
             {
-                await ReplyAsync($"Added quote for {name} saying, {newquote}", true);
+                await ReplyAsync(string.Format(Resources.response_Added_Quote,name,newquote), true);
             }
             else
             {
-                await ReplyAsync("Could not add quote");
+                await ReplyAsync(Resources.error_Cant_Add_Quote);
             }
         }
 
@@ -36,10 +37,9 @@ namespace Disbott.Views
 
             if (quoteTuple.Item2 == null)
             {
-                await ReplyAsync("This person has no quotes");
+                await ReplyAsync(string.Format(Resources.error_User_No_Quotes, name));
             }
-
-            await ReplyAsync($"{quoteTuple.Item1} said {quoteTuple.Item2}", true);
+            await ReplyAsync(string.Format(Resources.response_Random_Quote, quoteTuple.Item1, quoteTuple.Item2), true);
         }
 
         [Command("deletequote")]
@@ -49,11 +49,11 @@ namespace Disbott.Views
             var result = QuotesController.DeleteQuoteMethod(quote);
             if (result)
             {
-                await ReplyAsync($"Deleted quote {quote}", true);
+                await ReplyAsync(string.Format(Resources.response_Deleted_Quote, quote),true);
             }
             else
             {
-                await ReplyAsync("Could not delete quote");
+                await ReplyAsync(Resources.error_Could_Not_Delete);
             }
         }
     }

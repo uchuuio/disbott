@@ -117,7 +117,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Heads" xml:space="preserve">
-    <value>Heads</value>
+  <data name="error_Cant_Add_Quote" xml:space="preserve">
+    <value>Could not add quote</value>
+    <comment>Quote_Module</comment>
+  </data>
+  <data name="error_Could_Not_Delete" xml:space="preserve">
+    <value>Could not delete quote</value>
+    <comment>Quote_Module</comment>
+  </data>
+  <data name="error_Incorrect_Format_Dice" xml:space="preserve">
+    <value>Invalid Input. Roll a dice by using the format 'xdy'</value>
+    <comment>Dice_Roll_Module</comment>
+  </data>
+  <data name="error_Incorrect_Format_Poll" xml:space="preserve">
+    <value>Please type 'yes' or 'no'</value>
+    <comment>Poll_Module</comment>
+  </data>
+  <data name="error_No_Messages" xml:space="preserve">
+    <value>Wow, this user has posted no messages, incredible lurking</value>
+    <comment>Message_Count_Module</comment>
+  </data>
+  <data name="error_OneSide_Dice" xml:space="preserve">
+    <value>Grats you rolled a d1, hope you are proud</value>
+    <comment>Dice_Roll_Module</comment>
+  </data>
+  <data name="error_Too_Many_Dice" xml:space="preserve">
+    <value>To avoid spam you cannot roll more than 100 dice or a d100 (Sorry)</value>
+    <comment>Dice_Roll_Module</comment>
+  </data>
+  <data name="error_User_No_Quotes" xml:space="preserve">
+    <value>{0} has no quotes</value>
+    <comment>Quote_Module</comment>
+  </data>
+  <data name="response_About" xml:space="preserve">
+    <value>Hello, I\'m Disbott. A bot for Discord. Find out more about me here {0}</value>
+    <comment>General</comment>
+  </data>
+  <data name="response_Added_Quote" xml:space="preserve">
+    <value>Added quote for {0} saying, {1}</value>
+    <comment>Quote_Module</comment>
+  </data>
+  <data name="response_Deleted_Quote" xml:space="preserve">
+    <value>Deleted quote {0}</value>
+    <comment>Quote_Module</comment>
+  </data>
+  <data name="response_Dice_Roll" xml:space="preserve">
+    <value>{0} Rolled:
+{1}
+Total: {2}</value>
+    <comment>Dice_Roll_Module</comment>
+  </data>
+  <data name="response_Info_Dev" xml:space="preserve">
+    <value>Disbott C# Edition, Dev Version -- {0}</value>
+    <comment>General</comment>
+  </data>
+  <data name="response_Info_Live" xml:space="preserve">
+    <value>Disbott C# Edition, Version 3.0.0 -- {0}</value>
+    <comment>Geneal</comment>
+  </data>
+  <data name="response_Killed" xml:space="preserve">
+    <value>I have been killed, brb</value>
+    <comment>General</comment>
+  </data>
+  <data name="response_Linked_LolAccount" xml:space="preserve">
+    <value>You have now linked {0} to your Discord Account</value>
+    <comment>Lol_Module</comment>
+  </data>
+  <data name="response_Pong" xml:space="preserve">
+    <value>Pong</value>
+    <comment>General</comment>
+  </data>
+  <data name="response_Random_Quote" xml:space="preserve">
+    <value>{0} said {1}</value>
+    <comment>Quote_Module</comment>
+  </data>
+  <data name="response_Total_Messages" xml:space="preserve">
+    <value>{0} has posted {1} messages</value>
+    <comment>Message_Count_Module</comment>
+  </data>
+  <data name="response_Twitter_User" xml:space="preserve">
+    <value>{0}: {1}</value>
+    <comment>Twitter_Module</comment>
+  </data>
+  <data name="url_Disbott" xml:space="preserve">
+    <value>https://github.com/paguco/disbott/</value>
+    <comment>General</comment>
   </data>
 </root>

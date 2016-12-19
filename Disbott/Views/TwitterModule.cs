@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 
 using Discord.Commands;
+using Disbott.Properties;
 
 using Disbott.Controllers;
 
@@ -22,7 +23,7 @@ namespace Disbott.Views
         public async Task Tweet([Remainder]string twitterAccount)
         {
             var tweetMsg = TwitterController.GetUsersLatestTweet(twitterAccount);
-            await ReplyAsync(twitterAccount + ": " + tweetMsg);
+            await ReplyAsync(string.Format(Resources.response_Twitter_User, twitterAccount,tweetMsg));
         }
 
         [Command("random-tweet")]
@@ -30,7 +31,7 @@ namespace Disbott.Views
         public async Task RandomTweet([Remainder]string twitterAccount)
         {
             var tweetMsg = TwitterController.GetUsersRandomTweet(twitterAccount);
-            await ReplyAsync(twitterAccount + ": " + tweetMsg);
+            await ReplyAsync(string.Format(Resources.response_Twitter_User, twitterAccount, tweetMsg));
         }
 
         [Command("gazo")]

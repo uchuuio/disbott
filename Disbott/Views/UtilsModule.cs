@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Discord;
 using Discord.Commands;
+using Disbott.Properties;
 
 namespace Disbott.Views
 {
@@ -14,16 +15,16 @@ namespace Disbott.Views
         [Remarks("Responds Pong")]
         public async Task Ping()
         {
-            await ReplyAsync("pong");
+            await ReplyAsync(Resources.response_Pong);
         }
 
         [Command("about")]
         [Remarks("Tells user about Disbott")]
         public async Task About()
         {
+            var urlLocation = ConfigurationManager.AppSettings["domain"];
             await
-                ReplyAsync("Hello, I\'m Disbott. A bot for Discord. Find out more about me here " +
-                           ConfigurationManager.AppSettings["domain"]);
+                ReplyAsync(string.Format(Resources.response_About,urlLocation));
         }
 
         [Command("info")]
@@ -32,11 +33,11 @@ namespace Disbott.Views
         {
             #if DEBUG
                 await
-                    ReplyAsync("Disbott C# Edition, Dev Version -- https://github.com/paguco/disbott/");
+                    ReplyAsync(string.Format(Resources.response_Info_Dev, Resources.url_Disbott));
             #else
                 // Ideally this should get the deployed version number and release url from github
                 await
-                    ReplyAsync("Disbott C# Edition, Version 3.0.0 -- https://github.com/tomopagu/disbott/");
+                    ReplyAsync(string.Format(Resources.response_info_Dev, Resources.url_Disbott);
             #endif
         }
 
@@ -49,7 +50,7 @@ namespace Disbott.Views
             foreach (var guild in guilds)
             {
                 var channel = guild.GetDefaultChannelAsync();
-                await channel.Result.SendMessageAsync("I have been killed, brb");
+                await channel.Result.SendMessageAsync(Resources.response_Killed);
             }
             await Context.Client.ApiClient.LogoutAsync();
             Process.GetCurrentProcess().Kill();

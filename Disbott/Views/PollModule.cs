@@ -2,6 +2,7 @@
 using Discord;
 using Discord.Commands;
 using Disbott.Controllers;
+using Disbott.Properties;
 
 namespace Disbott.Views
 {
@@ -34,7 +35,7 @@ namespace Disbott.Views
             }
             else
             {
-                await ReplyAsync("Please type 'yes' or 'no'");
+                await ReplyAsync(Resources.error_Incorrect_Format_Poll);
             }
         }
 

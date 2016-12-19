@@ -9,6 +9,7 @@ using Tweetinvi.Core.Extensions;
 
 using Disbott.Controllers;
 using Disbott.Models.Objects;
+using Disbott.Properties;
 
 namespace Disbott.Views
 {
@@ -46,8 +47,8 @@ namespace Disbott.Views
                         summoners.Insert(summoner);
                     }
                 }
-
-                await ReplyAsync("You have now linked " + summonerName + " to your Discord Account");
+                
+                await ReplyAsync(string.Format(Resources.response_Linked_LolAccount, summonerName));
             }
             catch (RiotSharpException ex)
             {

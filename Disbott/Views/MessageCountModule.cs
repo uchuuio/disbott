@@ -5,6 +5,7 @@ using LiteDB;
 
 using Discord;
 using Discord.Commands;
+using Disbott.Properties;
 
 using Disbott.Models.Objects;
 
@@ -58,11 +59,11 @@ namespace Disbott.Views
                 if (users.Any())
                 {
                     var user = users[0];
-                    await ReplyAsync(MentionUtils.MentionUser(user.Id) + " has posted " + user.Messages + " messages");
+                    await ReplyAsync(string.Format(Resources.response_Total_Messages, MentionUtils.MentionUser(user.Id), user.Messages));
                 }
                 else
                 {
-                    await ReplyAsync("wow this user has posted no messages, incredible lurking");
+                    await ReplyAsync(Resources.error_No_Messages);
                 }
             }
         }

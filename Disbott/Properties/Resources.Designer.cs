@@ -61,11 +61,193 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Heads.
+        ///   Looks up a localized string similar to Could not add quote.
         /// </summary>
-        internal static string Heads {
+        internal static string error_Cant_Add_Quote {
             get {
-                return ResourceManager.GetString("Heads", resourceCulture);
+                return ResourceManager.GetString("error_Cant_Add_Quote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not delete quote.
+        /// </summary>
+        internal static string error_Could_Not_Delete {
+            get {
+                return ResourceManager.GetString("error_Could_Not_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Input. Roll a dice by using the format &apos;xdy&apos;.
+        /// </summary>
+        internal static string error_Incorrect_Format_Dice {
+            get {
+                return ResourceManager.GetString("error_Incorrect_Format_Dice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please type &apos;yes&apos; or &apos;no&apos;.
+        /// </summary>
+        internal static string error_Incorrect_Format_Poll {
+            get {
+                return ResourceManager.GetString("error_Incorrect_Format_Poll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wow, this user has posted no messages, incredible lurking.
+        /// </summary>
+        internal static string error_No_Messages {
+            get {
+                return ResourceManager.GetString("error_No_Messages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grats you rolled a d1, hope you are proud.
+        /// </summary>
+        internal static string error_OneSide_Dice {
+            get {
+                return ResourceManager.GetString("error_OneSide_Dice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To avoid spam you cannot roll more than 100 dice or a d100 (Sorry).
+        /// </summary>
+        internal static string error_Too_Many_Dice {
+            get {
+                return ResourceManager.GetString("error_Too_Many_Dice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} has no quotes.
+        /// </summary>
+        internal static string error_User_No_Quotes {
+            get {
+                return ResourceManager.GetString("error_User_No_Quotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hello, I\&apos;m Disbott. A bot for Discord. Find out more about me here {0}.
+        /// </summary>
+        internal static string response_About {
+            get {
+                return ResourceManager.GetString("response_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Added quote for {0} saying, {1}.
+        /// </summary>
+        internal static string response_Added_Quote {
+            get {
+                return ResourceManager.GetString("response_Added_Quote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted quote {0}.
+        /// </summary>
+        internal static string response_Deleted_Quote {
+            get {
+                return ResourceManager.GetString("response_Deleted_Quote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Rolled:
+        ///{1}
+        ///Total: {2}.
+        /// </summary>
+        internal static string response_Dice_Roll {
+            get {
+                return ResourceManager.GetString("response_Dice_Roll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disbott C# Edition, Dev Version -- {0}.
+        /// </summary>
+        internal static string response_Info_Dev {
+            get {
+                return ResourceManager.GetString("response_Info_Dev", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disbott C# Edition, Version 3.0.0 -- {0}.
+        /// </summary>
+        internal static string response_Info_Live {
+            get {
+                return ResourceManager.GetString("response_Info_Live", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I have been killed, brb.
+        /// </summary>
+        internal static string response_Killed {
+            get {
+                return ResourceManager.GetString("response_Killed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have now linked {0} to your Discord Account.
+        /// </summary>
+        internal static string response_Linked_LolAccount {
+            get {
+                return ResourceManager.GetString("response_Linked_LolAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pong.
+        /// </summary>
+        internal static string response_Pong {
+            get {
+                return ResourceManager.GetString("response_Pong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} said {1}.
+        /// </summary>
+        internal static string response_Random_Quote {
+            get {
+                return ResourceManager.GetString("response_Random_Quote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} has posted {1} messages.
+        /// </summary>
+        internal static string response_Total_Messages {
+            get {
+                return ResourceManager.GetString("response_Total_Messages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}: {1}.
+        /// </summary>
+        internal static string response_Twitter_User {
+            get {
+                return ResourceManager.GetString("response_Twitter_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/paguco/disbott/.
+        /// </summary>
+        internal static string url_Disbott {
+            get {
+                return ResourceManager.GetString("url_Disbott", resourceCulture);
             }
         }
     }
