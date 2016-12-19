@@ -45,7 +45,6 @@ namespace Disbott.Views
                 {
                     DiceResults rolledDice = RollController.Rolling(numberOfDiceRolledInt, numberOfSidesOnDiceInt);
                     // Send all the Information back into the chat to the user
-                    //await ReplyAsync($"{discordId} Rolled: \r\n{rolledDice.Results} \r\nTotal: {rolledDice.Total.ToString()}");
                     await ReplyAsync(string.Format(Resources.response_Dice_Roll, discordId, rolledDice.Results, rolledDice.Total));
                 }
             }

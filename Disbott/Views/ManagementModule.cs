@@ -18,7 +18,7 @@ namespace Disbott.Views
         [Command("Kick")]
         [Remarks("Kicks a user")]
         [RequireUserPermission(GuildPermission.KickMembers)]
-        public async Task KickUser()
+        public async Task KickUser(string name)
         {
             
         }
