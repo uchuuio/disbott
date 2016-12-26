@@ -5,7 +5,7 @@ branches:
 skip_tags: true
 configuration: Release
 environment:
-  domain: https://disbott.pagu.co
+  domain: https://disbott.uchuu.io
   twitter_consumer_key:
     secure: WnxCl2HFwfnOmN+pOapi1i25e0q1+tVzPBitq9VvU1s=
   twitter_consumer_secret:

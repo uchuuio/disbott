@@ -2,8 +2,8 @@
 
 ## A bot for Discord
 
-[![Build status](https://ci.appveyor.com/api/projects/status/aflldxgt4hkf3q1s?svg=true)](https://ci.appveyor.com/project/tomopagu/disbott)
-[![Coverage Status](https://coveralls.io/repos/github/paguco/disbott/badge.svg)](https://coveralls.io/github/paguco/disbott)
+[![Build status](https://ci.appveyor.com/api/projects/status/aflldxgt4hkf3q1s?svg=true)](https://ci.appveyor.com/project/tomouchuu/disbott)
+[![Coverage Status](https://coveralls.io/repos/github/uchuuio/disbott/badge.svg)](https://coveralls.io/github/uchuuio/disbott)
 
 We're currently in the middle of a major rewrite to port the system over to C# from JS which is new for everyone involved.
 The reason is just because both myself & @80cmdude are both learning C# and wanted a project where we can learn and apply ourselves too.

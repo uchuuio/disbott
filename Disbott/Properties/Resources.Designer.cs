@@ -243,7 +243,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://github.com/paguco/disbott/.
+        ///   Looks up a localized string similar to https://github.com/uchuuio/disbott/.
         /// </summary>
         internal static string url_Disbott {
             get {
