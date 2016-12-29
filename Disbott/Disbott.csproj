@@ -272,6 +272,7 @@
   <ItemGroup>
     <Compile Include="Controllers\Quotes.cs" />
     <Compile Include="Controllers\Giphy.cs" />
+    <Compile Include="Controllers\RemindMeController.cs" />
     <Compile Include="Controllers\Twitter.cs" />
     <Compile Include="Controllers\LoL.cs" />
     <Compile Include="Controllers\CoinFlip.cs" />
@@ -281,6 +282,7 @@
     <Compile Include="Models\Objects\DiceResults.cs" />
     <Compile Include="Models\Objects\Gif.cs" />
     <Compile Include="Models\Objects\Polls.cs" />
+    <Compile Include="Models\Objects\RemindMeSchema.cs" />
     <Compile Include="Views\GiphyModule.cs" />
     <Compile Include="Views\PollModule.cs" />
     <Compile Include="Views\QuotesModule.cs" />

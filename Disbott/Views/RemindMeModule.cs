@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using Disbott.Controllers;
 
 namespace Disbott.Views
 {
@@ -27,6 +28,8 @@ namespace Disbott.Views
             var discordId = msg.Author.Username;
             try
             {
+                var addReminder = RemindMeController.AddRemindMeHistory("Everyone", date, note);
+
                 var currentTime = DateTime.Now;
                 var userTime = DateTime.Parse(date);
                 var timeToWait = userTime.Subtract(currentTime);
@@ -59,8 +62,12 @@ namespace Disbott.Views
         {
             var msg = Context.Message;
             var discordId = msg.Author.Username;
+
             TimeSpan timeToWait = new TimeSpan(hours, mins, seconds);
             TimeSpan timeToGo = timeToWait;
+
+            var addReminder = RemindMeController.AddRemindMeHistory(discordId, timeToWait.ToString(), note);
+
             await ReplyAsync($"Don't worry {discordId}! I will remind you in {timeToWait}");
 
             this.timer = new System.Threading.Timer(x =>
@@ -78,6 +85,9 @@ namespace Disbott.Views
             var discordId = msg.Author.Username;
             TimeSpan timeToWait = new TimeSpan(hours, mins, seconds);
             TimeSpan timeToGo = timeToWait;
+
+            var addReminder = RemindMeController.AddRemindMeHistory(discordId, timeToWait.ToString(), note);
+
             await ReplyAsync($"Yes sir {discordId}! I will remind everyone in {timeToWait}");
 
             this.timer = new System.Threading.Timer(x =>
@@ -95,6 +105,8 @@ namespace Disbott.Views
             var discordId = msg.Author.Username;
             try
             {
+                var addReminder = RemindMeController.AddRemindMeHistory("everyone", date, note);
+
                 var currentTime = DateTime.Now;
                 var userTime = DateTime.Parse(date);
                 var timeToWait = userTime.Subtract(currentTime);
