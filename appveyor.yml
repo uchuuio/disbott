@@ -51,6 +51,6 @@ deploy:
   website: disbott
   username: $disbott
   password:
-    secure: kAh3PlrZEjybpv2ZRsNu7CWk3VJkr2pl1P3jno+62m7kfQQT2Gh3N4RhhCexolxQjiomzMey/QVp5PfmK1NIYw==
+    secure: +q9LPaPQ3OnluZcknGfctQrK/7bYMCTqwrdepmI4FDYx3gad3POBYD/m3dRygM6E7exSBkBLAYTCp7FbAPNIKw==
   artifact: azure
   manually_triggered: true
