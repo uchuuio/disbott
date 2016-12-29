@@ -37,7 +37,7 @@ namespace Disbott.Views
             #else
                 // Ideally this should get the deployed version number and release url from github
                 await
-                    ReplyAsync(string.Format(Resources.response_info_Dev, Resources.url_Disbott));
+                    ReplyAsync(string.Format(Resources.response_Info_Dev, Resources.url_Disbott));
             #endif
         }
 
