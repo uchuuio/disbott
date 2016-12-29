@@ -14,7 +14,7 @@ namespace Disbott.Controllers
         {
             using (var db = new LiteDatabase(@"remindme.db"))
             {
-                var quotes = db.GetCollection<RemindMeSchema>("remindme");
+                var reminders = db.GetCollection<RemindMeSchema>("remindme");
 
                 var newRemindMe = new RemindMeSchema
                 {
@@ -23,10 +23,56 @@ namespace Disbott.Controllers
                     Note = note
                 };
 
-                quotes.Insert(newRemindMe);
+                reminders.Insert(newRemindMe);
             }
 
             return true;
+        }
+
+        public static string GetReminders()
+        {
+            using (var db = new LiteDatabase(@"remindme.db"))
+            {
+                string reminderHistory = "";
+                var reminders = db.GetCollection<RemindMeSchema>("remindme");
+
+                var result = reminders.FindAll();
+
+                var allReminders = result as RemindMeSchema[] ?? result.ToArray();
+
+                foreach (var reminder in allReminders)
+                {
+                    reminderHistory += $"{reminder.Name}, {reminder.TimeDate}, {reminder.Note} \r\n";
+                }
+
+                return reminderHistory;
+            }
+        }
+
+        public static bool DeleteReminder(string note, string name = "Default")
+        {
+            using (var db = new LiteDatabase(@"remindme.db"))
+            {
+                var reminders = db.GetCollection<RemindMeSchema>("remindme");
+                var result = reminders.Find(x => x.Note.Equals(note));
+
+                var currentReminder = result as RemindMeSchema;
+
+                if (name == "Default")
+                {
+                    reminders.Delete(x => x.Note.Equals(note));
+                    return true;
+                }
+                else if (name == currentReminder.Name)
+                {
+                    reminders.Delete(x => x.Note.Equals(note));
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
         }
     }
 }

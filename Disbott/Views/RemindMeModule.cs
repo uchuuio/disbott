@@ -15,9 +15,11 @@ namespace Disbott.Views
     public class RemindMeModule : ModuleBase
     {
         private System.Threading.Timer timer;
+
         public async void ReplyWithNote(string note)
         {
             await ReplyAsync(note);
+            RemindMeController.DeleteReminder(note);
         }
 
         [Command("reminddatetime")]
@@ -28,7 +30,7 @@ namespace Disbott.Views
             var discordId = msg.Author.Username;
             try
             {
-                var addReminder = RemindMeController.AddRemindMeHistory("Everyone", date, note);
+                var addReminder = RemindMeController.AddRemindMeHistory(discordId, date, note);
 
                 var currentTime = DateTime.Now;
                 var userTime = DateTime.Parse(date);
@@ -41,10 +43,12 @@ namespace Disbott.Views
                 {
                     await ReplyAsync("Time Passed Fam");
                 }
+
                 this.timer = new System.Threading.Timer(x =>
                 {
                     this.ReplyWithNote($"{msg.Author.Mention} Remember: {note} \r\n This test was set up at {userTime} it is currently {DateTime.Now.ToString()}");
                 }, null, timeToGo, Timeout.InfiniteTimeSpan);
+                
             }
             catch(FormatException e)
             {
@@ -86,7 +90,7 @@ namespace Disbott.Views
             TimeSpan timeToWait = new TimeSpan(hours, mins, seconds);
             TimeSpan timeToGo = timeToWait;
 
-            var addReminder = RemindMeController.AddRemindMeHistory(discordId, timeToWait.ToString(), note);
+            var addReminder = RemindMeController.AddRemindMeHistory("Everyone", timeToWait.ToString(), note);
 
             await ReplyAsync($"Yes sir {discordId}! I will remind everyone in {timeToWait}");
 
@@ -131,6 +135,28 @@ namespace Disbott.Views
             {
                 await ReplyAsync(e.Message);
             }
+        }
+
+        [Command("getreminders")]
+        [Remarks("Gets all the current reminders")]
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task GetReminders()
+        {
+            string currentReminders = RemindMeController.GetReminders();
+
+            await ReplyAsync(currentReminders);
+        }
+
+        [Command("deletereminder")]
+        [Remarks("deletes a reminder")]
+        public async Task DeleteReminder(string note)
+        {
+            var msg = Context.Message;
+            var discordId = msg.Author.Username;
+
+            RemindMeController.DeleteReminder(note);
+
+            await ReplyAsync($"{note} was deleted");
         }
     }
 }
