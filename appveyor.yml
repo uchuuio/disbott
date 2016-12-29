@@ -7,19 +7,19 @@ configuration: Release
 environment:
   domain: https://disbott.uchuu.io
   twitter_consumer_key:
-    secure: WnxCl2HFwfnOmN+pOapi1i25e0q1+tVzPBitq9VvU1s=
+    secure: hu1J6bzZdF6BJ0rpR2gbW+WxNalzNuEWAQOaGVEjRMI=
   twitter_consumer_secret:
-    secure: W8JFdizZxrqxf2n+SEXe605E2EjBwxL1yvLVnOcN42WvRDoXeqHf8anav5imKBYB+lsRQa2QEaZBdA4vS6Yj9w==
+    secure: s75Lqzb+mDNy1XOORhs6lSdyE3+4GNN+ebSdPgLVBd+h5L2sxlohW+m7WfnXZNmRhTjqVs1ptQJuQGUsh/MIwg==
   twitter_access_token:
-    secure: QfdOz1/3t0fWgwp0hIVT2dPXaOS6umHilOTKw9fZXkax1C8R4Bo2Ki79TUMLemDn2+KOcVL2OUFQjmCALFPdpg==
+    secure: CgbHSQlIm9IYZEVJ+Qu00O6caATSO7zHpejsMF2OsC1D6+D+hKW1Oyupyv+f86V7mg0Ig0+9SXyHJMAWK90AGw==
   twitter_access_token_secret:
-    secure: mjwAfKwJMEQYdyf6erkVfTi4fdkwAV2WU3XaDa9T9bZjuCy2ajuIIcYaNLB6Q+Xo
+    secure: a1tfFnzEBvUL4Wkq3qAPjuz3XPciO29lziSXX8opNSlwwSx/x68QCGD9+LQaKu1B
   lol_api_key:
-    secure: /jcw3Qe1zuG6GWOYsRV9546M75ObTD8DpjWLRwb2pMPTX1Nb7gqlr2gwFLLTx21T
+    secure: hexTPnjT1p/hz6lL2KtvI2dxuh6//M6mZpXh64Xutb93iXp0PEEEeqCobbQfkdAq
   token:
-    secure: T0H81y6AaiLN1ZVJk1VbiKFvtbgoAON2T35ptv5ya0porgMLKL0LKU2pEYrgJpvh4RXdOZDteG16tIZ97yjVNQ==
+    secure: jWLMOGGxTzBlzWmt3MsKVc0wMU1E8Eh3jzEgBRdwkKfhuFtKvwZJvJEE3d2HbA+e12i0ISfX9Lx5gAR+eaeLhg==
   COVERALLS_REPO_TOKEN:
-    secure: UFgTYw3Xd551vnBn3DA6QYfyNcviOIcXVI4dlkXs/MGUUaoBqjb0B4SKYN6LGwVZ
+    secure: Bf2z3T/96DDM+4+IIRMoDQt96TUrAtHOxzQwFDKG9SnyPqxmB/MpWRo7kB/jVXqW
 before_build:
 - cmd: >-
     nuget sources add -Name DiscordNet -Source https://www.myget.org/F/discord-net/api/v3/index.json
