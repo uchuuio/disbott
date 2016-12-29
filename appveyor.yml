@@ -54,9 +54,3 @@ deploy:
     secure: kAh3PlrZEjybpv2ZRsNu7CWk3VJkr2pl1P3jno+62m7kfQQT2Gh3N4RhhCexolxQjiomzMey/QVp5PfmK1NIYw==
   artifact: azure
   manually_triggered: true
-notifications:
-- provider: Slack
-  incoming_webhook: https://discordapp.com/api/webhooks/256921709498728448/IMrXREwaISVnoPg_Ckod469Pqh1f1J4ayAFCgQRzJddcsAg58rg2RD-zyJKWu6lHBbN6/slack
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: false
