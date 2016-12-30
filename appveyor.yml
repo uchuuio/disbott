@@ -42,7 +42,7 @@ deploy:
 - provider: GitHub
   release: v$(appveyor_build_version)
   auth_token:
-   secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
+   secure: 1x5x6c9m10zS6geotxpcQaRckmjHP/vxJuzV0Th2zjyvMujKz8ZM3zW4igFrfDr8
   artifact: github
   draft: true
   prerelease: true
