@@ -108,6 +108,14 @@ namespace Disbott.Views
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hours"></param>
+        /// <param name="mins"></param>
+        /// <param name="seconds"></param>
+        /// <param name="note"></param>
+        /// <returns></returns>
         [Command("remindall")]
         [Remarks("Reminds Everyone")]
         [RequireUserPermission(GuildPermission.Administrator)]
@@ -133,6 +141,12 @@ namespace Disbott.Views
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
         }
 
+        /// <summary>
+        /// Ands a new remind to remind everyone on channel
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="note"></param>
+        /// <returns></returns>
         [Command("reminddatetimeall")]
         [Remarks("adds a new note for a date")]
         [RequireUserPermission(GuildPermission.Administrator)]
@@ -177,6 +191,10 @@ namespace Disbott.Views
             }
         }
 
+        /// <summary>
+        /// Gets all the reminders that are currently active. Requires admin
+        /// </summary>
+        /// <returns></returns>
         [Command("allreminders")]
         [Remarks("Gets all the current reminders")]
         [RequireUserPermission(GuildPermission.Administrator)]

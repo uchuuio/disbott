@@ -134,6 +134,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// This is mainly for veryfying if the reminder should pop or not depending on wether it exists in the db
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
         public static bool FindReminder(string note)
         {
             using (var db = new LiteDatabase(@"remindme.db"))
