@@ -1,4 +1,4 @@
-version: 3.0.0.{build}
+version: 3.0.1.{build}
 branches:
   only:
   - master
@@ -39,14 +39,14 @@ artifacts:
 - path: Disbott\bin\Release\Disbott.exe
   name: github
 deploy:
-#- provider: GitHub
-#  release: v$(appveyor_build_version)
-#  auth_token:
-#    secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
-#  artifact: github
-#  draft: true
-#  prerelease: true
-#  force_update: false
+- provider: GitHub
+ release: v$(appveyor_build_version)
+ auth_token:
+   secure: OKA6ofkLb6tShqWeYG1g2ywKFZxrU5cy6xlRfN2Uz4ETncetI7qMYpoHNsoQzDLS
+ artifact: github
+ draft: true
+ prerelease: true
+ force_update: false
 - provider: AzureWebJob
   website: disbott
   username: $disbott
