@@ -20,15 +20,20 @@ namespace Disbott.Views
         // Method to run when the timer is finished 
         public async void ReplyWithNote(string userNote, string note)
         {
+            // Check if the timer is still in the db
             bool timerExists = RemindMeController.FindReminder(note);
 
+            //If the timer is still in the db awesome
             if (timerExists == true)
             {
                 await ReplyAsync(userNote);
                 RemindMeController.DeleteReminderEnd(note);
+                this.timer.Dispose();
             }
             else
             {
+                //End the instance of the timer
+                this.timer.Dispose();
                 //await ReplyAsync("THIS MESSAGE MEANS IT FKING WORKS");
             }
         }
@@ -70,7 +75,7 @@ namespace Disbott.Views
             }
             catch(FormatException e)
             {
-                await ReplyAsync("Date was in an incorrect format. Use the format 'DD/MM/YYYY HH:MM:SS'");
+                await ReplyAsync("Date was in an incorrect format. Use the format 'DD/MM/YYYY HH:MM:SS'(Must be in inverted commas) \r\n Or just type a date for a day");
             }
             catch(Exception e)
             {
@@ -89,9 +94,10 @@ namespace Disbott.Views
             //Set all the date time info
             TimeSpan timeToWait = new TimeSpan(hours, mins, seconds);
             TimeSpan timeToGo = timeToWait;
+            DateTime setTime = DateTime.Now.Add(timeToGo);
 
             // Add reminder to the db
-            var addReminder = RemindMeController.AddRemindMeHistory(discordId, timeToWait.ToString(), note);
+            var addReminder = RemindMeController.AddRemindMeHistory(discordId, setTime.ToString(), note);
 
             await ReplyAsync($"Don't worry {discordId}! I will remind you in {timeToWait}");
 
@@ -163,7 +169,7 @@ namespace Disbott.Views
             }
             catch (FormatException e)
             {
-                await ReplyAsync("Date was in an incorrect format. Use the format 'DD/MM/YYYY HH:MM:SS'");
+                await ReplyAsync("Date was in an incorrect format. Use the format 'DD/MM/YYYY HH:MM:SS'(Must be in inverted commas) \r\n Or just type a date for a day");
             }
             catch (Exception e)
             {
@@ -178,8 +184,14 @@ namespace Disbott.Views
         {
             // Search the db for current reminders (active)
             string currentReminders = RemindMeController.GetReminders();
-
-            await ReplyAsync(currentReminders);
+            if (currentReminders == "")
+            {
+                await ReplyAsync("There are no active reminders!");
+            }
+            else
+            {
+                await ReplyAsync(currentReminders);
+            }
         }
 
         [Command("deletereminder")]
