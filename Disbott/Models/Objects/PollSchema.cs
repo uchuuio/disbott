@@ -1,6 +1,6 @@
 ﻿namespace Disbott.Models.Objects
 {
-    public class Polls
+    public class PollSchema
     {
         public int Id { get; set; }
         public string PollName { get; set; }

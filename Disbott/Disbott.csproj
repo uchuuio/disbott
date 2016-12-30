@@ -281,7 +281,7 @@
     <Compile Include="Models\Objects\LolSummoner.cs" />
     <Compile Include="Models\Objects\DiceResults.cs" />
     <Compile Include="Models\Objects\Gif.cs" />
-    <Compile Include="Models\Objects\Polls.cs" />
+    <Compile Include="Models\Objects\PollSchema.cs" />
     <Compile Include="Models\Objects\RemindMeSchema.cs" />
     <Compile Include="Views\GiphyModule.cs" />
     <Compile Include="Views\PollModule.cs" />

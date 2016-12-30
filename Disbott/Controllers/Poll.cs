@@ -5,7 +5,7 @@ namespace Disbott.Controllers
 {
     public class PollController
     {
-        Polls currentPoll = new Polls()
+        PollSchema currentPoll = new PollSchema()
         {
             Yes = 0,
             No = 0,
