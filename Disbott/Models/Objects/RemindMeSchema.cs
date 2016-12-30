@@ -10,7 +10,7 @@ namespace Disbott.Models.Objects
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string TimeDate { get; set; }
+        public DateTime TimeDate { get; set; }
         public string Note { get; set; }
     }
 }

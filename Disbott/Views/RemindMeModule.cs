@@ -49,15 +49,15 @@ namespace Disbott.Views
 
             try
             {
-                // Add the reminder to the db
-                var addReminder = RemindMeController.AddRemindMeHistory(discordId, date, note);
-
                 //Set all the date time info
                 var currentTime = DateTime.Now;
                 var userTime = DateTime.Parse(date);
                 var timeToWait = userTime.Subtract(currentTime);
                 TimeSpan timeToGo = timeToWait;
-               
+
+                // Add the reminder to the db
+                var addReminder = RemindMeController.AddRemindMeHistory(discordId, userTime, note);
+
                 await ReplyAsync($"Don't worry {discordId}! I will remind you at {userTime}");
 
                 // Handle the timer if its in the past
@@ -97,7 +97,7 @@ namespace Disbott.Views
             DateTime setTime = DateTime.Now.Add(timeToGo);
 
             // Add reminder to the db
-            var addReminder = RemindMeController.AddRemindMeHistory(discordId, setTime.ToString(), note);
+            var addReminder = RemindMeController.AddRemindMeHistory(discordId, setTime, note);
 
             await ReplyAsync($"Don't worry {discordId}! I will remind you in {timeToWait}");
 
@@ -128,9 +128,10 @@ namespace Disbott.Views
             //Set all the date time info
             TimeSpan timeToWait = new TimeSpan(hours, mins, seconds);
             TimeSpan timeToGo = timeToWait;
+            DateTime setTime = DateTime.Now.Add(timeToGo);
 
             // Add reminder to the db
-            var addReminder = RemindMeController.AddRemindMeHistory("Everyone", timeToWait.ToString(), note);
+            var addReminder = RemindMeController.AddRemindMeHistory("Everyone", setTime, note);
 
             await ReplyAsync($"Yes sir {discordId}! I will remind everyone in {timeToWait}");
 
@@ -158,14 +159,14 @@ namespace Disbott.Views
 
             try
             {
-                // Add reminder to the db
-                var addReminder = RemindMeController.AddRemindMeHistory("everyone", date, note);
-
                 //Set all the date time info
                 var currentTime = DateTime.Now;
                 var userTime = DateTime.Parse(date);
                 var timeToWait = userTime.Subtract(currentTime);
                 TimeSpan timeToGo = timeToWait;
+                
+                // Add reminder to the db
+                var addReminder = RemindMeController.AddRemindMeHistory("everyone", userTime, note);
 
                 await ReplyAsync($"Yes Sir {discordId}! I will remind you at {userTime}");
 
