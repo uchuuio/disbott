@@ -133,7 +133,7 @@ namespace Disbott.Views
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
         }
 
-        [Command("remindalldatetime")]
+        [Command("reminddatetimeall")]
         [Remarks("adds a new note for a date")]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task RemindAllDateTime(string date, [Remainder]string note)
@@ -177,7 +177,7 @@ namespace Disbott.Views
             }
         }
 
-        [Command("getreminders")]
+        [Command("allreminders")]
         [Remarks("Gets all the current reminders")]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task GetReminders()
@@ -194,14 +194,60 @@ namespace Disbott.Views
             }
         }
 
+        /// <summary>
+        /// Gets the users Reminders only
+        /// </summary>
+        /// <returns></returns>
+        [Command("myreminders")]
+        [Remarks("Gets your the current reminders")]
+        public async Task GetMyReminders()
+        {
+            //Gets your discord user id
+            var msg = Context.Message;
+            var discordId = msg.Author.Username;
+
+
+            // Search the db for current reminders (active)
+            string currentReminders = RemindMeController.GetMyReminders(discordId);
+            if (currentReminders == "")
+            {
+                await ReplyAsync("There are no active reminders!");
+            }
+            else
+            {
+                await ReplyAsync(currentReminders);
+            }
+        }
+
+        //Allows admin overide for delete
+        [Command("admindeletereminder")]
+        [Remarks("deletes a reminder")]
+        public async Task AdminDeleteReminder(string id)
+        {
+            // Delete item from the db
+            RemindMeController.DeleteReminder(Convert.ToInt32(id), "Admin");
+            await ReplyAsync($"{id} was deleted");
+        }
+
         [Command("deletereminder")]
         [Remarks("deletes a reminder")]
         public async Task DeleteReminder(string id)
         {
-            // Delete item from the db
-            RemindMeController.DeleteReminder(Convert.ToInt32(id));
+            //Gets your discord user id
+            var msg = Context.Message;
+            var discordId = msg.Author.Username;
 
-            await ReplyAsync($"{id} was deleted");
+            // Delete item from the db
+            bool hasDeleted = RemindMeController.DeleteReminder(Convert.ToInt32(id),discordId);
+            if (hasDeleted == true)
+            {
+                await ReplyAsync($"{id} was deleted");
+            }
+
+            else
+            {
+                await ReplyAsync($"You cannot delete someone elses reminders! Not cool...");
+            }
         }
     }
 }

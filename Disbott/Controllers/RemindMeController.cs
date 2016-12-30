@@ -60,22 +60,58 @@ namespace Disbott.Controllers
             }
         }
 
+        public static string GetMyReminders(string userId)
+        {
+            using (var db = new LiteDatabase(@"remindme.db"))
+            {
+                string reminderHistory = "";
+                var reminders = db.GetCollection<RemindMeSchema>("remindme");
+
+                var result = reminders.Find(x => x.Name.Equals(userId));
+
+                var allReminders = result as RemindMeSchema[] ?? result.ToArray();
+
+                foreach (var reminder in allReminders)
+                {
+                    reminderHistory += $"{reminder.Id}, {reminder.Name}, {reminder.TimeDate}, {reminder.Note} \r\n";
+                }
+
+                return reminderHistory;
+            }
+        }
+
         /// <summary>
         /// Method to manually remove a reminder from the db
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool DeleteReminder(int id)
+        public static bool DeleteReminder(int id, string userID)
         {
             using (var db = new LiteDatabase(@"remindme.db"))
             {
                 // Open up the db
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
+                if (userID == "Admin")
+                {
+                    reminders.Delete(x => x.Id.Equals(id));
+                    return true;
+                }
+                else
+                {
+                    var result = reminders.Find(x => x.Id.Equals(id));
+                    var allReminders = result as RemindMeSchema[] ?? result.ToArray();
 
-                //Delete the item with passed in ID
-                reminders.Delete(x => x.Id.Equals(id));
-
-                return true;
+                    if (allReminders[0].Name == userID)
+                    {
+                        reminders.Delete(x => x.Id.Equals(id));
+                        return true;
+                    }
+                    //Delete the item with passed in ID
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
         }
 
