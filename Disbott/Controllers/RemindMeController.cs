@@ -10,6 +10,13 @@ namespace Disbott.Controllers
 {
     public class RemindMeController
     {
+        /// <summary>
+        /// Method to add a new reminder to the db
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="time"></param>
+        /// <param name="note"></param>
+        /// <returns></returns>
         public static bool AddRemindMeHistory(string name, string time, string note)
         {
             using (var db = new LiteDatabase(@"remindme.db"))
@@ -29,6 +36,10 @@ namespace Disbott.Controllers
             return true;
         }
 
+        /// <summary>
+        /// Method to display all the current active reminders
+        /// </summary>
+        /// <returns></returns>
         public static string GetReminders()
         {
             using (var db = new LiteDatabase(@"remindme.db"))
@@ -42,33 +53,72 @@ namespace Disbott.Controllers
 
                 foreach (var reminder in allReminders)
                 {
-                    reminderHistory += $"{reminder.Name}, {reminder.TimeDate}, {reminder.Note} \r\n";
+                    reminderHistory += $"{reminder.Id}, {reminder.Name}, {reminder.TimeDate}, {reminder.Note} \r\n";
                 }
 
                 return reminderHistory;
             }
         }
 
-        public static bool DeleteReminder(string note, string name = "Default")
+        /// <summary>
+        /// Method to manually remove a reminder from the db
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static bool DeleteReminder(int id)
         {
             using (var db = new LiteDatabase(@"remindme.db"))
             {
+                // Open up the db
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
+
+                //Delete the item with passed in ID
+                reminders.Delete(x => x.Id.Equals(id));
+
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Method to automatically remove a reminder from the db when it ends
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns></returns>
+        public static bool DeleteReminderEnd(string note)
+        {
+            using (var db = new LiteDatabase(@"remindme.db"))
+            {
+                // Open up the db
+                var reminders = db.GetCollection<RemindMeSchema>("remindme");
+
+                //Delete the item with passed in ID
+                reminders.Delete(x => x.Note.Equals(note));
+
+                return true;
+            }
+        }
+
+        public static bool FindReminder(string note)
+        {
+            using (var db = new LiteDatabase(@"remindme.db"))
+            {
+                // Open up the db
+                var reminders = db.GetCollection<RemindMeSchema>("remindme");
+
                 var result = reminders.Find(x => x.Note.Equals(note));
 
-                var currentReminder = result as RemindMeSchema;
+                var allReminders = result as RemindMeSchema[] ?? result.ToArray();
 
-                if (name == "Default")
+                try
                 {
-                    reminders.Delete(x => x.Note.Equals(note));
+                    string answer = allReminders[0].Note;
                     return true;
                 }
-                else if (name == currentReminder.Name)
+                catch(IndexOutOfRangeException e)
                 {
-                    reminders.Delete(x => x.Note.Equals(note));
-                    return true;
+                    return false;
                 }
-                else
+                catch(Exception e)
                 {
                     return false;
                 }
