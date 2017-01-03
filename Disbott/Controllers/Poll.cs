@@ -1,125 +1,147 @@
 ﻿using Disbott.Models.Objects;
 using Discord;
+using LiteDB;
+using System;
 
 namespace Disbott.Controllers
 {
     public class PollController
     {
-        PollSchema currentPoll = new PollSchema()
+        public static bool AddNewPoll(string userName, string question, DateTime time)
         {
-            Yes = 0,
-            No = 0,
-            PollName = ""
-        };
-        bool running = false;
+            using (var db = new LiteDatabase(@"poll.db"))
+            {
+                var Polls = db.GetCollection<PollSchema>("poll");
 
-        public string CreateNewPoll(IUserMessage msg, string pollName)
-        {
-            if (running == false)
-            {
-                running = true;
-                string discordID = msg.Author.Username;
-                currentPoll.PollName = pollName;
-                currentPoll.Owner = discordID;
-                return $"{discordID} created a new poll: \r\n'{pollName}?' (yes / no)";
-            }
-            else
-            {
-                return $"The current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll \r\nAn officer can do this using the 'officerendpoll' command";
+                var newPoll = new PollSchema
+                {
+                    Question = question,
+                    Time = time,
+                    Owner = userName,
+                    IsFinished = false
+                };
+
+                Polls.Insert(newPoll);
             }
 
+            return true;
         }
 
-        public string VoteOnPoll(string vote)
-        {
-            if (running == false)
-            {
-                return "There is currently no poll running \r\nType newpoll to start a new poll";
-            }
-            else
-            {
-                if (vote == "yes")
-                {
-                    currentPoll.Yes += 1;
-                }
-                else if (vote == "no")
-                {
-                    currentPoll.No += 1;
-                }
-                return null;
-            }
-        }
+        //PollSchema currentPoll = new PollSchema()
+        //{
+        //    Yes = 0,
+        //    No = 0,
+        //    PollName = ""
+        //};
+        //bool running = false;
 
-        public string EndPoll(IUserMessage msg)
-        {
-            if (running == false)
-            {
-                return "There is currently no poll running \r\nType newpoll to start a new poll";
-            }
-            else
-            {
-                if (currentPoll.Owner == msg.Author.Username)
-                {
-                    string winner;
-                    running = false;
+        //public string CreateNewPoll(IUserMessage msg, string pollName)
+        //{
+        //    if (running == false)
+        //    {
+        //        running = true;
+        //        string discordID = msg.Author.Username;
+        //        currentPoll.PollName = pollName;
+        //        currentPoll.Owner = discordID;
+        //        return $"{discordID} created a new poll: \r\n'{pollName}?' (yes / no)";
+        //    }
+        //    else
+        //    {
+        //        return $"The current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll \r\nAn officer can do this using the 'officerendpoll' command";
+        //    }
 
-                    if (currentPoll.Yes > currentPoll.No)
-                    {
-                        winner = "Yes";
-                    }
-                    else if (currentPoll.Yes == currentPoll.No)
-                    {
-                        winner = "Nobody, Nobody wins...";
-                    }
-                    else
-                    {
-                        winner = "No";
-                    }
+        //}
 
-                    string finalPollname = currentPoll.PollName;
-                    int finalYes = currentPoll.Yes;
-                    int finalNo = currentPoll.No;
+        //public string VoteOnPoll(string vote)
+        //{
+        //    if (running == false)
+        //    {
+        //        return "There is currently no poll running \r\nType newpoll to start a new poll";
+        //    }
+        //    else
+        //    {
+        //        if (vote == "yes")
+        //        {
+        //            currentPoll.Yes += 1;
+        //        }
+        //        else if (vote == "no")
+        //        {
+        //            currentPoll.No += 1;
+        //        }
+        //        return null;
+        //    }
+        //}
 
-                    currentPoll.PollName = "";
-                    currentPoll.Yes = 0;
-                    currentPoll.No = 0;
+        //public string EndPoll(IUserMessage msg)
+        //{
+        //    if (running == false)
+        //    {
+        //        return "There is currently no poll running \r\nType newpoll to start a new poll";
+        //    }
+        //    else
+        //    {
+        //        if (currentPoll.Owner == msg.Author.Username)
+        //        {
+        //            string winner;
+        //            running = false;
 
-                    return $"The Votes for '{finalPollname}?' are: \r\nYes: {finalYes} \r\nNo: {finalNo} \r\nThe winner is {winner}";
-                }
-                else
-                {
-                    return $"Only the current poll owner can end a poll \r\nThe current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll \r\nAn officer can do this using the 'officerendpoll' command";
-                }
-            }
-        }
+        //            if (currentPoll.Yes > currentPoll.No)
+        //            {
+        //                winner = "Yes";
+        //            }
+        //            else if (currentPoll.Yes == currentPoll.No)
+        //            {
+        //                winner = "Nobody, Nobody wins...";
+        //            }
+        //            else
+        //            {
+        //                winner = "No";
+        //            }
 
-        public string OfficerEndPoll()
-        {
-            string winner;
-            running = false;
+        //            string finalPollname = currentPoll.PollName;
+        //            int finalYes = currentPoll.Yes;
+        //            int finalNo = currentPoll.No;
 
-            if (currentPoll.Yes > currentPoll.No)
-            {
-                winner = "Yes";
-            }
-            if (currentPoll.Yes == currentPoll.No)
-            {
-                winner = "Nobody, Nobody wins...";
-            }
-            else
-            {
-                winner = "No";
-            }
+        //            currentPoll.PollName = "";
+        //            currentPoll.Yes = 0;
+        //            currentPoll.No = 0;
 
-            string finalPollname = currentPoll.PollName;
-            int finalYes = currentPoll.Yes;
-            int finalNo = currentPoll.No;
+        //            return $"The Votes for '{finalPollname}?' are: \r\nYes: {finalYes} \r\nNo: {finalNo} \r\nThe winner is {winner}";
+        //        }
+        //        else
+        //        {
+        //            return $"Only the current poll owner can end a poll \r\nThe current poll is '{currentPoll.PollName}?' \r\nThis poll was created by {currentPoll.Owner} \r\nPlease wait for them to end the current poll \r\nAn officer can do this using the 'officerendpoll' command";
+        //        }
+        //    }
+        //}
 
-            currentPoll.PollName = "";
-            currentPoll.Yes = 0;
-            currentPoll.No = 0;
+        //public string OfficerEndPoll()
+        //{
+        //    string winner;
+        //    running = false;
 
-            return $"The Votes for '{finalPollname}?' are: \r\nYes: {finalYes} \r\nNo: {finalNo} \r\nThe winner is {winner}";
-        }
+        //    if (currentPoll.Yes > currentPoll.No)
+        //    {
+        //        winner = "Yes";
+        //    }
+        //    if (currentPoll.Yes == currentPoll.No)
+        //    {
+        //        winner = "Nobody, Nobody wins...";
+        //    }
+        //    else
+        //    {
+        //        winner = "No";
+        //    }
+
+        //    string finalPollname = currentPoll.PollName;
+        //    int finalYes = currentPoll.Yes;
+        //    int finalNo = currentPoll.No;
+
+        //    currentPoll.PollName = "";
+        //    currentPoll.Yes = 0;
+        //    currentPoll.No = 0;
+
+        //    return $"The Votes for '{finalPollname}?' are: \r\nYes: {finalYes} \r\nNo: {finalNo} \r\nThe winner is {winner}";
+        //}
     }
 }

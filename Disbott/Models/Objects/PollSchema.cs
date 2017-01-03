@@ -1,12 +1,16 @@
-﻿namespace Disbott.Models.Objects
+﻿using System;
+
+namespace Disbott.Models.Objects
 {
     public class PollSchema
     {
         public int Id { get; set; }
-        public string PollName { get; set; }
+        public string Question { get; set; }
         public int Yes { get; set; }
         public int No { get; set; }
         public string Owner { get; set; }
-        public string Message { get; set; }
+        public bool IsFinished { get; set; }
+        public string[] UsersVoted { get; set; }
+        public DateTime Time { get; set; }
     }
 }
