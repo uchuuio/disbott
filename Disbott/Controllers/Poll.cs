@@ -2,6 +2,7 @@
 using Discord;
 using LiteDB;
 using System;
+using System.Linq;
 
 namespace Disbott.Controllers
 {
@@ -25,6 +26,59 @@ namespace Disbott.Controllers
             }
 
             return true;
+        }
+
+        public static string ReurnCurrentPolls()
+        {
+            using (var db = new LiteDatabase(@"poll.db"))
+            {
+                string currentPolls = "";
+                var polls = db.GetCollection<PollSchema>("poll");
+
+                var result = polls.FindAll();
+
+                var allPolls = result as PollSchema[] ?? result.ToArray();
+
+                foreach (var poll in allPolls)
+                {
+                    currentPolls += $"{poll.Id}, {poll.Question}?,Yes: {poll.Yes}, No: {poll.No}";
+                }
+
+                return currentPolls;
+            }
+        }
+
+        public static string VoteOnPoll(string number, string voteyn)
+        {
+            int id = Convert.ToInt32(number);
+
+            using (var db = new LiteDatabase(@"poll.db"))
+            {
+                var polls = db.GetCollection<PollSchema>("poll");
+
+                var result = polls.Find(x => x.Id.Equals(id));
+
+                var allPolls = result as PollSchema[] ?? result.ToArray();
+
+                foreach (var poll in allPolls)
+                {
+                    if (voteyn == "yes")
+                    {
+                        poll.Yes += 1;
+                        polls.Update(id ,poll);
+                    }
+                    else if (voteyn == "no")
+                    {
+                        poll.No += 1;
+                        polls.Update(id, poll);
+                    }
+                    else
+                    {
+                        return "Did not update";
+                    }
+                }
+                return "Thanks for the vote";
+            }
         }
 
         //PollSchema currentPoll = new PollSchema()

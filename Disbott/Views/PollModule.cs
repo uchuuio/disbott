@@ -33,11 +33,17 @@ namespace Disbott.Views
         [Remarks("Starts a new Poll")]
         public async Task NewPoll(string time, [Remainder]string pollName)
         {
+            // Discord user info
+            var msg = Context.Message;
+            var discordId = msg.Author.Username;
+
             //Set all the date time info
             var currentTime = DateTime.Now;
             var userTime = DateTime.Parse(time);
             var timeToWait = userTime.Subtract(currentTime);
             TimeSpan timeToGo = timeToWait;
+
+            PollController.AddNewPoll(discordId, pollName, userTime);
 
             // Handle the timer if its in the past
             if (timeToGo < TimeSpan.Zero)
@@ -51,6 +57,35 @@ namespace Disbott.Views
                 this.EndPollNote($"Poll has ended Fam");
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
 
+        }
+
+        [Command("currentpolls")]
+        [Remarks("Gets all the current polls")]
+        public async Task CurrentPolls()
+        {
+            // Search the db for current reminders (active)
+            string currentPolls = PollController.ReurnCurrentPolls();
+            if (currentPolls == "")
+            {
+                await ReplyAsync("There are no active reminders!");
+            }
+            else
+            {
+                await ReplyAsync(currentPolls);
+            }
+        }
+
+        [Command("votepoll")]
+        [Remarks("Votes on a poll")]
+        public async Task VoteOnPoll(string id, string vote)
+        {
+            // Discord user info
+            var msg = Context.Message;
+            var discordId = msg.Author.Username;
+
+            string hasVoted = PollController.VoteOnPoll(id, vote);
+
+            await ReplyAsync(hasVoted);
         }
 
         //[Command("vote")]
