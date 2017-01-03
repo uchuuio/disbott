@@ -56,26 +56,23 @@ namespace Disbott.Controllers
             {
                 var polls = db.GetCollection<PollSchema>("poll");
 
-                var result = polls.Find(x => x.Id.Equals(id));
+                var result = polls.FindOne(x => x.Id.Equals(id));
 
-                var allPolls = result as PollSchema[] ?? result.ToArray();
+                var poll = result;
 
-                foreach (var poll in allPolls)
+                if (voteyn == "yes")
                 {
-                    if (voteyn == "yes")
-                    {
-                        poll.Yes += 1;
-                        polls.Update(id ,poll);
-                    }
-                    else if (voteyn == "no")
-                    {
-                        poll.No += 1;
-                        polls.Update(id, poll);
-                    }
-                    else
-                    {
-                        return "Did not update";
-                    }
+                    poll.Yes += 1;
+                    polls.Update(id ,poll);
+                }
+                else if (voteyn == "no")
+                {
+                    poll.No += 1;
+                    polls.Update(id, poll);
+                }
+                else
+                {
+                    return "Did not update";
                 }
                 return "Thanks for the vote";
             }
