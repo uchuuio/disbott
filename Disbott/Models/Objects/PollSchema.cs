@@ -9,7 +9,7 @@ namespace Disbott.Models.Objects
         public int Yes { get; set; }
         public int No { get; set; }
         public string Owner { get; set; }
-        public bool IsFinished { get; set; }
+        public bool IsRunning { get; set; }
         public string[] UsersVoted { get; set; }
         public DateTime Time { get; set; }
     }

@@ -19,13 +19,34 @@ namespace Disbott.Controllers
                     Question = question,
                     Time = time,
                     Owner = userName,
-                    IsFinished = false
+                    IsRunning = true
                 };
 
                 Polls.Insert(newPoll);
             }
 
             return true;
+        }
+
+        public static PollSchema GetPollResults(string question)
+        {
+            PollSchema pollResults = new PollSchema();
+
+            using (var db = new LiteDatabase(Constants.pollPath))
+            {
+                var polls = db.GetCollection<PollSchema>("poll");
+
+                var result = polls.FindOne(x => x.Question.Equals(question));
+
+                var poll = result;
+
+                pollResults.Id = poll.Id;
+                pollResults.Yes = poll.Yes;
+                pollResults.No = poll.No;
+                pollResults.Question = poll.Question;
+
+                return pollResults;
+            }
         }
 
         public static string ReurnCurrentPolls()
@@ -41,7 +62,14 @@ namespace Disbott.Controllers
 
                 foreach (var poll in allPolls)
                 {
-                    currentPolls += $"{poll.Id}, {poll.Question}?,Yes: {poll.Yes}, No: {poll.No}";
+                    if (poll.IsRunning == true)
+                    {
+                        currentPolls += $"{poll.Id}, {poll.Question}?,Yes: {poll.Yes}, No: {poll.No}";
+                    }
+                    else
+                    {
+
+                    }
                 }
 
                 return currentPolls;
@@ -145,6 +173,25 @@ namespace Disbott.Controllers
                 {
                     return false;
                 }
+            }
+        }
+
+        public static bool stopPollRunning(string question)
+        {
+            using (var db = new LiteDatabase(Constants.pollPath))
+            {
+                var polls = db.GetCollection<PollSchema>("poll");
+
+                var result = polls.FindOne(x => x.Question.Equals(question));
+
+                var poll = result;
+
+                poll.IsRunning = false;
+                int userId = poll.Id;
+
+                polls.Update(userId, poll);
+
+                return true;
             }
         }
 

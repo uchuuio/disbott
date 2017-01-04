@@ -2,6 +2,7 @@
 using Discord;
 using Discord.Commands;
 using Disbott.Controllers;
+using Disbott.Models.Objects;
 using Disbott.Properties;
 using System;
 using System.Threading;
@@ -24,14 +25,18 @@ namespace Disbott.Views
         //}
         private System.Threading.Timer timer;
 
-        public async void EndPollNote(string userNote,string question)
+        public async void EndPollNote(string question)
         {
             bool timerexists = PollController.FindPoll(question);
 
             if (timerexists == true)
             {
-                await ReplyAsync(userNote);
-                PollController.DeletePollEnd(question);
+                PollSchema pollResults = PollController.GetPollResults(question);
+
+                await ReplyAsync($"id: {pollResults.Id} - '{pollResults.Question}' has finished \r Yes Votes: {pollResults.Yes} \r No Votes: {pollResults.No}");
+
+                PollController.stopPollRunning(question);
+
                 this.timer.Dispose();
             }
             else
@@ -67,8 +72,10 @@ namespace Disbott.Views
             //EVENT HANDLER FOR THE TIMER REACHING THE TIME
             this.timer = new System.Threading.Timer(x =>
             {
-                this.EndPollNote($"Poll has ended Fam",pollName);
+                this.EndPollNote(pollName);
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
+
+            await ReplyAsync($"@everyone {discordId} has started a new poll. '{pollName}' \r You have until {userTime} to vote! \r Use 'votepoll [id] [yes/no]'");
 
         }
 
