@@ -6,36 +6,24 @@ using Disbott.Models.Objects;
 using Disbott.Properties;
 using System;
 using System.Threading;
+using System.IO;
 
 namespace Disbott.Views
 {
     [Name("Poll")]
     public class PollModule : ModuleBase
     {
-        //PollController pollOption = new PollController();
-
-        //[Command("newpoll")]
-        //[Remarks("Starts A Poll")]
-        //public async Task NewPoll([Remainder]string pollName)
-        //{
-        //    var msg = Context.Message;
-        //    string createdPoll = pollOption.CreateNewPoll(msg, pollName);
-
-        //    await ReplyAsync(createdPoll);
-        //}
         private System.Threading.Timer timer;
 
-        public async void EndPollNote(string question)
+        public async void EndPollNote(PollSchema poll)
         {
-            bool timerexists = PollController.FindPoll(question);
+            bool timerexists = PollController.FindPoll(poll.Question);
 
             if (timerexists == true)
             {
-                PollSchema pollResults = PollController.GetPollResults(question);
+                await ReplyAsync($"id: {poll.Id} - '{poll.Question}' has finished \r Yes Votes: {poll.Yes} \r No Votes: {poll.No}");
 
-                await ReplyAsync($"id: {pollResults.Id} - '{pollResults.Question}' has finished \r Yes Votes: {pollResults.Yes} \r No Votes: {pollResults.No}");
-
-                PollController.stopPollRunning(question);
+                PollController.stopPollRunning(poll.Question);
 
                 this.timer.Dispose();
             }
@@ -61,7 +49,7 @@ namespace Disbott.Views
             var timeToWait = userTime.Subtract(currentTime);
             TimeSpan timeToGo = timeToWait;
 
-            PollController.AddNewPoll(discordId, pollName, userTime);
+            PollSchema pollInfo = PollController.AddNewPoll(discordId, pollName, userTime);
 
             // Handle the timer if its in the past
             if (timeToGo < TimeSpan.Zero)
@@ -72,10 +60,11 @@ namespace Disbott.Views
             //EVENT HANDLER FOR THE TIMER REACHING THE TIME
             this.timer = new System.Threading.Timer(x =>
             {
-                this.EndPollNote(pollName);
+                this.EndPollNote(pollInfo);
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
 
-            await ReplyAsync($"@everyone {discordId} has started a new poll. '{pollName}' \r You have until {userTime} to vote! \r Use 'votepoll [id] [yes/no]'");
+            //Message to confirm the poll has been set up
+            await ReplyAsync($"{discordId} has started a new poll. [id = {pollInfo.Id}] \n {pollName} \n You have until {userTime} to vote! \n Use 'votepoll [id] [yes/no]'");
 
         }
 
@@ -129,40 +118,14 @@ namespace Disbott.Views
             }
         }
 
-        //[Command("vote")]
-        //[Remarks("Vote on a poll")]
-        //public async Task Vote(string vote)
-        //{
-        //    if (vote == "yes" || vote == "no")
-        //    {
-        //        string createdPoll = pollOption.VoteOnPoll(vote);
-        //        if (string.IsNullOrEmpty(createdPoll) == false)
-        //        {
-        //            await ReplyAsync(createdPoll);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        await ReplyAsync(Resources.error_Incorrect_Format_Poll);
-        //    }
-        //}
+        [Command("deleteallpolls")]
+        [Remarks("WARNING DELETES ALL POLLS")]
+        [RequireUserPermission(GuildPermission.Administrator)]
+        public async Task deleteAllPolls()
+        {
+            File.Delete(Constants.pollPath);
 
-        //[Command("endpoll")]
-        //[Remarks("End the current poll")]
-        //public async Task EndPoll()
-        //{
-        //    var msg = Context.Message;
-        //    string createdPoll = pollOption.EndPoll(msg);
-        //    await ReplyAsync(createdPoll);
-        //}
-
-        //[Command("officerendpoll")]
-        //[Remarks("Ends the poll as admin")]
-        //[RequireUserPermission(GuildPermission.BanMembers)]
-        //public async Task OfficerEndPoll()
-        //{
-        //    string createdPoll = pollOption.OfficerEndPoll();
-        //    await ReplyAsync(createdPoll);
-        //}
+            await ReplyAsync("All polls deleted, you monster");
+        }
     }
 }

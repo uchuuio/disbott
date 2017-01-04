@@ -8,7 +8,7 @@ namespace Disbott.Controllers
 {
     public class PollController
     {
-        public static bool AddNewPoll(string userName, string question, DateTime time)
+        public static PollSchema AddNewPoll(string userName, string question, DateTime time)
         {
             using (var db = new LiteDatabase(Constants.pollPath))
             {
@@ -23,9 +23,11 @@ namespace Disbott.Controllers
                 };
 
                 Polls.Insert(newPoll);
-            }
 
-            return true;
+                PollSchema initialUserInfo = GetPollResults(question);
+
+                return initialUserInfo;
+            }
         }
 
         public static PollSchema GetPollResults(string question)
@@ -64,7 +66,7 @@ namespace Disbott.Controllers
                 {
                     if (poll.IsRunning == true)
                     {
-                        currentPolls += $"{poll.Id}, {poll.Question}?,Yes: {poll.Yes}, No: {poll.No}";
+                        currentPolls += $"{poll.Id}, {poll.Question}?,Yes: {poll.Yes}, No: {poll.No} \n";
                     }
                     else
                     {
