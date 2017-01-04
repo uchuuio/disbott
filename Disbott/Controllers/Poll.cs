@@ -115,8 +115,36 @@ namespace Disbott.Controllers
             using (var db = new LiteDatabase(Constants.pollPath))
             {
                 var polls = db.GetCollection<PollSchema>("poll");
+
                 polls.Delete(x => x.Question.Equals(question));
+
                 return true;
+            }
+        }
+
+        public static bool FindPoll(string question)
+        {
+            using (var db = new LiteDatabase(Constants.pollPath))
+            {
+                var polls = db.GetCollection<PollSchema>("poll");
+
+                var result = polls.FindAll();
+
+                var allPolls = result as PollSchema[] ?? result.ToArray();
+
+                try
+                {
+                    string answer = allPolls[0].Question;
+                    return true;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
             }
         }
 

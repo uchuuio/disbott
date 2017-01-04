@@ -84,6 +84,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Giphy\GiphyOperations.cs" />
+    <Compile Include="Poll\PollOperations.cs" />
     <Compile Include="Quotes\QuotesOperations.cs" />
     <Compile Include="Coinflip\CoinflipOperations.cs" />
     <Compile Include="DiceRoll\DiceRollOperations.cs" />

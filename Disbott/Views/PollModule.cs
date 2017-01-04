@@ -24,9 +24,22 @@ namespace Disbott.Views
         //}
         private System.Threading.Timer timer;
 
-        public async void EndPollNote(string userNote)
+        public async void EndPollNote(string userNote,string question)
         {
-            await ReplyAsync(userNote);
+            bool timerexists = PollController.FindPoll(question);
+
+            if (timerexists == true)
+            {
+                await ReplyAsync(userNote);
+                PollController.DeletePollEnd(question);
+                this.timer.Dispose();
+            }
+            else
+            {
+                this.timer.Dispose();
+            }
+
+            
         }
 
         [Command("newpoll")]
@@ -54,7 +67,7 @@ namespace Disbott.Views
             //EVENT HANDLER FOR THE TIMER REACHING THE TIME
             this.timer = new System.Threading.Timer(x =>
             {
-                this.EndPollNote($"Poll has ended Fam");
+                this.EndPollNote($"Poll has ended Fam",pollName);
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
 
         }
@@ -67,7 +80,7 @@ namespace Disbott.Views
             string currentPolls = PollController.ReurnCurrentPolls();
             if (currentPolls == "")
             {
-                await ReplyAsync("There are no active reminders!");
+                await ReplyAsync("There are no active Polls!");
             }
             else
             {
