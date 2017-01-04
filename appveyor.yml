@@ -1,4 +1,4 @@
-version: 3.0.1.{build}
+version: 3.0.2.{build}
 branches:
   only:
   - master
@@ -54,3 +54,10 @@ deploy:
     secure: +q9LPaPQ3OnluZcknGfctQrK/7bYMCTqwrdepmI4FDYx3gad3POBYD/m3dRygM6E7exSBkBLAYTCp7FbAPNIKw==
   artifact: azure
   manually_triggered: true
+notifications:
+- provider: Webhook
+  url: https://discordapp.com/api/webhooks/256921709498728448/IMrXREwaISVnoPg_Ckod469Pqh1f1J4ayAFCgQRzJddcsAg58rg2RD-zyJKWu6lHBbN6
+  method: POST
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: false
