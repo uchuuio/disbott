@@ -56,7 +56,7 @@ namespace Disbott.Views
                 TimeSpan timeToGo = timeToWait;
 
                 // Add the reminder to the db
-                var addReminder = RemindMeController.AddRemindMeHistory(discordId, userTime, note);
+                var addReminder = RemindMeController.AddRemindMeHistory(userTime, note, discordId);
 
                 await ReplyAsync($"Don't worry {discordId}! I will remind you at {userTime}");
 
@@ -97,7 +97,7 @@ namespace Disbott.Views
             DateTime setTime = DateTime.Now.Add(timeToGo);
 
             // Add reminder to the db
-            var addReminder = RemindMeController.AddRemindMeHistory(discordId, setTime, note);
+            var addReminder = RemindMeController.AddRemindMeHistory(setTime, note, discordId);
 
             await ReplyAsync($"Don't worry {discordId}! I will remind you in {timeToWait}");
 
@@ -131,7 +131,7 @@ namespace Disbott.Views
             DateTime setTime = DateTime.Now.Add(timeToGo);
 
             // Add reminder to the db
-            var addReminder = RemindMeController.AddRemindMeHistory("Everyone", setTime, note);
+            var addReminder = RemindMeController.AddRemindMeHistory(setTime, note, "Everyone");
 
             await ReplyAsync($"Yes sir {discordId}! I will remind everyone in {timeToWait}");
 
@@ -166,7 +166,7 @@ namespace Disbott.Views
                 TimeSpan timeToGo = timeToWait;
                 
                 // Add reminder to the db
-                var addReminder = RemindMeController.AddRemindMeHistory("everyone", userTime, note);
+                var addReminder = RemindMeController.AddRemindMeHistory(userTime, note, "Everyone");
 
                 await ReplyAsync($"Yes Sir {discordId}! I will remind you at {userTime}");
 

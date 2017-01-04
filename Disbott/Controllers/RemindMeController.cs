@@ -17,7 +17,7 @@ namespace Disbott.Controllers
         /// <param name="time"></param>
         /// <param name="note"></param>
         /// <returns></returns>
-        public static bool AddRemindMeHistory(string name, DateTime time, string note)
+        public static bool AddRemindMeHistory(DateTime time, string note, string name = "Admin")
         {
             using (var db = new LiteDatabase(Constants.remindMePath))
             {

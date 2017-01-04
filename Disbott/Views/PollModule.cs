@@ -88,6 +88,27 @@ namespace Disbott.Views
             await ReplyAsync(hasVoted);
         }
 
+        [Command("deletepoll")]
+        [Remarks("Deletes a poll")]
+        public async Task DeletePoll(string id)
+        {
+            // Discord user info
+            var msg = Context.Message;
+            var discordId = msg.Author.Username;
+
+            bool hasDeleted = PollController.DeletePoll(Convert.ToInt32(id), discordId);
+
+            if (hasDeleted == true)
+            {
+                await ReplyAsync($"{id} was deleted");
+            }
+
+            else
+            {
+                await ReplyAsync($"You cannot delete someone elses poll! Not cool...");
+            }
+        }
+
         //[Command("vote")]
         //[Remarks("Vote on a poll")]
         //public async Task Vote(string vote)

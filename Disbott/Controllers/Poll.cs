@@ -78,6 +78,48 @@ namespace Disbott.Controllers
             }
         }
 
+        public static bool DeletePoll(int number, string userID = "Admin")
+        {
+            int id = Convert.ToInt32(number);
+
+            using (var db = new LiteDatabase(Constants.pollPath))
+            {
+                var polls = db.GetCollection<PollSchema>("poll");
+
+                if (userID == "Admin")
+                {
+                    polls.Delete(x => x.Id.Equals(id));
+                    return true;
+                }
+                else
+                {
+                    var result = polls.Find(x => x.Id.Equals(id));
+                    var allpolls = result as PollSchema[] ?? result.ToArray();
+
+                    if (allpolls[0].Owner == userID)
+                    {
+                        polls.Delete(x => x.Id.Equals(id));
+                        return true;
+                    }
+                    //Delete the item with passed in ID
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        public static bool DeletePollEnd(string question)
+        {
+            using (var db = new LiteDatabase(Constants.pollPath))
+            {
+                var polls = db.GetCollection<PollSchema>("poll");
+                polls.Delete(x => x.Question.Equals(question));
+                return true;
+            }
+        }
+
         //PollSchema currentPoll = new PollSchema()
         //{
         //    Yes = 0,
