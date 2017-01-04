@@ -5,6 +5,7 @@ using Discord.Commands;
 using LiteDB;
 using System.Linq;
 using Disbott.Models.Objects;
+using Disbott;
 
 namespace Disbott.Controllers
 {
@@ -12,7 +13,7 @@ namespace Disbott.Controllers
     {
         public static bool AddQuoteMethod(string name, string newquote)
         {
-            using (var db = new LiteDatabase(@"Quotes.db"))
+            using (var db = new LiteDatabase(Constants.quotePath))
             {
                 var quotes = db.GetCollection<QuoteSchema>("quotes");
 
@@ -30,7 +31,7 @@ namespace Disbott.Controllers
 
         public static Tuple<string, string> GetQuoteMethod(string name)
         {
-            using (var db = new LiteDatabase(@"Quotes.db"))
+            using (var db = new LiteDatabase(Constants.quotePath))
             {
                 var quotes = db.GetCollection<QuoteSchema>("quotes");
 
@@ -56,7 +57,7 @@ namespace Disbott.Controllers
 
         public static bool DeleteQuoteMethod(string quote)
         {
-            using (var db = new LiteDatabase(@"Quotes.db"))
+            using (var db = new LiteDatabase(Constants.quotePath))
             {
                 var quotes = db.GetCollection<QuoteSchema>("quotes");
 

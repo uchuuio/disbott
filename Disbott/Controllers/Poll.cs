@@ -10,7 +10,7 @@ namespace Disbott.Controllers
     {
         public static bool AddNewPoll(string userName, string question, DateTime time)
         {
-            using (var db = new LiteDatabase(@"poll.db"))
+            using (var db = new LiteDatabase(Constants.pollPath))
             {
                 var Polls = db.GetCollection<PollSchema>("poll");
 
@@ -30,7 +30,7 @@ namespace Disbott.Controllers
 
         public static string ReurnCurrentPolls()
         {
-            using (var db = new LiteDatabase(@"poll.db"))
+            using (var db = new LiteDatabase(Constants.pollPath))
             {
                 string currentPolls = "";
                 var polls = db.GetCollection<PollSchema>("poll");
@@ -52,7 +52,7 @@ namespace Disbott.Controllers
         {
             int id = Convert.ToInt32(number);
 
-            using (var db = new LiteDatabase(@"poll.db"))
+            using (var db = new LiteDatabase(Constants.pollPath))
             {
                 var polls = db.GetCollection<PollSchema>("poll");
 

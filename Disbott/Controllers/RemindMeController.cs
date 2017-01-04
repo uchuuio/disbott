@@ -19,7 +19,7 @@ namespace Disbott.Controllers
         /// <returns></returns>
         public static bool AddRemindMeHistory(string name, DateTime time, string note)
         {
-            using (var db = new LiteDatabase(@"remindme.db"))
+            using (var db = new LiteDatabase(Constants.remindMePath))
             {
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
 
@@ -42,7 +42,7 @@ namespace Disbott.Controllers
         /// <returns></returns>
         public static string GetReminders()
         {
-            using (var db = new LiteDatabase(@"remindme.db"))
+            using (var db = new LiteDatabase(Constants.remindMePath))
             {
                 string reminderHistory = "";
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
@@ -62,7 +62,7 @@ namespace Disbott.Controllers
 
         public static string GetMyReminders(string userId)
         {
-            using (var db = new LiteDatabase(@"remindme.db"))
+            using (var db = new LiteDatabase(Constants.remindMePath))
             {
                 string reminderHistory = "";
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
@@ -87,7 +87,7 @@ namespace Disbott.Controllers
         /// <returns></returns>
         public static bool DeleteReminder(int id, string userID)
         {
-            using (var db = new LiteDatabase(@"remindme.db"))
+            using (var db = new LiteDatabase(Constants.remindMePath))
             {
                 // Open up the db
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
@@ -122,7 +122,7 @@ namespace Disbott.Controllers
         /// <returns></returns>
         public static bool DeleteReminderEnd(string note)
         {
-            using (var db = new LiteDatabase(@"remindme.db"))
+            using (var db = new LiteDatabase(Constants.remindMePath))
             {
                 // Open up the db
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
@@ -141,7 +141,7 @@ namespace Disbott.Controllers
         /// <returns></returns>
         public static bool FindReminder(string note)
         {
-            using (var db = new LiteDatabase(@"remindme.db"))
+            using (var db = new LiteDatabase(Constants.remindMePath))
             {
                 // Open up the db
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
