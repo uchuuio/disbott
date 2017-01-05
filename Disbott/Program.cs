@@ -48,8 +48,8 @@ namespace Disbott
         public async Task ModifyStatus()
         {
             var username = _client.CurrentUser.Username;
-            await _client.SetStatus(UserStatus.Idle);
-            await _client.SetGame($"\'@{username} about\' for commands");
+            await _client.SetStatusAsync(UserStatus.Online);
+            await _client.SetGameAsync($"\'@{username} about\' for commands");
         }
 
         public async Task InstallCommands()
