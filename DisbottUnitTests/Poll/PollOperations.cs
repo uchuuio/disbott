@@ -38,7 +38,7 @@ namespace DisbottUnitTests.Poll
 
             string answer = PollController.ReurnCurrentPolls();
 
-            Assert.AreEqual(answer, $"1, {question}?,Yes: 0, No: 0");
+            Assert.AreEqual(answer, $"1, {question}?,Yes: 0, No: 0 \n");
 
             File.Delete(Constants.pollPath);
         }
@@ -56,7 +56,7 @@ namespace DisbottUnitTests.Poll
 
             string answer = PollController.ReurnCurrentPolls();
 
-            Assert.AreEqual(answer, $"1, {question}?,Yes: 1, No: 0");
+            Assert.AreEqual(answer, $"1, {question}?,Yes: 1, No: 0 \n");
 
             File.Delete(Constants.pollPath);
         }
