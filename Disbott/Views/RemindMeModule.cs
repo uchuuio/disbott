@@ -75,6 +75,7 @@ namespace Disbott.Views
             }
             catch(FormatException e)
             {
+                Console.WriteLine(e);
                 await ReplyAsync("Date was in an incorrect format. Use the format 'DD/MM/YYYY HH:MM:SS'(Must be in inverted commas) \r\n Or just type a date for a day");
             }
             catch(Exception e)
@@ -184,6 +185,7 @@ namespace Disbott.Views
             }
             catch (FormatException e)
             {
+                Console.WriteLine(e);
                 await ReplyAsync("Date was in an incorrect format. Use the format 'DD/MM/YYYY HH:MM:SS'(Must be in inverted commas) \r\n Or just type a date for a day");
             }
             catch (Exception e)

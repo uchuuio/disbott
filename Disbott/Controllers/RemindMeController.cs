@@ -157,10 +157,12 @@ namespace Disbott.Controllers
                 }
                 catch(IndexOutOfRangeException e)
                 {
+                    Console.WriteLine(e);
                     return false;
                 }
                 catch(Exception e)
                 {
+                    Console.WriteLine(e);
                     return false;
                 }
             }
