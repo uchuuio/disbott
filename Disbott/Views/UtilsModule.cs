@@ -52,7 +52,7 @@ namespace Disbott.Views
                 var channel = guild.GetDefaultChannelAsync();
                 await channel.Result.SendMessageAsync(Resources.response_Killed);
             }
-            await Context.Client.ApiClient.LogoutAsync();
+            await Context.Client.DisconnectAsync();
             Process.GetCurrentProcess().Kill();
         }
     }
