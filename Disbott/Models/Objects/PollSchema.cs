@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Disbott.Models.Objects
 {
@@ -10,7 +11,7 @@ namespace Disbott.Models.Objects
         public int No { get; set; }
         public string Owner { get; set; }
         public bool IsRunning { get; set; }
-        public string[] UsersVoted { get; set; }
+        public List<string> UsersVoted { get; set; }
         public DateTime Time { get; set; }
     }
 }
