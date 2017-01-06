@@ -78,9 +78,10 @@ namespace Disbott
                 if (!result.IsSuccess)
                     await message.Channel.SendMessageAsync(result.ErrorReason);
             }
-
+            
+           
             // MessageCount Record
-            MessageCount.MessageRecord(message);
+            MessageCount.MessageRecord(message.Author.Id);
         }
 
     }

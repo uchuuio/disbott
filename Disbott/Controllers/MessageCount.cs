@@ -12,13 +12,13 @@ namespace Disbott.Controllers
 {
     public static class MessageCount
     {
-        public static void MessageRecord(IUserMessage msg)
+        public static bool MessageRecord(ulong msg)
         {
             using (var db = new LiteDatabase(Constants.MessageCountPath))
             {
                 var totalMessages = db.GetCollection<MessageCountSchema>("totalmessages");
 
-                var getUserMessages = totalMessages.Find(x => x.Id.Equals(msg.Author.Id));
+                var getUserMessages = totalMessages.Find(x => x.Id.Equals(msg));
                 var users = getUserMessages as MessageCountSchema[] ?? getUserMessages.ToArray();
                 if (users.Any())
                 {
@@ -27,7 +27,7 @@ namespace Disbott.Controllers
 
                     totalMessages.Update(new MessageCountSchema
                     {
-                        Id = msg.Author.Id,
+                        Id = msg,
                         Messages = newCount
                     });
                 }
@@ -35,10 +35,11 @@ namespace Disbott.Controllers
                 {
                     totalMessages.Insert(new MessageCountSchema
                     {
-                        Id = msg.Author.Id,
+                        Id = msg,
                         Messages = 1
                     });
                 }
+                return true;
             }
         }
 
