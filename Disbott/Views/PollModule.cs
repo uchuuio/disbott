@@ -92,7 +92,7 @@ namespace Disbott.Views
             var msg = Context.Message;
             var discordId = msg.Author.Username;
 
-            string hasVoted = PollController.VoteOnPoll(id, vote);
+            string hasVoted = PollController.VoteOnPoll(id, vote, discordId);
 
             await ReplyAsync(hasVoted);
         }

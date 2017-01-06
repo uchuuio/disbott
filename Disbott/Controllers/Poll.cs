@@ -2,6 +2,7 @@
 using Discord;
 using LiteDB;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Disbott.Controllers
@@ -14,12 +15,15 @@ namespace Disbott.Controllers
             {
                 var Polls = db.GetCollection<PollSchema>("poll");
 
+                List<string> l = new List<string>();
+
                 var newPoll = new PollSchema
                 {
                     Question = question,
                     Time = time,
                     Owner = userName,
-                    IsRunning = true
+                    IsRunning = true,
+                    UsersVoted = l
                 };
 
                 Polls.Insert(newPoll);
@@ -78,7 +82,7 @@ namespace Disbott.Controllers
             }
         }
 
-        public static string VoteOnPoll(string number, string voteyn)
+        public static string VoteOnPoll(string number, string voteyn, string userID)
         {
             int id = Convert.ToInt32(number);
 
@@ -90,21 +94,32 @@ namespace Disbott.Controllers
 
                 var poll = result;
 
-                if (voteyn == "yes")
+                bool matched = poll.UsersVoted.Contains(userID);
+
+                if (matched) 
                 {
-                    poll.Yes += 1;
-                    polls.Update(id ,poll);
-                }
-                else if (voteyn == "no")
-                {
-                    poll.No += 1;
-                    polls.Update(id, poll);
+                    return "You have already Voted!";
                 }
                 else
                 {
-                    return "Did not update";
+                    if (voteyn == "yes")
+                    {
+                        poll.Yes += 1;
+                        polls.Update(id, poll);
+                    }
+                    else if (voteyn == "no")
+                    {
+                        poll.No += 1;
+                        polls.Update(id, poll);
+                    }
+                    else
+                    {
+                        return "Did not update";
+                    }
+                    poll.UsersVoted.Add(userID);
+                    polls.Update(id, poll);
+                    return "Thanks for the vote";
                 }
-                return "Thanks for the vote";
             }
         }
 

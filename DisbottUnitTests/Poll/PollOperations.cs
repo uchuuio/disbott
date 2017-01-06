@@ -50,7 +50,7 @@ namespace DisbottUnitTests.Poll
 
             setUpPoll();
 
-            string voted = PollController.VoteOnPoll("1", "yes");
+            string voted = PollController.VoteOnPoll("1", "yes", "Admin");
 
             Assert.AreEqual(voted, "Thanks for the vote");
 
