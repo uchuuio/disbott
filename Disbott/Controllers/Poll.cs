@@ -190,25 +190,12 @@ namespace Disbott.Controllers
             {
                 var polls = db.GetCollection<PollSchema>("poll");
 
-                var result = polls.FindAll();
+                var result = polls.FindOne(x => x.Question.Equals(question));
 
-                var allPolls = result as PollSchema[] ?? result.ToArray();
+                var poll = result;
 
-                try
-                {
-                    string answer = allPolls[0].Question;
-                    return true;
-                }
-                catch (IndexOutOfRangeException e)
-                {
-                    Console.WriteLine(e);
-                    return false;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    return false;
-                }
+                string answer = result.Question;
+                return true;
             }
         }
 

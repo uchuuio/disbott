@@ -62,6 +62,25 @@ namespace DisbottUnitTests.Poll
         }
 
         [Test]
+        public void Vote_Poll_Already_Voted_Check()
+        {
+            File.Delete(Constants.pollPath);
+
+            setUpPoll();
+
+            PollController.VoteOnPoll("1", "yes", "Admin");
+            string voted = PollController.VoteOnPoll("1", "yes", "Admin");
+
+            Assert.AreEqual(voted, "You have already Voted!");
+
+            string answer = PollController.ReurnCurrentPolls();
+
+            Assert.AreEqual(answer, $"1, {question}?,Yes: 1, No: 0 \n");
+
+            File.Delete(Constants.pollPath);
+        }
+
+        [Test]
         public void Vote_Poll_No_Check()
         {
             File.Delete(Constants.pollPath);
@@ -145,6 +164,16 @@ namespace DisbottUnitTests.Poll
             setUpPoll();
 
             Assert.That(PollController.FindPoll(question), Is.EqualTo(true));
+
+            File.Delete(Constants.pollPath);
+        }
+
+        [Test]
+        public void Poll_Stop_Running_Check()
+        {
+            setUpPoll();
+
+            Assert.That(PollController.stopPollRunning(question), Is.EqualTo(true));
 
             File.Delete(Constants.pollPath);
         }
