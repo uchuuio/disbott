@@ -1,8 +1,6 @@
 ﻿using Disbott.Models.Objects;
 using Disbott.Properties;
 using Discord;
-using Discord.Commands;
-using Disbott.Properties;
 using LiteDB;
 using System;
 using System.Collections.Generic;
@@ -16,7 +14,7 @@ namespace Disbott.Controllers
     {
         public static void MessageRecord(IUserMessage msg)
         {
-            using (var db = new LiteDatabase(@"MessageCount.db"))
+            using (var db = new LiteDatabase(Constants.MessageCountPath))
             {
                 var totalMessages = db.GetCollection<MessageCountSchema>("totalmessages");
 
@@ -43,24 +41,16 @@ namespace Disbott.Controllers
                 }
             }
         }
-        
-        public static string GetMessages(IUserMessage msg)
+
+        public static string GetMessages(ulong msg)
         {
-            using (var db = new LiteDatabase(@"MessageCount.db"))
+            using (var db = new LiteDatabase(Constants.MessageCountPath))
             {
                 var totalMessages = db.GetCollection<MessageCountSchema>("totalmessages");
 
-                var getUserMessages = totalMessages.Find(x => x.Id.Equals(msg.Author.Id));
-                var users = getUserMessages as MessageCountSchema[] ?? getUserMessages.ToArray();
-                if (users.Any())
-                {
-                    var user = users[0];
-                    return string.Format(Resources.response_Total_Messages, MentionUtils.MentionUser(user.Id), user.Messages);
-                }
-                else
-                {
-                    return Resources.error_No_Messages;
-                }
+                var getUserMessages = totalMessages.FindOne(x => x.Id.Equals(msg));
+
+                return string.Format(Resources.response_Total_Messages, MentionUtils.MentionUser(getUserMessages.Id), getUserMessages.Messages);
             }
         }
     }

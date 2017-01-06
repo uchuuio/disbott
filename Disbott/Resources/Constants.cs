@@ -18,7 +18,10 @@ namespace Disbott
 
             public static string pollPath = Path.GetDirectoryName(Path.GetDirectoryName
                 (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Debug\\polltest.db";
-        #else
+
+            public static string MessageCountPath = Path.GetDirectoryName(Path.GetDirectoryName
+                (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Debug\\MessageCounttest.db";
+#else
             public static string quotePath = Path.GetDirectoryName(Path.GetDirectoryName
                 (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Release\\quotes.db";
 
@@ -27,6 +30,9 @@ namespace Disbott
 
             public static string pollPath = Path.GetDirectoryName(Path.GetDirectoryName
                 (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Release\\poll.db";
-        #endif
+
+            public static string MessageCountPath = Path.GetDirectoryName(Path.GetDirectoryName
+                (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Debug\\MessageCount.db";
+#endif
     }
 }

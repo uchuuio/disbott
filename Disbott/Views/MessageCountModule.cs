@@ -20,8 +20,9 @@ namespace Disbott.Views
         public async Task Messagecount()
         {
             var msg = Context.Message;
+            var discordId = msg.Author.Id;
 
-            string result = MessageCount.GetMessages(msg);
+            string result = MessageCount.GetMessages(discordId);
 
             await ReplyAsync(result);
         }
