@@ -270,6 +270,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\MessageCount.cs" />
     <Compile Include="Controllers\Quotes.cs" />
     <Compile Include="Controllers\Giphy.cs" />
     <Compile Include="Controllers\RemindMeController.cs" />
