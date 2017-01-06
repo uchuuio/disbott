@@ -246,7 +246,7 @@ namespace Disbott.Views
         public async Task AdminDeleteReminder(string id)
         {
             // Delete item from the db
-            RemindMeController.DeleteReminder(Convert.ToInt32(id), "Admin");
+            RemindMeController.DeleteReminder(Convert.ToInt32(id), "Admin2");
             await ReplyAsync($"{id} was deleted");
         }
 

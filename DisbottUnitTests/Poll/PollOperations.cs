@@ -44,7 +44,7 @@ namespace DisbottUnitTests.Poll
         }
 
         [Test]
-        public void Vote_Poll_Check()
+        public void Vote_Poll_Yes_Check()
         {
             File.Delete(Constants.pollPath);
 
@@ -62,15 +62,71 @@ namespace DisbottUnitTests.Poll
         }
 
         [Test]
+        public void Vote_Poll_No_Check()
+        {
+            File.Delete(Constants.pollPath);
+
+            setUpPoll();
+
+            string voted = PollController.VoteOnPoll("1", "no", "Admin");
+
+            Assert.AreEqual(voted, "Thanks for the vote");
+
+            string answer = PollController.ReurnCurrentPolls();
+
+            Assert.AreEqual(answer, $"1, {question}?,Yes: 0, No: 1 \n");
+
+            File.Delete(Constants.pollPath);
+        }
+
+        [Test]
+        public void Vote_Poll_Failed_Check()
+        {
+            File.Delete(Constants.pollPath);
+
+            setUpPoll();
+
+            string voted = PollController.VoteOnPoll("1", "cake", "Admin");
+
+            Assert.AreEqual(voted, "Did not update");
+
+            string answer = PollController.ReurnCurrentPolls();
+
+            Assert.AreEqual(answer, $"1, {question}?,Yes: 0, No: 0 \n");
+
+            File.Delete(Constants.pollPath);
+        }
+
+        [Test]
         public void Delete_Poll_Check()
         {
             setUpPoll();
-
-
+            
             Assert.That(PollController.DeletePoll(1, userID), Is.EqualTo(true));
 
             File.Delete(Constants.pollPath);
         }
+
+        [Test]
+        public void Delete_Poll_Admin_Check()
+        {
+            setUpPoll();
+
+            Assert.That(PollController.DeletePoll(1, "Admin2"), Is.EqualTo(true));
+
+            File.Delete(Constants.pollPath);
+        }
+
+        [Test]
+        public void Delete_Poll_Failed_Check()
+        {
+            setUpPoll();
+
+            Assert.That(PollController.DeletePoll(1, "test"), Is.EqualTo(false));
+
+            File.Delete(Constants.pollPath);
+        }
+
 
         [Test]
         public void Delete_Auto_Poll_Check()
@@ -81,6 +137,7 @@ namespace DisbottUnitTests.Poll
 
             File.Delete(Constants.pollPath);
         }
+        
 
         [Test]
         public void Find_Poll_Check()

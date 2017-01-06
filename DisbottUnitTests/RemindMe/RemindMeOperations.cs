@@ -70,6 +70,24 @@ namespace DisbottUnitTests
         }
 
         [Test]
+        public void Delete_Reminder_Admin_Check()
+        {
+            setUpUser();
+
+            Assert.That(RemindMeController.DeleteReminder(1, "Admin2"), Is.EqualTo(true));
+
+            File.Delete(Constants.remindMePath);
+        }
+
+        [Test]
+        public void Delete_Reminder_Fails()
+        {
+            setUpUser();
+            Assert.That(RemindMeController.DeleteReminder(1, "Test"), Is.EqualTo(false));
+            File.Delete(Constants.remindMePath);
+        }
+
+        [Test]
         public void Delete_Reminder_End_Check()
         {
             setUpUser();

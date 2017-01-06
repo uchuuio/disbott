@@ -140,7 +140,7 @@ namespace Disbott.Controllers
         //    }
         //}
 
-        public static bool DeletePoll(int number, string userID = "Admin")
+        public static bool DeletePoll(int number, string userID = "Admin2")
         {
             int id = Convert.ToInt32(number);
 
@@ -148,7 +148,7 @@ namespace Disbott.Controllers
             {
                 var polls = db.GetCollection<PollSchema>("poll");
 
-                if (userID == "Admin")
+                if (userID == "Admin2")
                 {
                     polls.Delete(x => x.Id.Equals(id));
                     return true;

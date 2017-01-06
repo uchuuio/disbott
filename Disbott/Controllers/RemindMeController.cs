@@ -91,7 +91,7 @@ namespace Disbott.Controllers
             {
                 // Open up the db
                 var reminders = db.GetCollection<RemindMeSchema>("remindme");
-                if (userID == "Admin")
+                if (userID == "Admin2")
                 {
                     reminders.Delete(x => x.Id.Equals(id));
                     return true;
