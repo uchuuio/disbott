@@ -31,5 +31,15 @@ namespace DisbottUnitTests.MessageCountOperations
             string count = MessageCount.GetMessages(1);
             Assert.AreEqual($"<@!1> has posted 1 messages", count);
         }
+
+        [Test]
+        public void Can_Log_Second_Message()
+        {
+            File.Delete(Constants.MessageCountPath);
+            MessageCount.MessageRecord(1);
+            bool success = MessageCount.MessageRecord(1);
+
+            Assert.That(success, Is.EqualTo(true));
+        }
     }
 }
