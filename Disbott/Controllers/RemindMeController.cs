@@ -155,11 +155,6 @@ namespace Disbott.Controllers
                     string answer = allReminders[0].Note;
                     return true;
                 }
-                catch(IndexOutOfRangeException e)
-                {
-                    Console.WriteLine(e);
-                    return false;
-                }
                 catch(Exception e)
                 {
                     Console.WriteLine(e);

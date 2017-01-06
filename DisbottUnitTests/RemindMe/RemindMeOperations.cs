@@ -103,6 +103,15 @@ namespace DisbottUnitTests
             setUpUser();
 
             Assert.That(RemindMeController.FindReminder(note), Is.EqualTo(true));
+
+            File.Delete(Constants.remindMePath);
+        }
+
+        [Test]
+        public void Find_Reminder_Failed()
+        {
+            File.Delete(Constants.remindMePath);
+            Assert.That(RemindMeController.FindReminder(note), Is.EqualTo(false));
         }
     }
 }
