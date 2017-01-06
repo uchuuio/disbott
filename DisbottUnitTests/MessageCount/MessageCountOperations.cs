@@ -1,5 +1,6 @@
 ﻿using Disbott;
 using Disbott.Controllers;
+
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DisbottUnitTests.MessageCount
+namespace DisbottUnitTests.MessageCountOperations
 {
     [TestFixture]
     public class MessageCountOperations
@@ -17,9 +18,9 @@ namespace DisbottUnitTests.MessageCount
         public void Can_Get_MessageCount_Check()
         {
             File.Delete(Constants.MessageCountPath);
-
-            
-
+            //MessageCount.MessageRecord(1);
+            string count = MessageCount.GetMessages(1);
+            Assert.AreEqual(1, count);
         }
     }
 }
