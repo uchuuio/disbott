@@ -2,6 +2,8 @@
 using Disbott.Controllers;
 using NUnit.Framework;
 using NUnit.Framework.Internal.Commands;
+using System.IO;
+using Disbott;
 
 namespace DisbottUnitTests
 {
@@ -19,6 +21,7 @@ namespace DisbottUnitTests
         {
             var result = QuotesController.AddQuoteMethod("Dan", "I'm in the army");
             Assert.IsTrue(result);
+            File.Delete(Constants.quotePath);
         }
 
         /// <summary>
@@ -32,6 +35,7 @@ namespace DisbottUnitTests
 
             Assert.That(quoteTuple.Item1, Is.EqualTo("disbott"));
             Assert.That(quoteTuple.Item2, Is.EqualTo("this is a test"));
+            File.Delete(Constants.quotePath);
         }
 
         /// <summary>
@@ -42,6 +46,7 @@ namespace DisbottUnitTests
         {
             var quoteTuple = QuotesController.GetQuoteMethod("tomo");
             Assert.IsNull(quoteTuple.Item2);
+            File.Delete(Constants.quotePath);
         }
         
         /// <summary>
@@ -52,6 +57,7 @@ namespace DisbottUnitTests
         {
             var result = QuotesController.DeleteQuoteMethod("I'm in the army");
             Assert.IsTrue(result);
+            File.Delete(Constants.quotePath);
         }
     }
 }

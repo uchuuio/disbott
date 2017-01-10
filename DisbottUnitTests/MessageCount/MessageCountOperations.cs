@@ -21,6 +21,7 @@ namespace DisbottUnitTests.MessageCountOperations
             bool success = MessageCount.MessageRecord(1);
 
             Assert.That(success, Is.EqualTo(true));
+            File.Delete(Constants.MessageCountPath);
         }
 
         [Test]
@@ -30,6 +31,7 @@ namespace DisbottUnitTests.MessageCountOperations
             MessageCount.MessageRecord(1);
             string count = MessageCount.GetMessages(1);
             Assert.AreEqual($"<@!1> has posted 1 messages", count);
+            File.Delete(Constants.MessageCountPath);
         }
 
         [Test]
@@ -40,6 +42,7 @@ namespace DisbottUnitTests.MessageCountOperations
             bool success = MessageCount.MessageRecord(1);
 
             Assert.That(success, Is.EqualTo(true));
+            File.Delete(Constants.MessageCountPath);
         }
     }
 }
