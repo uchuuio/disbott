@@ -38,7 +38,7 @@ namespace Disbott.Views
             }
         }
 
-        [Command("reminddatetime")]
+        [Command("remindmethen")]
         [Remarks("adds a new note for a date")]
         public async Task RemindDateTime(string date, [Remainder]string note)
         {
@@ -84,7 +84,7 @@ namespace Disbott.Views
             }
         }
 
-        [Command("remindme")]
+        [Command("remindmein")]
         [Remarks("Reminds you after a time")]
         public async Task RemindMe(int hours, int mins , int seconds, [Remainder]string note)
         {
@@ -117,7 +117,7 @@ namespace Disbott.Views
         /// <param name="seconds"></param>
         /// <param name="note"></param>
         /// <returns></returns>
-        [Command("remindall")]
+        [Command("remindallin")]
         [Remarks("Reminds Everyone")]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task RemindAll(int hours, int mins, int seconds, [Remainder]string note)
@@ -149,7 +149,7 @@ namespace Disbott.Views
         /// <param name="date"></param>
         /// <param name="note"></param>
         /// <returns></returns>
-        [Command("reminddatetimeall")]
+        [Command("remindallthen")]
         [Remarks("adds a new note for a date")]
         [RequireUserPermission(GuildPermission.Administrator)]
         public async Task RemindAllDateTime(string date, [Remainder]string note)

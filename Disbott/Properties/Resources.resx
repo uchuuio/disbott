@@ -117,44 +117,176 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Comand_Lol_SetSummoner" xml:space="preserve">
+    <value>Set Summoner -- Links the specified summoner to your discord account // **disbott setsummoner [summoner name]**</value>
+    <comment>Lol_Module</comment>
+  </data>
+  <data name="Command_CoinFlip_Flip" xml:space="preserve">
+    <value>Flip -- Flips a coin! // **disbott flip**</value>
+    <comment>Coinflip_Module</comment>
+  </data>
+  <data name="Command_Giphy_Flip" xml:space="preserve">
+    <value>Giphy -- Gets a random gif // **disbott giphy [subject]**</value>
+    <comment>Giphy_Module</comment>
+  </data>
+  <data name="Command_Lol_CurrentGame" xml:space="preserve">
+    <value>Current Game -- Gets the current game for yourself or another discord/league account // **disbott currentgame [summoner name]**</value>
+    <comment>Lol_Module</comment>
+  </data>
+  <data name="Command_Lol_Ranked" xml:space="preserve">
+    <value>Ranked Info -- Gets the ranked stats for yourself or another discord/league account // **disbott ranked [summoner name]**</value>
+    <comment>Lol_Module</comment>
+  </data>
+  <data name="Command_Message_Count_Count" xml:space="preserve">
+    <value>Message Count -- Displays Current Message Count for Current or Another Discord User // **disbott messagecount**</value>
+    <comment>Message_Count_Module</comment>
+  </data>
+  <data name="Command_Poll_Current" xml:space="preserve">
+    <value>Current Polls -- Gets all the current polls // **disbott currentpolls**</value>
+    <comment>Poll_Module</comment>
+  </data>
+  <data name="Command_Poll_Delete" xml:space="preserve">
+    <value>Delete Poll -- Deletes a poll // **disbott deletepoll [Poll ID]**</value>
+    <comment>Poll_Module</comment>
+  </data>
+  <data name="Command_Poll_DeleteAll" xml:space="preserve">
+    <value>Delete all Polls (Admin Only) -- Deletes all polls // **disbott deleteallpolls**</value>
+    <comment>Poll_Module</comment>
+  </data>
+  <data name="Command_Poll_NewPoll" xml:space="preserve">
+    <value>New Poll -- Starts a new Poll // **disbott newpoll [Date Time] [Poll Title]**</value>
+    <comment>Poll_Module</comment>
+  </data>
+  <data name="Command_Poll_VotePoll" xml:space="preserve">
+    <value>Vote Poll -- Votes on a poll // **disbott votepoll [Poll ID] [yes/no]**</value>
+    <comment>Poll_Module</comment>
+  </data>
+  <data name="Command_Quotes_AddQuote" xml:space="preserve">
+    <value>Add Quote -- Adds a new quote // **disbott addquote [Username] [Quote]**</value>
+    <comment>Quotes_Module</comment>
+  </data>
+  <data name="Command_Quote_Delete" xml:space="preserve">
+    <value>Delete Quote -- Removes quote from a person // **disbott deletequote [Quote]**</value>
+    <comment>Quotes_Module</comment>
+  </data>
+  <data name="Command_Quote_Quote" xml:space="preserve">
+    <value>Quote -- Randomly quotes a user // **disbott quote [username]**</value>
+    <comment>Quotes_Module</comment>
+  </data>
+  <data name="Command_Remindme_AdDeleteReminder" xml:space="preserve">
+    <value>Admin Delete Reminder (Admin Only)-- Deletes a Reminder  // **disbott admindeletereminder [Poll ID]**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Remindme_AllReminders" xml:space="preserve">
+    <value>All Reminders (Admin Only) -- Show all the current reminders // **disbott allreminders**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Remindme_DeleteReminder" xml:space="preserve">
+    <value>Delete Reminder -- Deletes one of your current reminders // **disbott deletereminder [Poll ID]**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Remindme_MyReminders" xml:space="preserve">
+    <value>My Reminders -- Show your current reminders // **disbott myreminders**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Remindme_RemindIn" xml:space="preserve">
+    <value>Remind Me In -- Reminds a user something in a set amout of time // **disbott remindmein [h] [m] [s] [Reminder]**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Remindme_RemindInAll" xml:space="preserve">
+    <value>Remind All In (Admin Only) -- Reminds all users something in a set amout of time // **disbott remindallin [h] [m] [s] [Reminder]**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Remindme_RemindThen" xml:space="preserve">
+    <value>Remind Me Then -- Remindes a user something at a set time // **disbott remindmethen [Date/Time] [Reminder]**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Remindme_RemindThenAll" xml:space="preserve">
+    <value>Remidn All Then (Admin Only) --  Reminds all users something at a set time // **disbott remindallthen [Date/Time] [Reminder]**</value>
+    <comment>Remind_Me_Module</comment>
+  </data>
+  <data name="Command_Roll_Roll" xml:space="preserve">
+    <value>Roll Dice -- Rolls a dice // **disbott roll [xdy](Where x is number and y is sides)**</value>
+    <comment>Roll_Module</comment>
+  </data>
+  <data name="Command_Twitter_gazo" xml:space="preserve">
+    <value>Gazo Tweet -- NSFW, gets a random image from the last 40 tweets on @idol_gazo twitter account // **disbott gazo**</value>
+    <comment>Twitter_Module</comment>
+  </data>
+  <data name="Command_Twitter_Headline" xml:space="preserve">
+    <value>Get Headline -- Gets the latest tweet from The Guardian's Twitter Account // **disbott headline**</value>
+    <comment>Twitter_Module</comment>
+  </data>
+  <data name="Command_Twitter_RandomTweet" xml:space="preserve">
+    <value>Get Random Tweet -- Gets a random tweet in the last 40 for a user // **disbott randomtweet [Twitter name]**</value>
+    <comment>Twitter_Module</comment>
+  </data>
+  <data name="Command_Twitter_Tweet" xml:space="preserve">
+    <value>Get Tweet -- Gets the last tweet from a user // **disbott tweet [Twitter Name]**</value>
+    <comment>Twitter_Module</comment>
+  </data>
+  <data name="Command_Utils_About" xml:space="preserve">
+    <value>About -- Tells the user about Disbott and its creators // **disbott about**</value>
+    <comment>Utils_Module</comment>
+  </data>
+  <data name="Command_Utils_Help" xml:space="preserve">
+    <value>Help -- Gives explanation for all disbott commands // **disbott help [Module Name]**</value>
+    <comment>Utils_Module</comment>
+  </data>
+  <data name="Command_Utils_Info" xml:space="preserve">
+    <value>Info -- Tells user the current Disbott info // **disbott info**</value>
+    <comment>Utils_Module</comment>
+  </data>
+  <data name="Command_Utils_Kill" xml:space="preserve">
+    <value>Kill (Admin Only)-- Ruthlessly murders disbott // **disbott kill**</value>
+    <comment>Utils_Module</comment>
+  </data>
+  <data name="Command_Utils_Modules" xml:space="preserve">
+    <value>Modules -- Lists all the current disbott modules // **disbott modules**</value>
+    <comment>Utils_Module</comment>
+  </data>
+  <data name="Command_Utils_Ping" xml:space="preserve">
+    <value>Ping -- Checks disbott is alive // **disbott ping**</value>
+    <comment>Utils_Module</comment>
+  </data>
   <data name="Desc_Coinflip" xml:space="preserve">
-    <value>Coin Flip: commands to flip a coin</value>
+    <value>**coinflip:** commands to flip a coin</value>
     <comment>Coin_Flip_Module</comment>
   </data>
   <data name="Desc_Giphy" xml:space="preserve">
-    <value>Giphy: commands to get Gifs from giphy</value>
+    <value>**giphy:** commands to get Gifs from giphy</value>
     <comment>Giphy_Module</comment>
   </data>
   <data name="Desc_Lol" xml:space="preserve">
-    <value>League of Legends: commands to get information about League of Legends accounts</value>
+    <value>**leagueoflegends:** commands to get information about League of Legends accounts</value>
     <comment>Lol_Module</comment>
   </data>
   <data name="Desc_Message_Count" xml:space="preserve">
-    <value>Message Count: commands to get message count on a user</value>
+    <value>**messagecount:** commands to get message count on a user</value>
     <comment>Message_Count_Module</comment>
   </data>
   <data name="Desc_Poll" xml:space="preserve">
-    <value>Polls: commands to run a poll</value>
+    <value>**polls:** commands to run a poll</value>
     <comment>Poll_Module</comment>
   </data>
   <data name="Desc_Quotes" xml:space="preserve">
-    <value>Quotes: commands to add quotes for a user</value>
+    <value>**quotes:** commands to add quotes for a user</value>
     <comment>Quotes_Module</comment>
   </data>
   <data name="Desc_Remind_Me" xml:space="preserve">
-    <value>Reminders: commands to set timed reminders</value>
+    <value>**reminders:** commands to set timed reminders</value>
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Desc_Roll" xml:space="preserve">
-    <value>Dice Roll: commands to roll a dice</value>
+    <value>**diceroll:** commands to roll a dice</value>
     <comment>Roll_module</comment>
   </data>
   <data name="Desc_Twitter" xml:space="preserve">
-    <value>Twitter: commands to get tweets from accounts</value>
+    <value>**twitter:** commands to get tweets from accounts</value>
     <comment>Twitter_Module</comment>
   </data>
   <data name="Desc_Utils" xml:space="preserve">
-    <value>Utils: commands to deal with utilities on disbott</value>
+    <value>**utils:** commands to deal with utilities on disbott</value>
     <comment>Utils_Module</comment>
   </data>
   <data name="error_Cant_Add_Quote" xml:space="preserve">

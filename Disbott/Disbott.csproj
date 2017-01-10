@@ -278,6 +278,7 @@
     <Compile Include="Controllers\LoL.cs" />
     <Compile Include="Controllers\CoinFlip.cs" />
     <Compile Include="Controllers\Poll.cs" />
+    <Compile Include="Controllers\Utils.cs" />
     <Compile Include="Models\Objects\MessageCountSchema.cs" />
     <Compile Include="Models\Objects\LolSummoner.cs" />
     <Compile Include="Models\Objects\DiceResults.cs" />

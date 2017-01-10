@@ -34,5 +34,6 @@ namespace Disbott
             public static string MessageCountPath = Path.GetDirectoryName(Path.GetDirectoryName
                 (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Release\\MessageCount.db";
 #endif
+        
     }
 }

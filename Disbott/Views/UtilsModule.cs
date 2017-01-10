@@ -6,6 +6,7 @@ using Discord;
 using Discord.Commands;
 using Disbott.Properties;
 using System.Collections.Generic;
+using Disbott.Controllers;
 
 namespace Disbott.Views
 {
@@ -61,11 +62,20 @@ namespace Disbott.Views
         [Remarks("Gives a list of all modules")]
         public async Task Modules()
         {
-            string[] Modules = { Resources.Desc_Coinflip, Resources.Desc_Giphy, Resources.Desc_Lol, Resources.Desc_Message_Count, Resources.Desc_Poll, Resources.Desc_Quotes, Resources.Desc_Remind_Me, Resources.Desc_Roll, Resources.Desc_Twitter, Resources.Desc_Utils };
+            string[] Modules = { Resources.Desc_Coinflip, Resources.Desc_Giphy, Resources.Desc_Lol, Resources.Desc_Message_Count, Resources.Desc_Poll, Resources.Desc_Quotes, Resources.Desc_Remind_Me, Resources.Desc_Roll, Resources.Desc_Twitter };
 
             string reply = string.Join("\r", Modules);
 
             await ReplyAsync(reply);
+        }
+
+        [Command("help")]
+        [Remarks("Get help about a module")]
+        public async Task ModuleHelp(string module = null)
+        {
+            string answer = Utils.ShowHelp(module);
+
+            await ReplyAsync(answer);
         }
     }
 }

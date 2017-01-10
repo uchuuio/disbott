@@ -16,7 +16,7 @@ namespace Disbott.Views
     [Name("LoL")]
     public class LoLModule : ModuleBase
     {
-        [Command("set-summoner")]
+        [Command("setsummoner")]
         [Remarks("Links the specified summoner to your discord account")]
         public async Task SetSummoner([Summary("Summoner name")] string summonerName)
         {
@@ -92,14 +92,14 @@ namespace Disbott.Views
             }
         }
 
-        [Command("current-game")]
+        [Command("currentgame")]
         [Remarks("Gets the current game for yourself or another discord/league account")]
         public Task CurrentGame()
         {
             return CurrentGame(null);
         }
 
-        [Command("current-game")]
+        [Command("currentgame")]
         [Remarks("Gets the current game for yourself or another discord/league account")]
         public async Task CurrentGame([Summary("Summoner name")] string summonerName)
         {

@@ -61,7 +61,304 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Coin Flip: commands to flip a coin.
+        ///   Looks up a localized string similar to Set Summoner -- Links the specified summoner to your discord account // **disbott setsummoner [summoner name]**.
+        /// </summary>
+        internal static string Comand_Lol_SetSummoner {
+            get {
+                return ResourceManager.GetString("Comand_Lol_SetSummoner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip -- Flips a coin! // **disbott flip**.
+        /// </summary>
+        internal static string Command_CoinFlip_Flip {
+            get {
+                return ResourceManager.GetString("Command_CoinFlip_Flip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giphy -- Gets a random gif // **disbott giphy [subject]**.
+        /// </summary>
+        internal static string Command_Giphy_Flip {
+            get {
+                return ResourceManager.GetString("Command_Giphy_Flip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Game -- Gets the current game for yourself or another discord/league account // **disbott currentgame [summoner name]**.
+        /// </summary>
+        internal static string Command_Lol_CurrentGame {
+            get {
+                return ResourceManager.GetString("Command_Lol_CurrentGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ranked Info -- Gets the ranked stats for yourself or another discord/league account // **disbott ranked [summoner name]**.
+        /// </summary>
+        internal static string Command_Lol_Ranked {
+            get {
+                return ResourceManager.GetString("Command_Lol_Ranked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message Count -- Displays Current Message Count for Current or Another Discord User // **disbott messagecount**.
+        /// </summary>
+        internal static string Command_Message_Count_Count {
+            get {
+                return ResourceManager.GetString("Command_Message_Count_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Polls -- Gets all the current polls // **disbott currentpolls**.
+        /// </summary>
+        internal static string Command_Poll_Current {
+            get {
+                return ResourceManager.GetString("Command_Poll_Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Poll -- Deletes a poll // **disbott deletepoll [Poll ID]**.
+        /// </summary>
+        internal static string Command_Poll_Delete {
+            get {
+                return ResourceManager.GetString("Command_Poll_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all Polls (Admin Only) -- Deletes all polls // **disbott deleteallpolls**.
+        /// </summary>
+        internal static string Command_Poll_DeleteAll {
+            get {
+                return ResourceManager.GetString("Command_Poll_DeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Poll -- Starts a new Poll // **disbott newpoll [Date Time] [Poll Title]**.
+        /// </summary>
+        internal static string Command_Poll_NewPoll {
+            get {
+                return ResourceManager.GetString("Command_Poll_NewPoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vote Poll -- Votes on a poll // **disbott votepoll [Poll ID] [yes/no]**.
+        /// </summary>
+        internal static string Command_Poll_VotePoll {
+            get {
+                return ResourceManager.GetString("Command_Poll_VotePoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Quote -- Removes quote from a person // **disbott deletequote [Quote]**.
+        /// </summary>
+        internal static string Command_Quote_Delete {
+            get {
+                return ResourceManager.GetString("Command_Quote_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quote -- Randomly quotes a user // **disbott quote [username]**.
+        /// </summary>
+        internal static string Command_Quote_Quote {
+            get {
+                return ResourceManager.GetString("Command_Quote_Quote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Quote -- Adds a new quote // **disbott addquote [Username] [Quote]**.
+        /// </summary>
+        internal static string Command_Quotes_AddQuote {
+            get {
+                return ResourceManager.GetString("Command_Quotes_AddQuote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin Delete Reminder (Admin Only)-- Deletes a Reminder  // **disbott admindeletereminder [Poll ID]**.
+        /// </summary>
+        internal static string Command_Remindme_AdDeleteReminder {
+            get {
+                return ResourceManager.GetString("Command_Remindme_AdDeleteReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Reminders (Admin Only) -- Show all the current reminders // **disbott allreminders**.
+        /// </summary>
+        internal static string Command_Remindme_AllReminders {
+            get {
+                return ResourceManager.GetString("Command_Remindme_AllReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Reminder -- Deletes one of your current reminders // **disbott deletereminder [Poll ID]**.
+        /// </summary>
+        internal static string Command_Remindme_DeleteReminder {
+            get {
+                return ResourceManager.GetString("Command_Remindme_DeleteReminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Reminders -- Show your current reminders // **disbott myreminders**.
+        /// </summary>
+        internal static string Command_Remindme_MyReminders {
+            get {
+                return ResourceManager.GetString("Command_Remindme_MyReminders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remind Me In -- Reminds a user something in a set amout of time // **disbott remindmein [h] [m] [s] [Reminder]**.
+        /// </summary>
+        internal static string Command_Remindme_RemindIn {
+            get {
+                return ResourceManager.GetString("Command_Remindme_RemindIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remind All In (Admin Only) -- Reminds all users something in a set amout of time // **disbott remindallin [h] [m] [s] [Reminder]**.
+        /// </summary>
+        internal static string Command_Remindme_RemindInAll {
+            get {
+                return ResourceManager.GetString("Command_Remindme_RemindInAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remind Me Then -- Remindes a user something at a set time // **disbott remindmethen [Date/Time] [Reminder]**.
+        /// </summary>
+        internal static string Command_Remindme_RemindThen {
+            get {
+                return ResourceManager.GetString("Command_Remindme_RemindThen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remidn All Then (Admin Only) --  Reminds all users something at a set time // **disbott remindallthen [Date/Time] [Reminder]**.
+        /// </summary>
+        internal static string Command_Remindme_RemindThenAll {
+            get {
+                return ResourceManager.GetString("Command_Remindme_RemindThenAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roll Dice -- Rolls a dice // **disbott roll [xdy](Where x is number and y is sides)**.
+        /// </summary>
+        internal static string Command_Roll_Roll {
+            get {
+                return ResourceManager.GetString("Command_Roll_Roll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gazo Tweet -- NSFW, gets a random image from the last 40 tweets on @idol_gazo twitter account // **disbott gazo**.
+        /// </summary>
+        internal static string Command_Twitter_gazo {
+            get {
+                return ResourceManager.GetString("Command_Twitter_gazo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Headline -- Gets the latest tweet from The Guardian&apos;s Twitter Account // **disbott headline**.
+        /// </summary>
+        internal static string Command_Twitter_Headline {
+            get {
+                return ResourceManager.GetString("Command_Twitter_Headline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Random Tweet -- Gets a random tweet in the last 40 for a user // **disbott randomtweet [Twitter name]**.
+        /// </summary>
+        internal static string Command_Twitter_RandomTweet {
+            get {
+                return ResourceManager.GetString("Command_Twitter_RandomTweet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Tweet -- Gets the last tweet from a user // **disbott tweet [Twitter Name]**.
+        /// </summary>
+        internal static string Command_Twitter_Tweet {
+            get {
+                return ResourceManager.GetString("Command_Twitter_Tweet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About -- Tells the user about Disbott and its creators // **disbott about**.
+        /// </summary>
+        internal static string Command_Utils_About {
+            get {
+                return ResourceManager.GetString("Command_Utils_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help -- Gives explanation for all disbott commands // **disbott help [Module Name]**.
+        /// </summary>
+        internal static string Command_Utils_Help {
+            get {
+                return ResourceManager.GetString("Command_Utils_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Info -- Tells user the current Disbott info // **disbott info**.
+        /// </summary>
+        internal static string Command_Utils_Info {
+            get {
+                return ResourceManager.GetString("Command_Utils_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kill (Admin Only)-- Ruthlessly murders disbott // **disbott kill**.
+        /// </summary>
+        internal static string Command_Utils_Kill {
+            get {
+                return ResourceManager.GetString("Command_Utils_Kill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modules -- Lists all the current disbott modules // **disbott modules**.
+        /// </summary>
+        internal static string Command_Utils_Modules {
+            get {
+                return ResourceManager.GetString("Command_Utils_Modules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ping -- Checks disbott is alive // **disbott ping**.
+        /// </summary>
+        internal static string Command_Utils_Ping {
+            get {
+                return ResourceManager.GetString("Command_Utils_Ping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to **coinflip:** commands to flip a coin.
         /// </summary>
         internal static string Desc_Coinflip {
             get {
@@ -70,7 +367,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Giphy: commands to get Gifs from giphy.
+        ///   Looks up a localized string similar to **giphy:** commands to get Gifs from giphy.
         /// </summary>
         internal static string Desc_Giphy {
             get {
@@ -79,7 +376,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to League of Legends: commands to get information about League of Legends accounts.
+        ///   Looks up a localized string similar to **leagueoflegends:** commands to get information about League of Legends accounts.
         /// </summary>
         internal static string Desc_Lol {
             get {
@@ -88,7 +385,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Message Count: commands to get message count on a user.
+        ///   Looks up a localized string similar to **messagecount:** commands to get message count on a user.
         /// </summary>
         internal static string Desc_Message_Count {
             get {
@@ -97,7 +394,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Polls: commands to run a poll.
+        ///   Looks up a localized string similar to **polls:** commands to run a poll.
         /// </summary>
         internal static string Desc_Poll {
             get {
@@ -106,7 +403,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quotes: commands to add quotes for a user.
+        ///   Looks up a localized string similar to **quotes:** commands to add quotes for a user.
         /// </summary>
         internal static string Desc_Quotes {
             get {
@@ -115,7 +412,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reminders: commands to set timed reminders.
+        ///   Looks up a localized string similar to **reminders:** commands to set timed reminders.
         /// </summary>
         internal static string Desc_Remind_Me {
             get {
@@ -124,7 +421,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dice Roll: commands to roll a dice.
+        ///   Looks up a localized string similar to **diceroll:** commands to roll a dice.
         /// </summary>
         internal static string Desc_Roll {
             get {
@@ -133,7 +430,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Twitter: commands to get tweets from accounts.
+        ///   Looks up a localized string similar to **twitter:** commands to get tweets from accounts.
         /// </summary>
         internal static string Desc_Twitter {
             get {
@@ -142,7 +439,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Utils: commands to deal with utilities on disbott.
+        ///   Looks up a localized string similar to **utils:** commands to deal with utilities on disbott.
         /// </summary>
         internal static string Desc_Utils {
             get {
