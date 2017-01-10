@@ -61,6 +61,96 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coin Flip: commands to flip a coin.
+        /// </summary>
+        internal static string Desc_Coinflip {
+            get {
+                return ResourceManager.GetString("Desc_Coinflip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Giphy: commands to get Gifs from giphy.
+        /// </summary>
+        internal static string Desc_Giphy {
+            get {
+                return ResourceManager.GetString("Desc_Giphy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to League of Legends: commands to get information about League of Legends accounts.
+        /// </summary>
+        internal static string Desc_Lol {
+            get {
+                return ResourceManager.GetString("Desc_Lol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message Count: commands to get message count on a user.
+        /// </summary>
+        internal static string Desc_Message_Count {
+            get {
+                return ResourceManager.GetString("Desc_Message_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polls: commands to run a poll.
+        /// </summary>
+        internal static string Desc_Poll {
+            get {
+                return ResourceManager.GetString("Desc_Poll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quotes: commands to add quotes for a user.
+        /// </summary>
+        internal static string Desc_Quotes {
+            get {
+                return ResourceManager.GetString("Desc_Quotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reminders: commands to set timed reminders.
+        /// </summary>
+        internal static string Desc_Remind_Me {
+            get {
+                return ResourceManager.GetString("Desc_Remind_Me", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dice Roll: commands to roll a dice.
+        /// </summary>
+        internal static string Desc_Roll {
+            get {
+                return ResourceManager.GetString("Desc_Roll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Twitter: commands to get tweets from accounts.
+        /// </summary>
+        internal static string Desc_Twitter {
+            get {
+                return ResourceManager.GetString("Desc_Twitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utils: commands to deal with utilities on disbott.
+        /// </summary>
+        internal static string Desc_Utils {
+            get {
+                return ResourceManager.GetString("Desc_Utils", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not add quote.
         /// </summary>
         internal static string error_Cant_Add_Quote {
