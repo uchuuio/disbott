@@ -53,7 +53,7 @@ namespace Disbott
             await _client.SetGameAsync($"\'@{username} about\' for commands");
             await _client.CurrentUser.ModifyAsync(x =>
             {
-                x.Avatar = new Image(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/Resources/DISBOTTAvatarMH.png");
+                x.Avatar = new Image(Constants.avatarImage);
             });
         }
 
