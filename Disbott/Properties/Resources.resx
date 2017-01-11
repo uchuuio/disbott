@@ -190,19 +190,19 @@
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Remindme_RemindIn" xml:space="preserve">
-    <value>Remind Me In -- Reminds a user something in a set amout of time // **disbott remindmein [h] [m] [s] [Reminder]**</value>
+    <value>Remind Me In -- Reminds a user something in a set amount of time // **disbott remindmein [h] [m] [s] [Reminder]**</value>
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Remindme_RemindInAll" xml:space="preserve">
-    <value>Remind All In (Admin Only) -- Reminds all users something in a set amout of time // **disbott remindallin [h] [m] [s] [Reminder]**</value>
+    <value>Remind All In (Admin Only) -- Reminds all users something in a set amount of time // **disbott remindallin [h] [m] [s] [Reminder]**</value>
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Remindme_RemindThen" xml:space="preserve">
-    <value>Remind Me Then -- Remindes a user something at a set time // **disbott remindmethen [Date/Time] [Reminder]**</value>
+    <value>Remind Me Then -- Reminds a user something at a set time // **disbott remindmethen [Date/Time] [Reminder]**</value>
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Remindme_RemindThenAll" xml:space="preserve">
-    <value>Remidn All Then (Admin Only) --  Reminds all users something at a set time // **disbott remindallthen [Date/Time] [Reminder]**</value>
+    <value>Remind All Then (Admin Only) --  Reminds all users something at a set time // **disbott remindallthen [Date/Time] [Reminder]**</value>
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Roll_Roll" xml:space="preserve">

@@ -223,7 +223,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remind Me In -- Reminds a user something in a set amout of time // **disbott remindmein [h] [m] [s] [Reminder]**.
+        ///   Looks up a localized string similar to Remind Me In -- Reminds a user something in a set amount of time // **disbott remindmein [h] [m] [s] [Reminder]**.
         /// </summary>
         internal static string Command_Remindme_RemindIn {
             get {
@@ -232,7 +232,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remind All In (Admin Only) -- Reminds all users something in a set amout of time // **disbott remindallin [h] [m] [s] [Reminder]**.
+        ///   Looks up a localized string similar to Remind All In (Admin Only) -- Reminds all users something in a set amount of time // **disbott remindallin [h] [m] [s] [Reminder]**.
         /// </summary>
         internal static string Command_Remindme_RemindInAll {
             get {
@@ -241,7 +241,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remind Me Then -- Remindes a user something at a set time // **disbott remindmethen [Date/Time] [Reminder]**.
+        ///   Looks up a localized string similar to Remind Me Then -- Reminds a user something at a set time // **disbott remindmethen [Date/Time] [Reminder]**.
         /// </summary>
         internal static string Command_Remindme_RemindThen {
             get {
@@ -250,7 +250,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remidn All Then (Admin Only) --  Reminds all users something at a set time // **disbott remindallthen [Date/Time] [Reminder]**.
+        ///   Looks up a localized string similar to Remind All Then (Admin Only) --  Reminds all users something at a set time // **disbott remindallthen [Date/Time] [Reminder]**.
         /// </summary>
         internal static string Command_Remindme_RemindThenAll {
             get {
