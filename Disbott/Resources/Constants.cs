@@ -30,7 +30,7 @@ namespace Disbott
         public static string MessageCountPath = "MessageCount.db";
 
         //Image Paths
-        public static string avatarImage = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/Resources/DISBOTTAvatarMH.png";
+        public static string avatarImage = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/Resources/DisbottAVAV2.png";
 #endif
 
     }
