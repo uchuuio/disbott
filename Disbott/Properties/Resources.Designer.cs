@@ -187,7 +187,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Admin Delete Reminder (Admin Only)-- Deletes a Reminder  // **disbott admindeletereminder [Poll ID]**.
+        ///   Looks up a localized string similar to Admin Delete Reminder (Admin Only)-- Deletes a Reminder  // **disbott admindeletereminder [Reminder ID]**.
         /// </summary>
         internal static string Command_Remindme_AdDeleteReminder {
             get {
@@ -205,7 +205,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Reminder -- Deletes one of your current reminders // **disbott deletereminder [Poll ID]**.
+        ///   Looks up a localized string similar to Delete Reminder -- Deletes one of your current reminders // **disbott deletereminder [Reminder ID]**.
         /// </summary>
         internal static string Command_Remindme_DeleteReminder {
             get {

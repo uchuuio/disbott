@@ -174,7 +174,7 @@
     <comment>Quotes_Module</comment>
   </data>
   <data name="Command_Remindme_AdDeleteReminder" xml:space="preserve">
-    <value>Admin Delete Reminder (Admin Only)-- Deletes a Reminder  // **disbott admindeletereminder [Poll ID]**</value>
+    <value>Admin Delete Reminder (Admin Only)-- Deletes a Reminder  // **disbott admindeletereminder [Reminder ID]**</value>
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Remindme_AllReminders" xml:space="preserve">
@@ -182,7 +182,7 @@
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Remindme_DeleteReminder" xml:space="preserve">
-    <value>Delete Reminder -- Deletes one of your current reminders // **disbott deletereminder [Poll ID]**</value>
+    <value>Delete Reminder -- Deletes one of your current reminders // **disbott deletereminder [Reminder ID]**</value>
     <comment>Remind_Me_Module</comment>
   </data>
   <data name="Command_Remindme_MyReminders" xml:space="preserve">
