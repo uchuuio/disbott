@@ -51,6 +51,10 @@ namespace Disbott
             var username = _client.CurrentUser.Username;
             await _client.SetStatusAsync(UserStatus.Online);
             await _client.SetGameAsync($"\'@{username} about\' for commands");
+            await _client.CurrentUser.ModifyAsync(x =>
+            {
+                x.Avatar = new Image(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/Resources/DISBOTTAvatarMH.png");
+            });
         }
 
         public async Task InstallCommands()
