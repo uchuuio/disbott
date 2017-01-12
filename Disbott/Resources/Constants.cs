@@ -19,7 +19,7 @@ namespace Disbott
             (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Debug\\polltest.db";
         public static string MessageCountPath = Path.GetDirectoryName(Path.GetDirectoryName
             (Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase))).Remove(0, 6) + "\\bin\\Debug\\MessageCounttest.db";
-        
+
         //Image Paths
         public static string avatarImage = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/Resources/DISBOTTAvatarMH.png";
 #else
@@ -30,7 +30,7 @@ namespace Disbott
         public static string MessageCountPath = "MessageCount.db";
 
         //Image Paths
-        public static string avatarImage = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/Resources/DisbottAVAV2.png";
+        //public static string avatarImage = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "/Resources/DisbottAVAV2.png";
 #endif
 
     }
