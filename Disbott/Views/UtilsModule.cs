@@ -24,9 +24,8 @@ namespace Disbott.Views
         [Remarks("Tells user about Disbott")]
         public async Task About()
         {
-            var urlLocation = ConfigurationManager.AppSettings["domain"];
             await
-                ReplyAsync(string.Format(Resources.response_About,urlLocation));
+                ReplyAsync(string.Format(Resources.response_About, Resources.url_Web_Disbott));
         }
 
         [Command("info")]

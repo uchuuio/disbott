@@ -375,4 +375,8 @@ Total: {2}</value>
     <value>https://github.com/uchuuio/disbott/</value>
     <comment>General</comment>
   </data>
+  <data name="url_Web_Disbott" xml:space="preserve">
+    <value>https://disbott.uchuu.io</value>
+    <comment>General</comment>
+  </data>
 </root>

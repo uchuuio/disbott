@@ -635,6 +635,13 @@ namespace Disbott.Properties {
         internal static string url_Disbott {
             get {
                 return ResourceManager.GetString("url_Disbott", resourceCulture);
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://disbott.uchuu.io.
+        /// </summary>
+        internal static string url_Web_Disbott {
+            get {
+                return ResourceManager.GetString("url_Web_Disbott", resourceCulture);
             }
         }
     }
