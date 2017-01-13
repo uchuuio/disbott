@@ -22,7 +22,7 @@ namespace Disbott.Views
             var msg = Context.Message;
             var discordId = msg.Author.Id;
 
-            string result = MessageCount.GetMessages(discordId);
+            string result = MessageCountController.GetMessages(discordId);
 
             await ReplyAsync(result);
         }

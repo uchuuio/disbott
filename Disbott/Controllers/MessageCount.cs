@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Disbott.Controllers
 {
-    public static class MessageCount
+    public static class MessageCountController
     {
         public static bool MessageRecord(ulong msg)
         {

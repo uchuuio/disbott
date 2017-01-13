@@ -85,7 +85,7 @@ namespace Disbott
             
            
             // MessageCount Record
-            MessageCount.MessageRecord(message.Author.Id);
+            MessageCountController.MessageRecord(message.Author.Id);
         }
 
     }
