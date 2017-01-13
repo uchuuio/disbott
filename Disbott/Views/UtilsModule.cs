@@ -34,11 +34,11 @@ namespace Disbott.Views
         {
             #if DEBUG
                 await
-                    ReplyAsync(string.Format(Resources.response_Info_Dev, Resources.url_Disbott));
+                    ReplyAsync(string.Format(Resources.response_Info_Dev, Resources.url_Github_Disbott));
             #else
-                // Ideally this should get the deployed version number and release url from github
+                var currentRelease = await UtilsController.getReleaseData();
                 await
-                    ReplyAsync(string.Format(Resources.response_Info_Dev, Resources.url_Disbott));
+                    ReplyAsync(string.Format(Resources.response_Info_Live, currentRelease[0], currentRelease[1]));
             #endif
         }
 
@@ -72,7 +72,7 @@ namespace Disbott.Views
         [Remarks("Get help about a module")]
         public async Task ModuleHelp(string module = null)
         {
-            string answer = Utils.ShowHelp(module);
+            string answer = UtilsController.ShowHelp(module);
 
             await ReplyAsync(answer);
         }

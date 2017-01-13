@@ -567,7 +567,7 @@ namespace Disbott.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disbott C# Edition, Version 3.0.0 -- {0}.
+        ///   Looks up a localized string similar to Disbott C# Edition, {0} -- {1}.
         /// </summary>
         internal static string response_Info_Live {
             get {
@@ -632,9 +632,11 @@ namespace Disbott.Properties {
         /// <summary>
         ///   Looks up a localized string similar to https://github.com/uchuuio/disbott/.
         /// </summary>
-        internal static string url_Disbott {
+        internal static string url_Github_Disbott {
             get {
-                return ResourceManager.GetString("url_Disbott", resourceCulture);
+                return ResourceManager.GetString("url_Github_Disbott", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to https://disbott.uchuu.io.

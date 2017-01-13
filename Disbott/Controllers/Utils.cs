@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Disbott.Properties;
+using Octokit;
 
 namespace Disbott.Controllers
 {
-    public static class Utils
+    public static class UtilsController
     {
         private static string[] coinFlipCommands = {"__**Coin flip module commands**__",Resources.Command_CoinFlip_Flip};
         private static string[] giphyCommands = {"__**Giphy module commands**__",Resources.Command_Giphy_Flip};
@@ -19,6 +20,20 @@ namespace Disbott.Controllers
         private static string[] rollCommands = {"__**Dice roll module commands**__",Resources.Command_Roll_Roll };
         private static string[] twitterCommands = {"__**Twitter module Commands**__",Resources.Command_Twitter_Tweet,Resources.Command_Twitter_RandomTweet,Resources.Command_Twitter_Headline,Resources.Command_Twitter_gazo };
         private static string[] utilsCommands = {"__**Utils module Commands**__",Resources.Command_Utils_Ping,Resources.Command_Utils_Info,Resources.Command_Utils_About,Resources.Command_Utils_Kill,Resources.Command_Utils_Modules,Resources.Command_Utils_Help };
+
+        public static async Task<string[]> getReleaseData()
+        {
+            var client = new GitHubClient(new ProductHeaderValue("Disbott"));
+            var releases = await client.Repository.Release.GetAll("uchuuio", "disbott");
+            var latestRelease = releases[0];
+
+            string[] releaseData =
+            {
+                latestRelease.Name,
+                latestRelease.HtmlUrl
+            };
+            return releaseData;
+        }
 
         public static string ShowHelp(string moduleName)
         {

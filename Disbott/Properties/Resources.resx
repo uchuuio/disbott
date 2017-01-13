@@ -344,8 +344,8 @@ Total: {2}</value>
     <comment>General</comment>
   </data>
   <data name="response_Info_Live" xml:space="preserve">
-    <value>Disbott C# Edition, Version 3.0.0 -- {0}</value>
-    <comment>Geneal</comment>
+    <value>Disbott C# Edition, {0} -- {1}</value>
+    <comment>General</comment>
   </data>
   <data name="response_Killed" xml:space="preserve">
     <value>I have been killed, brb</value>
@@ -371,7 +371,7 @@ Total: {2}</value>
     <value>{0}: {1}</value>
     <comment>Twitter_Module</comment>
   </data>
-  <data name="url_Disbott" xml:space="preserve">
+  <data name="url_Github_Disbott" xml:space="preserve">
     <value>https://github.com/uchuuio/disbott/</value>
     <comment>General</comment>
   </data>
