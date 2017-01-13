@@ -15,7 +15,7 @@ namespace Disbott.Views
     public class RemindMeModule : ModuleBase
     {
         // Creates the instance of the timer
-        private System.Threading.Timer timer;
+        private System.Threading.Timer _timer;
 
         // Method to run when the timer is finished 
         public async void ReplyWithNote(string userNote, string note)
@@ -24,16 +24,16 @@ namespace Disbott.Views
             bool timerExists = RemindMeController.FindReminder(note);
 
             //If the timer is still in the db awesome
-            if (timerExists == true)
+            if (timerExists)
             {
                 await ReplyAsync(userNote);
                 RemindMeController.DeleteReminderEnd(note);
-                this.timer.Dispose();
+                _timer.Dispose();
             }
             else
             {
                 //End the instance of the timer
-                this.timer.Dispose();
+                _timer.Dispose();
                 //await ReplyAsync("THIS MESSAGE MEANS IT FKING WORKS");
             }
         }
@@ -56,7 +56,7 @@ namespace Disbott.Views
                 TimeSpan timeToGo = timeToWait;
 
                 // Add the reminder to the db
-                var addReminder = RemindMeController.AddRemindMeHistory(userTime, note, discordId);
+                RemindMeController.AddRemindMeHistory(userTime, note, discordId);
 
                 await ReplyAsync($"Don't worry {discordId}! I will remind you at {userTime}");
 
@@ -67,9 +67,9 @@ namespace Disbott.Views
                 }
 
                 //EVENT HANDLER FOR THE TIMER REACHING THE TIME
-                this.timer = new System.Threading.Timer(x =>
+                _timer = new System.Threading.Timer(x =>
                 {
-                    this.ReplyWithNote($"{msg.Author.Mention} Remember: {note} \r\n This test was set up at {userTime} it is currently {DateTime.Now.ToString()}",note);
+                    ReplyWithNote($"{msg.Author.Mention} Remember: {note} \r\n This test was set up at {userTime} it is currently {DateTime.Now.ToString()}",note);
                 }, null, timeToGo, Timeout.InfiniteTimeSpan);
                 
             }
@@ -98,14 +98,14 @@ namespace Disbott.Views
             DateTime setTime = DateTime.Now.Add(timeToGo);
 
             // Add reminder to the db
-            var addReminder = RemindMeController.AddRemindMeHistory(setTime, note, discordId);
+            RemindMeController.AddRemindMeHistory(setTime, note, discordId);
 
             await ReplyAsync($"Don't worry {discordId}! I will remind you in {timeToWait}");
 
             //EVENT HANDLER FOR THE TIMER REACHING THE TIME
-            this.timer = new System.Threading.Timer(x =>
+            _timer = new System.Threading.Timer(x =>
             {
-                this.ReplyWithNote($"{msg.Author.Mention} Remember: {note}",note);
+                ReplyWithNote($"{msg.Author.Mention} Remember: {note}",note);
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
         }
 
@@ -132,14 +132,14 @@ namespace Disbott.Views
             DateTime setTime = DateTime.Now.Add(timeToGo);
 
             // Add reminder to the db
-            var addReminder = RemindMeController.AddRemindMeHistory(setTime, note, "Everyone");
+            RemindMeController.AddRemindMeHistory(setTime, note, "Everyone");
 
             await ReplyAsync($"Yes sir {discordId}! I will remind everyone in {timeToWait}");
 
             //EVENT HANDLER FOR THE TIMER REACHING THE TIME
-            this.timer = new System.Threading.Timer(x =>
+            _timer = new System.Threading.Timer(x =>
             {
-                this.ReplyWithNote($"@everyone Remember: {note}",note);
+                ReplyWithNote($"@everyone Remember: {note}",note);
             }, null, timeToGo, Timeout.InfiniteTimeSpan);
         }
 
@@ -167,7 +167,7 @@ namespace Disbott.Views
                 TimeSpan timeToGo = timeToWait;
                 
                 // Add reminder to the db
-                var addReminder = RemindMeController.AddRemindMeHistory(userTime, note, "Everyone");
+                RemindMeController.AddRemindMeHistory(userTime, note, "Everyone");
 
                 await ReplyAsync($"Yes Sir {discordId}! I will remind you at {userTime}");
 
@@ -178,9 +178,9 @@ namespace Disbott.Views
                 }
 
                 //EVENT HANDLER FOR THE TIMER REACHING THE TIME
-                this.timer = new System.Threading.Timer(x =>
+                _timer = new System.Threading.Timer(x =>
                 {
-                    this.ReplyWithNote($"@everyone Remember: {note}",note);
+                    ReplyWithNote($"@everyone Remember: {note}",note);
                 }, null, timeToGo, Timeout.InfiniteTimeSpan);
             }
             catch (FormatException e)
@@ -259,8 +259,8 @@ namespace Disbott.Views
             var discordId = msg.Author.Username;
 
             // Delete item from the db
-            bool hasDeleted = RemindMeController.DeleteReminder(Convert.ToInt32(id),discordId);
-            if (hasDeleted == true)
+            bool hasDeleted = RemindMeController.DeleteReminder(Convert.ToInt32(id), discordId);
+            if (hasDeleted)
             {
                 await ReplyAsync($"{id} was deleted");
             }
