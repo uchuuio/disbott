@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Disbott.Models.Objects
 {
+    /// <summary>
+    /// Object to store reminders, is stored in the db
+    /// </summary>
     public class RemindMeSchema
     {
         public int Id { get; set; }

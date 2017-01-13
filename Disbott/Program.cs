@@ -20,6 +20,10 @@ namespace Disbott
 
         private static void Main(string[] args) => new Program().Start().GetAwaiter().GetResult();
 
+        /// <summary>
+        /// Stars Disbott Running
+        /// </summary>
+        /// <returns></returns>
         public async Task Start()
         {
             _client = new DiscordSocketClient();
@@ -46,6 +50,10 @@ namespace Disbott
             await Task.Delay(-1);
         }
 
+        /// <summary>
+        /// Modifysd any initial disbott info we want
+        /// </summary>
+        /// <returns></returns>
         public async Task ModifyStatus()
         {
             var username = _client.CurrentUser.Username;
@@ -57,6 +65,10 @@ namespace Disbott
             //});
         }
 
+        /// <summary>
+        /// Adds the commands to the program
+        /// </summary>
+        /// <returns></returns>
         public async Task InstallCommands()
         {
             // Hook the MessageReceived Event into our Command Handler
@@ -64,6 +76,12 @@ namespace Disbott
             // Discover all of the commands in this assembly and load them.
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly());
         }
+
+        /// <summary>
+        /// Tells disbott what to do with incoming commands
+        /// </summary>
+        /// <param name="messageParam"></param>
+        /// <returns></returns>
         public async Task HandleCommand(SocketMessage messageParam)
         {
             // Don't process the command if it was a System Message

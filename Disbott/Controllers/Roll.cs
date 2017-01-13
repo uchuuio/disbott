@@ -8,7 +8,11 @@ namespace Disbott.Controllers
 {
     public static class RollController
     {
-        // Method to Validat the dice roll
+        /// <summary>
+        /// Validates the Dice roll user input
+        /// </summary>
+        /// <param name="userInput"></param>
+        /// <returns></returns>
         public static Match ValidateDiceRoll(string userInput)
         {
             // Set the dice to be the value the user entered
@@ -23,7 +27,11 @@ namespace Disbott.Controllers
             return isValidated;
         }
 
-        // Method to get the number of DIce
+        /// <summary>
+        /// Method to get the number of dice from the user input
+        /// </summary>
+        /// <param name="userInput"></param>
+        /// <returns></returns>
         public static Match GetNumberOfDice(string userInput)
         {
             // Set the number of dice value to be equal to the user Input
@@ -39,7 +47,11 @@ namespace Disbott.Controllers
             return numberOfDiceRolled;
         }
 
-        // Method to get the number of sides on each dice
+        /// <summary>
+        /// Method to get the number of sides from the user input
+        /// </summary>
+        /// <param name="userInput"></param>
+        /// <returns></returns>
         public static Match GetNumberOfSides(string userInput)
         {
             // Set the number of sides on each dice to be equal to the iser input
@@ -55,7 +67,12 @@ namespace Disbott.Controllers
             return numberOfSidesOnDiceRolled;
         }
 
-        //Method to roll the dice
+        /// <summary>
+        /// Method to roll the dice
+        /// </summary>
+        /// <param name="dicerolled"></param>
+        /// <param name="dicesides"></param>
+        /// <returns></returns>
         public static DiceResults Rolling(int dicerolled, int dicesides)
         {
             // creates a random number and stores it as the variable rnd
