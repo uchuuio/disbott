@@ -76,5 +76,28 @@ namespace Disbott.Views
 
             await ReplyAsync(answer);
         }
+
+        [Command("upupdowndownleftrightleftrightba")]
+        [Remarks("")]
+        public async Task BoringStuff()
+        {
+            await ReplyAsync("ACTIVATING DANK MODE \r Type dank to end DANK MODE");
+            Constants.DANKMODEACTIVATED = true;
+        }
+
+        [Command("dank")]
+        [Remarks("")]
+        public async Task EndBoringStuff()
+        {
+            if (Constants.DANKMODEACTIVATED == false)
+            {
+                await ReplyAsync("But dank mode isnt active?");
+            }
+            else
+            {
+                await ReplyAsync("Ended dank mode");
+            }
+            Constants.DANKMODEACTIVATED = false;
+        }
     }
 }
