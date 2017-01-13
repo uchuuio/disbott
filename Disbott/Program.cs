@@ -99,6 +99,11 @@ namespace Disbott
                 var result = await _commands.ExecuteAsync(context, argPos);
                 if (!result.IsSuccess)
                     await message.Channel.SendMessageAsync(result.ErrorReason);
+                if (Constants.DANKMODEACTIVATED == true)
+                {
+                    var value = await GiphyController.GetRandomGif("Dank");
+                    await message.Channel.SendMessageAsync(value);
+                }
             }
 
             if (message.Author.Id != _client.CurrentUser.Id)

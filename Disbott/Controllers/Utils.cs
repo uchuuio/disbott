@@ -52,9 +52,5 @@ namespace Disbott.Controllers
                 return "module does not exist";
             }
         }
-        public static string pingz()
-        {
-            return "pongz";
-        }
     }
 }

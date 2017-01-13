@@ -9,6 +9,7 @@ namespace Disbott
 {
     public static class Constants
     {
+        public static bool DANKMODEACTIVATED = false;
 #if DEBUG
         //Database Paths
         public static string quotePath = Path.GetDirectoryName(Path.GetDirectoryName
