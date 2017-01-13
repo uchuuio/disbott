@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Disbott.Models.Objects
 {
+    /// <summary>
+    /// Object to hold the polls, is stored in the db
+    /// </summary>
     public class PollSchema
     {
         public int Id { get; set; }

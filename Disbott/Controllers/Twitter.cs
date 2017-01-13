@@ -7,6 +7,9 @@ namespace Disbott.Controllers
 {
     public static class TwitterController
     {
+        /// <summary>
+        /// Twitter auth method, variables hidden
+        /// </summary>
         public static void Authenticate()
         {
             Auth.SetUserCredentials(
@@ -16,7 +19,11 @@ namespace Disbott.Controllers
                 Environment.GetEnvironmentVariable("twitter_access_token_secret")
             );
         }
-
+        /// <summary>
+        /// Gets the latest tweet by a user from the twitter api
+        /// </summary>
+        /// <param name="twitterAccount"></param>
+        /// <returns></returns>
         public static string GetUsersLatestTweet(string twitterAccount)
         {
             Authenticate();
@@ -26,6 +33,11 @@ namespace Disbott.Controllers
             return tweetMsg;
         }
 
+        /// <summary>
+        /// Gets a random tweet from a user from the twitter api
+        /// </summary>
+        /// <param name="twitterAccount"></param>
+        /// <returns></returns>
         public static string GetUsersRandomTweet(string twitterAccount)
         {
             Random rnd = new Random();

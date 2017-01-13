@@ -5,6 +5,11 @@ namespace Disbott.Controllers
 {
     public static class LoLController
     {
+        /// <summary>
+        /// Calls the Lol api for the summonername passed in
+        /// </summary>
+        /// <param name="summonerName"></param>
+        /// <returns></returns>
         public static dynamic GetSummonerData(string summonerName)
         {
             int summonerId;
@@ -16,6 +21,11 @@ namespace Disbott.Controllers
             return api.GetSummoner(Region.euw, summonerName);
         }
 
+        /// <summary>
+        /// Calls the lol api for ranked stats on the summoner passed in
+        /// </summary>
+        /// <param name="summonerApi"></param>
+        /// <returns></returns>
         public static string GetRankedStats(dynamic summonerApi)
         {
             var message = "The Ranked Stats for " + summonerApi.Name + " are as follows:\r\n";
@@ -60,6 +70,11 @@ namespace Disbott.Controllers
             return message;
         }
 
+        /// <summary>
+        /// Calls the lol api for the current game of the user passed in
+        /// </summary>
+        /// <param name="summonerApi"></param>
+        /// <returns></returns>
         public static string GetCurrentGame(dynamic summonerApi)
         {
             var api = RiotApi.GetInstance(Environment.GetEnvironmentVariable("lol_api_key"));

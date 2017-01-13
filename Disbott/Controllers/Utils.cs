@@ -35,6 +35,11 @@ namespace Disbott.Controllers
             return releaseData;
         }
 
+        /// <summary>
+        /// Shows the help section to the users
+        /// </summary>
+        /// <param name="moduleName"></param>
+        /// <returns></returns>
         public static string ShowHelp(string moduleName)
         {
             if (moduleName == "coinflip")
@@ -61,6 +66,10 @@ namespace Disbott.Controllers
             {
                 return "module does not exist";
             }
+        }
+        public static string pingz()
+        {
+            return "pongz";
         }
     }
 }
