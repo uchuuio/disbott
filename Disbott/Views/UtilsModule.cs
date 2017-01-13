@@ -82,7 +82,7 @@ namespace Disbott.Views
         [Remarks("")]
         public async Task BoringStuff()
         {
-            await ReplyAsync("ACTIVATING DANK MODE");
+            await ReplyAsync("ACTIVATING DANK MODE \r Type dank to end DANK MODE");
             Constants.DANKMODEACTIVATED = true;
         }
 
