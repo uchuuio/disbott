@@ -21,6 +21,10 @@ namespace Disbott.Controllers
         private static string[] twitterCommands = {"__**Twitter module Commands**__",Resources.Command_Twitter_Tweet,Resources.Command_Twitter_RandomTweet,Resources.Command_Twitter_Headline,Resources.Command_Twitter_gazo };
         private static string[] utilsCommands = {"__**Utils module Commands**__",Resources.Command_Utils_Ping,Resources.Command_Utils_Info,Resources.Command_Utils_About,Resources.Command_Utils_Kill,Resources.Command_Utils_Modules,Resources.Command_Utils_Help };
 
+        /// <summary>
+        /// Gets information from the latest release on Github for the info command
+        /// </summary>
+        /// <returns></returns>
         public static async Task<string[]> getReleaseData()
         {
             var client = new GitHubClient(new ProductHeaderValue("Disbott"));
