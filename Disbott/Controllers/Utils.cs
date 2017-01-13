@@ -20,6 +20,11 @@ namespace Disbott.Controllers
         private static string[] twitterCommands = {"__**Twitter module Commands**__",Resources.Command_Twitter_Tweet,Resources.Command_Twitter_RandomTweet,Resources.Command_Twitter_Headline,Resources.Command_Twitter_gazo };
         private static string[] utilsCommands = {"__**Utils module Commands**__",Resources.Command_Utils_Ping,Resources.Command_Utils_Info,Resources.Command_Utils_About,Resources.Command_Utils_Kill,Resources.Command_Utils_Modules,Resources.Command_Utils_Help };
 
+        /// <summary>
+        /// Shows the help section to the users
+        /// </summary>
+        /// <param name="moduleName"></param>
+        /// <returns></returns>
         public static string ShowHelp(string moduleName)
         {
             if (moduleName == "coinflip")
@@ -46,6 +51,10 @@ namespace Disbott.Controllers
             {
                 return "module does not exist";
             }
+        }
+        public static string pingz()
+        {
+            return "pongz";
         }
     }
 }

@@ -11,6 +11,12 @@ namespace Disbott.Controllers
 {
     public class QuotesController
     {
+        /// <summary>
+        /// Adds a new quote to the db
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="newquote"></param>
+        /// <returns></returns>
         public static bool AddQuoteMethod(string name, string newquote)
         {
             using (var db = new LiteDatabase(Constants.quotePath))
@@ -29,6 +35,11 @@ namespace Disbott.Controllers
             return true;
         }
 
+        /// <summary>
+        /// Gets a random quote from the db
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static Tuple<string, string> GetQuoteMethod(string name)
         {
             using (var db = new LiteDatabase(Constants.quotePath))
@@ -55,6 +66,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Deletes a quote from the db
+        /// </summary>
+        /// <param name="quote"></param>
+        /// <returns></returns>
         public static bool DeleteQuoteMethod(string quote)
         {
             using (var db = new LiteDatabase(Constants.quotePath))

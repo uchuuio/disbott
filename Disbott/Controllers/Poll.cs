@@ -9,6 +9,13 @@ namespace Disbott.Controllers
 {
     public class PollController
     {
+        /// <summary>
+        /// Starts a new poll, sets up db and passes all information in
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="question"></param>
+        /// <param name="time"></param>
+        /// <returns>Object with user info</returns>
         public static PollSchema AddNewPoll(string userName, string question, DateTime time)
         {
             using (var db = new LiteDatabase(Constants.pollPath))
@@ -34,6 +41,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the results of the poll. (Method cant be called by user, its auto) 
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns>Object containing poll results</returns>
         public static PollSchema GetPollResults(string question)
         {
             PollSchema pollResults = new PollSchema();
@@ -55,6 +67,10 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets a list of current live polls.
+        /// </summary>
+        /// <returns>String of poll details</returns>
         public static string ReurnCurrentPolls()
         {
             using (var db = new LiteDatabase(Constants.pollPath))
@@ -82,6 +98,13 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Adds a vote to a poll, adds the vote to the db
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="voteyn"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static string VoteOnPoll(string number, string voteyn, string userID)
         {
             int id = Convert.ToInt32(number);
@@ -123,23 +146,12 @@ namespace Disbott.Controllers
             }
         }
 
-        //public static bool ChangeVote(string number)
-        //{
-        //    int id = Convert.ToInt32(number);
-
-        //    using (var db = new LiteDatabase(Constants.pollPath))
-        //    {
-        //        var polls = db.GetCollection<PollSchema>("poll");
-
-        //        var result = polls.FindOne(x => x.Id.Equals(id));
-
-        //        var poll = result;
-
-        //        return false;
-
-        //    }
-        //}
-
+        /// <summary>
+        /// Deletes a Poll from the db (Own user only)
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public static bool DeletePoll(int number, string userID = "Admin2")
         {
             int id = Convert.ToInt32(number);
@@ -172,6 +184,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Automatic method to clean up when a poll ends
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
         public static bool DeletePollEnd(string question)
         {
             using (var db = new LiteDatabase(Constants.pollPath))
@@ -184,6 +201,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Automatic method to find a poll in the list (Cant be called by user)
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
         public static bool FindPoll(string question)
         {
             using (var db = new LiteDatabase(Constants.pollPath))
@@ -199,6 +221,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Automatic method to stop a poll runnning (Cant be called by user)
+        /// </summary>
+        /// <param name="question"></param>
+        /// <returns></returns>
         public static bool stopPollRunning(string question)
         {
             using (var db = new LiteDatabase(Constants.pollPath))

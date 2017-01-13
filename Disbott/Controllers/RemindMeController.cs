@@ -60,6 +60,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the current reminders of a user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public static string GetMyReminders(string userId)
         {
             using (var db = new LiteDatabase(Constants.remindMePath))

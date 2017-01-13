@@ -9,6 +9,11 @@ namespace Disbott.Controllers
 {
     public static class GiphyController
     {
+        /// <summary>
+        /// Calls the Gipy api and the returns a JSON string
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public static async Task<string> GetRandomGif(string search)
         {
             HttpClient client = new HttpClient();

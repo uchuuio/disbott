@@ -1,5 +1,8 @@
 ﻿namespace Disbott.Models.Objects
 {
+    /// <summary>
+    /// Dice object not stored in db
+    /// </summary>
     public class DiceResults
     {
         public string Results { get; set; }

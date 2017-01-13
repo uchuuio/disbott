@@ -12,6 +12,12 @@ namespace Disbott.Controllers
 {
     public static class MessageCount
     {
+
+        /// <summary>
+        /// Records the messages said by a user and puts it into a db
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
         public static bool MessageRecord(ulong msg)
         {
             using (var db = new LiteDatabase(Constants.MessageCountPath))
@@ -43,6 +49,11 @@ namespace Disbott.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets the messages from the messages db
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
         public static string GetMessages(ulong msg)
         {
             using (var db = new LiteDatabase(Constants.MessageCountPath))
