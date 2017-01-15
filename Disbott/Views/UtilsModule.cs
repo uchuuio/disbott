@@ -17,7 +17,7 @@ namespace Disbott.Views
         [Remarks("Responds Pong")]
         public async Task Ping()
         {
-            await ReplyAsync(Resources.response_Pong);
+            await ReplyAsync("Pong-o-san!");
         }
 
         [Command("about")]
