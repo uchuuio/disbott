@@ -274,6 +274,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BlackJack.cs" />
     <Compile Include="Controllers\MessageCount.cs" />
     <Compile Include="Controllers\Quotes.cs" />
     <Compile Include="Controllers\Giphy.cs" />
@@ -283,6 +284,8 @@
     <Compile Include="Controllers\CoinFlip.cs" />
     <Compile Include="Controllers\Poll.cs" />
     <Compile Include="Controllers\Utils.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\Objects\BlackJack\Card.cs" />
     <Compile Include="Models\Objects\MessageCountSchema.cs" />
     <Compile Include="Models\Objects\LolSummoner.cs" />
     <Compile Include="Models\Objects\DiceResults.cs" />
@@ -290,6 +293,7 @@
     <Compile Include="Models\Objects\PollSchema.cs" />
     <Compile Include="Models\Objects\RemindMeSchema.cs" />
     <Compile Include="Resources\Constants.cs" />
+    <Compile Include="Views\BlackJackModule.cs" />
     <Compile Include="Views\GiphyModule.cs" />
     <Compile Include="Views\PollModule.cs" />
     <Compile Include="Views\QuotesModule.cs" />
